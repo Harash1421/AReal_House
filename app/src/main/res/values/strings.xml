@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ARealHouse</string>
+    <string name="title_activity_detail_buy">DetailBuyActivity</string>
+    <string name="title_activity_filter">FilterActivity</string>
+
+    <string-array name="accommodation_types">
+        <item>Apartment</item>
+        <item>House</item>
+        <item>Villa</item>
+    </string-array>
+
+    <string-array name="property_conditions">
+        <item>New</item>
+        <item>Used</item>
+        <item>Renovated</item>
+    </string-array>
+</resources>

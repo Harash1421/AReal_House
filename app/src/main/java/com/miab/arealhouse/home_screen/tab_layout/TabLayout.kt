@@ -1,0 +1,119 @@
+package com.miab.arealhouse.home_screen.tab_layout
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Divider
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.rememberPagerState
+import com.miab.arealhouse.R
+import com.miab.arealhouse.home_screen.tab_layout.screens.RentScreen
+import com.miab.arealhouse.home_screen.tab_layout.screens.SaleScreen
+import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
+
+@Composable
+fun TabLayout(tabNames: List<String>, modifier: Modifier = Modifier){
+    val pagerState = rememberPagerState()
+
+    val apartments = listOf(
+        Apartment(
+            imageUrl = R.drawable.image,
+            name = "Awesome Apartment 1",
+            description = "This is an awesome apartment.",
+            price = "$2000/month",
+            bedroom = 3,
+            bathroom = 2,
+            parking = 1,
+            owner = "Ahmed",
+            ownerProperty = "Simphony Property",
+            isFavorite = true
+        ),
+        Apartment(
+            imageUrl = R.drawable.image_second,
+            name = "Awesome Apartment 2",
+            description = "This is another awesome apartment.",
+            price = "$2500/month",
+            bedroom = 2,
+            bathroom = 2,
+            parking = 1,
+            owner = "Tommy Wong",
+            ownerProperty = "Owner",
+            isFavorite = false
+        ),
+        // Add more apartments here...
+        Apartment(
+            imageUrl = R.drawable.image,
+            name = "Awesome Apartment 1",
+            description = "This is an awesome apartment.",
+            price = "$2000/month",
+            bedroom = 1,
+            bathroom = 1,
+            parking = 1,
+            owner = "Ali",
+            ownerProperty = "Trinity Property",
+            isFavorite = true
+        ),
+        Apartment(
+            imageUrl = R.drawable.image_second,
+            name = "Awesome Apartment 2",
+            description = "This is another awesome apartment.",
+            price = "$2500/month",
+            bedroom = 2,
+            bathroom = 3,
+            parking = 1,
+            owner = "David Carls",
+            ownerProperty = "Agen Independen",
+            isFavorite = false
+        )
+    )
+    Column(modifier = modifier) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(60.dp)
+                .padding(top = 7.dp, start = 12.dp, end = 12.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            TabRow(tabNames = tabNames,
+                onTabSelected = {
+                    println("Tab $it selected")
+                },
+                pagerState = pagerState,
+                modifier = Modifier.weight(0.9f))
+
+            FilterIcon(modifier = Modifier
+                .weight(0.1f)
+                .align(Alignment.CenterVertically)) {}
+        }
+
+        Divider()
+
+        HorizontalPager(
+            count = tabNames.size,
+            state = pagerState,
+            modifier = Modifier.weight(1f)
+        ) { page ->
+            when(page) {
+
+                0 -> RentScreen(apartments)
+                1 -> SaleScreen()
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun TabLayoutPreview(){
+    val names = listOf("Rent", "Sale")
+    TabLayout(tabNames = names)
+}
