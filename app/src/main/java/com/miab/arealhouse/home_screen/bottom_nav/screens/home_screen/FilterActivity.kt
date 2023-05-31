@@ -11,15 +11,19 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.miab.arealhouse.R
 import com.miab.arealhouse.ui.theme.ARealHouseTheme
+import java.text.NumberFormat
 
 class FilterActivity : ComponentActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,103 +84,149 @@ class FilterActivity : ComponentActivity() {
             }
         }
     }
+}
 
-    @Composable
-    fun AccommodationTypePicker(items: Array<String>, selectedItem: Int, onItemSelected: (Int) -> Unit) {
-        var expanded by rememberSaveable { mutableStateOf(false) }
+@Composable
+fun AccommodationTypePicker(items: Array<String>, selectedItem: Int, onItemSelected: (Int) -> Unit) {
+    var expanded by rememberSaveable { mutableStateOf(false) }
 
-        Text(text = "Accommodation Type", style = MaterialTheme.typography.h6)
-        Spacer(modifier = Modifier.height(8.dp))
-        Box {
-            OutlinedTextField(
-                value = items[selectedItem],
-                onValueChange = {},
-                readOnly = true,
-                modifier = Modifier.fillMaxWidth().clickable { expanded = !expanded },
-                trailingIcon = { Icon(Icons.Filled.ArrowDropDown, contentDescription = null) }
-            )
+    val icon = if (expanded) {
+        Icons.Filled.KeyboardArrowUp
+    } else {
+        Icons.Filled.KeyboardArrowDown
+    }
 
-            DropdownMenu(
-                expanded = expanded,
-                onDismissRequest = { expanded = false },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                items.forEachIndexed { index, item ->
-                    DropdownMenuItem(onClick = {
-                        onItemSelected(index)
-                        expanded = false
-                    }) {
-                        Text(text = item)
-                    }
+    Text(text = "Accommodation Type", style = MaterialTheme.typography.h6)
+    Spacer(modifier = Modifier.height(8.dp))
+    Box {
+        OutlinedTextField(
+            value = items[selectedItem],
+            onValueChange = {},
+            readOnly = true,
+            modifier = Modifier.fillMaxWidth(),
+            trailingIcon = {
+                Icon(
+                    icon,
+                    contentDescription = "",
+                    Modifier.clickable { expanded = !expanded }
+                )
+            }
+        )
+
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            items.forEachIndexed { index, item ->
+                DropdownMenuItem(onClick = {
+                    onItemSelected(index)
+                    expanded = false
+                }) {
+                    Text(text = item)
                 }
             }
         }
     }
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+fun PriceSection(
+    price: Float,
+    minPrice: String,
+    maxPrice: String,
+    onPriceChange: (Float) -> Unit,
+    onMinPriceChange: (String) -> Unit,
+    onMaxPriceChange: (String) -> Unit
+) {
+    var seekBarMin by remember { mutableFloatStateOf(minPrice.toFloatOrNull() ?: 0f) }
+    var seekBarMax by remember { mutableFloatStateOf(maxPrice.toFloatOrNull() ?: 5000f) }
+
+    val formatter = NumberFormat.getCurrencyInstance().apply {
+        maximumFractionDigits = 0
+    }
+
+    Text(text = "Price", style = MaterialTheme.typography.h6)
+    Spacer(modifier = Modifier.height(8.dp))
+    RangeSlider(
+        value = seekBarMin..seekBarMax,
+        onValueChange = { range ->
+            seekBarMin = range.start
+            seekBarMax = range.endInclusive
+            onMinPriceChange(formatter.format(range.start))
+            onMaxPriceChange(formatter.format(range.endInclusive))
+        },
+        colors = SliderDefaults.colors(
+            thumbColor = Color.Red,
+            activeTrackColor = Color.Red,
+            inactiveTrackColor = Color.LightGray
+        ),
+        steps = 100,
+        valueRange = 0f..5000f
+    )
+    Spacer(modifier = Modifier.height(8.dp))
+    Row {
+        OutlinedTextField(
+            placeholder = { Text(text = if (minPrice.isBlank()) {"Min Price"} else "",
+                style = androidx.compose.material3.MaterialTheme.typography.titleSmall.copy(color = Color.Gray)) },
+            value = minPrice,
+            onValueChange = { value ->
+                onMinPriceChange(value)
+                val floatValue = value.toFloatOrNull() ?: 0f
+                seekBarMin = floatValue.coerceIn(0f, seekBarMax)
+                onPriceChange(seekBarMin)
+            },
+            modifier = Modifier.weight(1f)
+        )
+        Spacer(modifier = Modifier.width(16.dp))
+        OutlinedTextField(
+            placeholder = { Text(text = if (minPrice.isBlank()) {"Min Price"} else "",
+                style = androidx.compose.material3.MaterialTheme.typography.titleSmall.copy(color = Color.Gray)) },
+            value = maxPrice,
+            onValueChange = { value ->
+                onMaxPriceChange(value)
+                val floatValue = value.toFloatOrNull() ?: 1000000f
+                seekBarMax = floatValue.coerceIn(seekBarMin, 1000000f)
+                onPriceChange(seekBarMax)
+            },
+            modifier = Modifier.weight(1f)
+        )
+    }
+}
 
 
 
-    @Composable
-    fun PriceSection(
-        price: Float,
-        minPrice: String,
-        maxPrice: String,
-        onPriceChange: (Float) -> Unit,
-        onMinPriceChange: (String) -> Unit,
-        onMaxPriceChange: (String) -> Unit
-    ) {
-        Text(text = "Price", style = MaterialTheme.typography.h6)
-        Spacer(modifier = Modifier.height(8.dp))
-        Slider(value = price, onValueChange = onPriceChange, valueRange = 0f..1000000f, steps = 100)
-        Spacer(modifier = Modifier.height(8.dp))
-        Row {
-            OutlinedTextField(
-                value = minPrice,
-                onValueChange = onMinPriceChange,
-                modifier = Modifier.weight(1f)
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-            OutlinedTextField(
-                value = maxPrice,
-                onValueChange = onMaxPriceChange,
-                modifier = Modifier.weight(1f)
-            )
+@Composable
+fun PropertyConditionPicker(items: Array<String>, selectedItem: Int, onItemSelected: (Int) -> Unit) {
+    // Similar to AccommodationTypePicker
+}
+
+@Composable
+fun FacilitySection(
+    bedroomCount: MutableState<Int>,
+    bathroomCount: MutableState<Int>,
+    parkingCount: MutableState<Int>
+) {
+    Text(text = "Facility", style = MaterialTheme.typography.h6)
+    Spacer(modifier = Modifier.height(8.dp))
+    QuantityPicker("Bedroom", bedroomCount.value) { newValue -> bedroomCount.value = newValue }
+    Spacer(modifier = Modifier.height(8.dp))
+    QuantityPicker("Bathroom", bathroomCount.value) { newValue -> bathroomCount.value = newValue }
+    Spacer(modifier = Modifier.height(8.dp))
+    QuantityPicker("Parking", parkingCount.value) { newValue -> parkingCount.value = newValue }
+}
+
+@Composable
+fun QuantityPicker(label: String, quantity: Int, onQuantityChange: (Int) -> Unit) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Text(text = label, style = MaterialTheme.typography.body1, modifier = Modifier.weight(1f))
+        IconButton(onClick = { if (quantity > 0) onQuantityChange(quantity - 1) }) {
+            Icon(Icons.Filled.Clear, contentDescription = "Decrease")
         }
-    }
-
-
-    @Composable
-    fun PropertyConditionPicker(items: Array<String>, selectedItem: Int, onItemSelected: (Int) -> Unit) {
-        // Similar to AccommodationTypePicker
-    }
-
-    @Composable
-    fun FacilitySection(
-        bedroomCount: MutableState<Int>,
-        bathroomCount: MutableState<Int>,
-        parkingCount: MutableState<Int>
-    ) {
-        Text(text = "Facility", style = MaterialTheme.typography.h6)
-        Spacer(modifier = Modifier.height(8.dp))
-        QuantityPicker("Bedroom", bedroomCount.value) { newValue -> bedroomCount.value = newValue }
-        Spacer(modifier = Modifier.height(8.dp))
-        QuantityPicker("Bathroom", bathroomCount.value) { newValue -> bathroomCount.value = newValue }
-        Spacer(modifier = Modifier.height(8.dp))
-        QuantityPicker("Parking", parkingCount.value) { newValue -> parkingCount.value = newValue }
-    }
-
-
-
-    @Composable
-    fun QuantityPicker(label: String, quantity: Int, onQuantityChange: (Int) -> Unit) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(text = label, style = MaterialTheme.typography.body1, modifier = Modifier.weight(1f))
-            IconButton(onClick = { if (quantity > 0) onQuantityChange(quantity - 1) }) {
-                Icon(Icons.Filled.Clear, contentDescription = "Decrease")
-            }
-            Text(text = quantity.toString(), style = MaterialTheme.typography.body1)
-            IconButton(onClick = { onQuantityChange(quantity + 1) }) {
-                Icon(Icons.Filled.Add, contentDescription = "Increase")
-            }
+        Text(text = quantity.toString(), style = MaterialTheme.typography.body1)
+        IconButton(onClick = { onQuantityChange(quantity + 1) }) {
+            Icon(Icons.Filled.Add, contentDescription = "Increase")
         }
     }
 }
