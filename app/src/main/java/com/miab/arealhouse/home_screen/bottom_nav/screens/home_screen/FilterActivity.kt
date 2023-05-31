@@ -90,7 +90,7 @@ class FilterActivity : ComponentActivity() {
         Box {
             OutlinedTextField(
                 value = items[selectedItem],
-                onValueChange = { /* Ignore changes */ },
+                onValueChange = {},
                 readOnly = true,
                 modifier = Modifier.fillMaxWidth().clickable { expanded = !expanded },
                 trailingIcon = { Icon(Icons.Filled.ArrowDropDown, contentDescription = null) }
