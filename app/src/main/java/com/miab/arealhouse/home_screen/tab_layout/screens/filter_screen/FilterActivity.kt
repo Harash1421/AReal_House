@@ -215,7 +215,7 @@ fun PriceSection(
             onMaxPriceChange(formatter.format(range.endInclusive))
         },
         colors = SliderDefaults.colors(
-            thumbColor = Color.Green,
+            thumbColor = Color.Blue,
             activeTrackColor = Color.Blue,
             inactiveTrackColor = Color.LightGray
         ),
