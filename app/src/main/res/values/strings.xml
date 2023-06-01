@@ -10,8 +10,7 @@
     </string-array>
 
     <string-array name="property_conditions">
-        <item>New</item>
-        <item>Used</item>
-        <item>Renovated</item>
+        <item>Owner</item>
+        <item>Independent Agent</item>
     </string-array>
 </resources>
