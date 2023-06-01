@@ -21,13 +21,12 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringArrayResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.miab.arealhouse.R
 
 @Composable
-fun HomeType(selectedItem: Int, onItemSelected: (String, Int) -> Unit) {
-    val homeType = stringArrayResource(id = R.array.accommodation_types)
+fun PropertyConditionPicker(selectedItem: Int, onItemSelected: (String, Int) -> Unit) {
+    val propertyType = stringArrayResource(id = R.array.property_conditions)
     var expanded by rememberSaveable { mutableStateOf(false) }
 
     val icon = if (expanded) {
@@ -36,11 +35,11 @@ fun HomeType(selectedItem: Int, onItemSelected: (String, Int) -> Unit) {
         Icons.Filled.KeyboardArrowDown
     }
 
-    Text(text = "Home Type", style = MaterialTheme.typography.h6)
+    Text(text = "Property Type", style = MaterialTheme.typography.h6)
     Spacer(modifier = Modifier.height(8.dp))
     Box {
         OutlinedTextField(
-            value = homeType[selectedItem],
+            value = propertyType[selectedItem],
             onValueChange = {},
             readOnly = true,
             modifier = Modifier.fillMaxWidth(),
@@ -58,7 +57,7 @@ fun HomeType(selectedItem: Int, onItemSelected: (String, Int) -> Unit) {
             onDismissRequest = { expanded = false },
             modifier = Modifier.fillMaxWidth()
         ) {
-            homeType.forEachIndexed { index, item ->
+            propertyType.forEachIndexed { index, item ->
                 DropdownMenuItem(onClick = {
                     onItemSelected(item, index)
                     expanded = false
@@ -68,10 +67,4 @@ fun HomeType(selectedItem: Int, onItemSelected: (String, Int) -> Unit) {
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun HomeTypePreview(){
-    HomeType(selectedItem = 0){item, index -> }
 }
