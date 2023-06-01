@@ -19,19 +19,23 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.miab.arealhouse.R
+import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.HomeType
+import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.PriceSection
 import com.miab.arealhouse.ui.theme.ARealHouseTheme
 import java.text.NumberFormat
 
 class FilterActivity : ComponentActivity() {
-    public override fun onCreate(savedInstanceState: Bundle?) {
+     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ARealHouseTheme {
+                val context = LocalContext.current
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     Column(modifier = Modifier.fillMaxSize()) {
@@ -46,9 +50,8 @@ class FilterActivity : ComponentActivity() {
                             contentColor = MaterialTheme.colors.onSurface,
                         )
 
-                        var selectedAccommodation by remember { mutableIntStateOf(0) }
+                        var selectedHomeType by remember { mutableIntStateOf(0) }
                         var selectedCondition by remember { mutableIntStateOf(0) }
-                        var price by remember { mutableFloatStateOf(0f) }
                         var minPrice by remember { mutableStateOf("") }
                         var maxPrice by remember { mutableStateOf("") }
 
@@ -67,7 +70,6 @@ class FilterActivity : ComponentActivity() {
                             )
                         }
 
-                        val accommodations = stringArrayResource(id = R.array.accommodation_types)
                         val conditions = stringArrayResource(id = R.array.property_conditions)
                         Box(modifier = Modifier.fillMaxSize()) {
                         Column(
@@ -75,18 +77,18 @@ class FilterActivity : ComponentActivity() {
                                 .padding(16.dp)
                                 .verticalScroll(rememberScrollState())
                         ) {
-                            AccommodationTypePicker(
-                                accommodations,
-                                selectedAccommodation
-                            ) { selectedAccommodation = it }
+
+                            HomeType(
+                                selectedItem = selectedHomeType,
+                            ){ text, index ->
+                                selectedHomeType = index
+                            }
 
                             Divider(modifier = Modifier.padding(vertical = 16.dp))
 
                             PriceSection(
-                                price = price,
                                 minPrice = minPrice,
                                 maxPrice = maxPrice,
-                                onPriceChange = { price = it },
                                 onMinPriceChange = { minPrice = it },
                                 onMaxPriceChange = { maxPrice = it }
                             )
@@ -118,9 +120,8 @@ class FilterActivity : ComponentActivity() {
                                 FilterActions(
                                     onReset = {
                                         // Reset your filters here
-                                        selectedAccommodation = 0
+                                        selectedHomeType = 0
                                         selectedCondition = 0
-                                        price = 0f
                                         minPrice = ""
                                         maxPrice = ""
                                         bedroomCount.value = 0
@@ -129,8 +130,7 @@ class FilterActivity : ComponentActivity() {
                                         facilities.value = facilities.value.mapValues { false }
                                     },
                                     onApply = {
-                                        // Apply your filters here
-                                        // Your code here
+                                        // Compose your filter string here
                                     }
                                 )
                             }
@@ -141,118 +141,6 @@ class FilterActivity : ComponentActivity() {
         }
     }
 }
-
-
-@Composable
-fun AccommodationTypePicker(items: Array<String>, selectedItem: Int, onItemSelected: (Int) -> Unit) {
-    var expanded by rememberSaveable { mutableStateOf(false) }
-
-    val icon = if (expanded) {
-        Icons.Filled.KeyboardArrowUp
-    } else {
-        Icons.Filled.KeyboardArrowDown
-    }
-
-    Text(text = "Accommodation Type", style = MaterialTheme.typography.h6)
-    Spacer(modifier = Modifier.height(8.dp))
-    Box {
-        OutlinedTextField(
-            value = items[selectedItem],
-            onValueChange = {},
-            readOnly = true,
-            modifier = Modifier.fillMaxWidth(),
-            trailingIcon = {
-                Icon(
-                    icon,
-                    contentDescription = "",
-                    Modifier.clickable { expanded = !expanded }
-                )
-            }
-        )
-
-        DropdownMenu(
-            expanded = expanded,
-            onDismissRequest = { expanded = false },
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            items.forEachIndexed { index, item ->
-                DropdownMenuItem(onClick = {
-                    onItemSelected(index)
-                    expanded = false
-                }) {
-                    Text(text = item)
-                }
-            }
-        }
-    }
-}
-
-@OptIn(ExperimentalMaterialApi::class)
-@Composable
-fun PriceSection(
-    price: Float,
-    minPrice: String,
-    maxPrice: String,
-    onPriceChange: (Float) -> Unit,
-    onMinPriceChange: (String) -> Unit,
-    onMaxPriceChange: (String) -> Unit
-) {
-    var seekBarMin by remember { mutableFloatStateOf(minPrice.toFloatOrNull() ?: 0f) }
-    var seekBarMax by remember { mutableFloatStateOf(maxPrice.toFloatOrNull() ?: 5000f) }
-
-    val formatter = NumberFormat.getCurrencyInstance().apply {
-        maximumFractionDigits = 0
-    }
-
-    Text(text = "Price", style = MaterialTheme.typography.h6)
-    Spacer(modifier = Modifier.height(8.dp))
-    RangeSlider(
-        value = seekBarMin..seekBarMax,
-        onValueChange = { range ->
-            seekBarMin = range.start
-            seekBarMax = range.endInclusive
-            onMinPriceChange(formatter.format(range.start))
-            onMaxPriceChange(formatter.format(range.endInclusive))
-        },
-        colors = SliderDefaults.colors(
-            thumbColor = Color.Blue,
-            activeTrackColor = Color.Blue,
-            inactiveTrackColor = Color.LightGray
-        ),
-        steps = 100,
-        valueRange = 0f..5000f
-    )
-    Spacer(modifier = Modifier.height(8.dp))
-    Row {
-        OutlinedTextField(
-            placeholder = { Text(text = if (minPrice.isBlank()) {"Min Price"} else "",
-                style = androidx.compose.material3.MaterialTheme.typography.titleSmall.copy(color = Color.Gray)) },
-            value = minPrice,
-            onValueChange = { value ->
-                onMinPriceChange(value)
-                val floatValue = value.toFloatOrNull() ?: 0f
-                seekBarMin = floatValue.coerceIn(0f, seekBarMax)
-                onPriceChange(seekBarMin)
-            },
-            modifier = Modifier.weight(1f)
-        )
-        Spacer(modifier = Modifier.width(16.dp))
-        OutlinedTextField(
-            placeholder = { Text(text = if (minPrice.isBlank()) {"Min Price"} else "",
-                style = androidx.compose.material3.MaterialTheme.typography.titleSmall.copy(color = Color.Gray)) },
-            value = maxPrice,
-            onValueChange = { value ->
-                onMaxPriceChange(value)
-                val floatValue = value.toFloatOrNull() ?: 1000000f
-                seekBarMax = floatValue.coerceIn(seekBarMin, 1000000f)
-                onPriceChange(seekBarMax)
-            },
-            modifier = Modifier.weight(1f)
-        )
-    }
-}
-
-
 
 @Composable
 fun PropertyConditionPicker(items: Array<String>, selectedItem: Int, onItemSelected: (Int) -> Unit) {
@@ -404,6 +292,6 @@ fun FilterActions(onReset: () -> Unit, onApply: () -> Unit) {
 @Composable
 fun FilterActivityPreview() {
     ARealHouseTheme {
-        FilterActivity().onCreate(Bundle())
+        FilterActivity()
     }
 }
