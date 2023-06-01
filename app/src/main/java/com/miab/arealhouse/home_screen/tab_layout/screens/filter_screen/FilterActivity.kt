@@ -1,6 +1,5 @@
-package com.miab.arealhouse.home_screen.bottom_nav.screens.home_screen
+package com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,11 +10,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.*
@@ -42,7 +38,7 @@ class FilterActivity : ComponentActivity() {
                         TopAppBar(
                             title = { Text(text = "Filter") },
                             navigationIcon = {
-                                IconButton(onClick = { /* Handle back button press here */ }) {
+                                IconButton(onClick = { onBackPressed() }) {
                                     Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
                                 }
                             },

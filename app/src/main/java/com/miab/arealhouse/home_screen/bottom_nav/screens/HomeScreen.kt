@@ -1,4 +1,4 @@
-package com.miab.arealhouse.home_screen.bottom_nav.screens.home_screen
+package com.miab.arealhouse.home_screen.bottom_nav.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

@@ -13,7 +13,7 @@
         android:theme="@style/Theme.ARealHouse"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".home_screen.tab_layout.screens.filter_screen.FilterActivity"
             android:exported="false"
             android:label="@string/title_activity_filter"
             android:theme="@style/Theme.ARealHouse" />
@@ -23,7 +23,7 @@
             android:label="@string/title_activity_detail_buy"
             android:theme="@style/Theme.ARealHouse" />
         <activity
-            android:name=".home_screen.bottom_nav.screens.home_screen.FilterActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.ARealHouse"

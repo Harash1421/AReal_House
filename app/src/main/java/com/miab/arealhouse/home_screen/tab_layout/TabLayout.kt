@@ -1,5 +1,6 @@
 package com.miab.arealhouse.home_screen.tab_layout
 
+import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,6 +11,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.HorizontalPager
@@ -17,11 +19,13 @@ import com.google.accompanist.pager.rememberPagerState
 import com.miab.arealhouse.R
 import com.miab.arealhouse.home_screen.tab_layout.screens.RentScreen
 import com.miab.arealhouse.home_screen.tab_layout.screens.SaleScreen
+import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.FilterActivity
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
 
 @Composable
 fun TabLayout(tabNames: List<String>, modifier: Modifier = Modifier){
     val pagerState = rememberPagerState()
+    val context = LocalContext.current
 
     val apartments = listOf(
         Apartment(
@@ -92,7 +96,10 @@ fun TabLayout(tabNames: List<String>, modifier: Modifier = Modifier){
 
             FilterIcon(modifier = Modifier
                 .weight(0.1f)
-                .align(Alignment.CenterVertically)) {}
+                .align(Alignment.CenterVertically)) {
+                val intent = Intent(context, FilterActivity::class.java)
+                context.startActivity(intent)
+            }
         }
 
         Divider()

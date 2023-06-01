@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.miab.arealhouse.home_screen.bottom_nav.screens.FavoriteScreen
-import com.miab.arealhouse.home_screen.bottom_nav.screens.home_screen.HomeScreen
+import com.miab.arealhouse.home_screen.bottom_nav.screens.HomeScreen
 import com.miab.arealhouse.home_screen.bottom_nav.screens.MessageScreen
 import com.miab.arealhouse.home_screen.bottom_nav.screens.ProfileScreen
 

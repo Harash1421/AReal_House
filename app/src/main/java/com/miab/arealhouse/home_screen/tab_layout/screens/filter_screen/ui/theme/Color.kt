@@ -1,4 +1,4 @@
-package com.miab.arealhouse.home_screen.bottom_nav.screens.home_screen.ui.theme
+package com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
