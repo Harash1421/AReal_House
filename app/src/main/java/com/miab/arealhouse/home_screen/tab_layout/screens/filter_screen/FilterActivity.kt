@@ -33,99 +33,57 @@ class FilterActivity : ComponentActivity() {
                 val context = LocalContext.current
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Column(modifier = Modifier.fillMaxSize()) {
-                        TopAppBar(
-                            title = { Text(text = "Filter") },
-                            navigationIcon = {
-                                IconButton(onClick = { onBackPressed() }) {
-                                    Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
-                                }
-                            },
-                            backgroundColor = MaterialTheme.colors.surface,
-                            contentColor = MaterialTheme.colors.onSurface,
-                        )
+                    val selectedHomeType = remember { mutableIntStateOf(0) }
+                    val selectedPropertyType = remember { mutableIntStateOf(0) }
+                    val minPrice = remember { mutableStateOf("") }
+                    val maxPrice = remember { mutableStateOf("") }
 
-                        var selectedHomeType by remember { mutableIntStateOf(0) }
-                        var selectedPropertyType by remember { mutableIntStateOf(0) }
-                        var minPrice by remember { mutableStateOf("") }
-                        var maxPrice by remember { mutableStateOf("") }
+                    val bedroomCount = remember { mutableIntStateOf(0) }
+                    val bathroomCount = remember { mutableIntStateOf(0) }
+                    val parkingCount = remember { mutableIntStateOf(0) }
 
-                        val bedroomCount = remember { mutableIntStateOf(0) }
-                        val bathroomCount = remember { mutableIntStateOf(0) }
-                        val parkingCount = remember { mutableIntStateOf(0) }
-
-                        val facilities = remember {
-                            mutableStateOf(
-                                mapOf(
-                                    "WiFi" to false,
-                                    "AC" to false,
-                                    "Fully Furnished" to false,
-                                    "24 Hour Access" to false
-                                )
+                    val facilities = remember {
+                        mutableStateOf(
+                            mapOf(
+                                "WiFi" to false,
+                                "AC" to false,
+                                "Fully Furnished" to false,
+                                "24 Hour Access" to false
                             )
+                        )
+                    }
+                    Column(modifier = Modifier.fillMaxSize()) {
+                        TopBarConfiguration(){
+                            onBackPressed()
                         }
 
                         Box(modifier = Modifier.fillMaxSize()) {
-                        Column(
-                            modifier = Modifier
-                                .padding(16.dp)
-                                .verticalScroll(rememberScrollState())
-                        ) {
-
-                            HomeType(
-                                selectedItem = selectedHomeType,
-                            ){ text, index ->
-                                selectedHomeType = index
-                            }
-
-                            Divider(modifier = Modifier.padding(vertical = 16.dp))
-
-                            PriceSection(
+                            WidgetsConfiguration(
+                                selectedHomeType = selectedHomeType,
                                 minPrice = minPrice,
                                 maxPrice = maxPrice,
-                                onMinPriceChange = { minPrice = it },
-                                onMaxPriceChange = { maxPrice = it }
+                                selectedPropertyType = selectedPropertyType,
+                                bedroomCount = bedroomCount,
+                                bathroomCount = bathroomCount,
+                                parkingCount = parkingCount,
+                                facilities = facilities
+
                             )
-
-                            Divider(modifier = Modifier.padding(vertical = 16.dp))
-
-                            PropertyConditionPicker(
-                                selectedPropertyType
-                            ) { text, index ->
-                                selectedPropertyType = index
-                            }
-
-                            Divider(modifier = Modifier.padding(vertical = 16.dp))
-
-                            FacilitySection(
-                                bedroomCount,
-                                bathroomCount,
-                                parkingCount
-                            )
-
-                            Divider(modifier = Modifier.padding(vertical = 16.dp))
-
-                            FacilityBoardingSection(facilities = facilities)
-
-
-                            Spacer(modifier = Modifier.height(48.dp))
-                        }
-
                             Box(modifier = Modifier.align(Alignment.BottomStart)) {
                                 FilterActions(
                                     onReset = {
-                                        // Reset your filters here
-                                        selectedHomeType = 0
-                                        selectedPropertyType = 0
-                                        minPrice = ""
-                                        maxPrice = ""
+                                        // Reset the filter state
+                                        selectedHomeType.value = 0
+                                        selectedPropertyType.value = 0
+                                        minPrice.value = ""
+                                        maxPrice.value = ""
                                         bedroomCount.value = 0
                                         bathroomCount.value = 0
                                         parkingCount.value = 0
                                         facilities.value = facilities.value.mapValues { false }
                                     },
                                     onApply = {
-                                        // Compose your filter string here
+                                        // Apply the filters
                                     }
                                 )
                             }
@@ -134,6 +92,79 @@ class FilterActivity : ComponentActivity() {
                 }
             }
         }
+    }
+}
+
+// Method for top bar configuration
+@Composable
+fun TopBarConfiguration(onClick: () -> Unit){
+    TopAppBar(
+        title = { Text(text = "Filter") },
+        navigationIcon = {
+            IconButton(onClick = { onClick() }) {
+                Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
+            }
+        },
+        backgroundColor = MaterialTheme.colors.surface,
+        contentColor = MaterialTheme.colors.onSurface,
+    )
+}
+
+// Function for Widgets on Screen
+@Composable
+fun WidgetsConfiguration(
+    selectedHomeType: MutableState<Int>,
+    minPrice: MutableState<String>,
+    maxPrice: MutableState<String>,
+    selectedPropertyType: MutableState<Int>,
+    bedroomCount: MutableState<Int>,
+    bathroomCount: MutableState<Int>,
+    parkingCount: MutableState<Int>,
+    facilities: MutableState<Map<String, Boolean>>
+    ){
+    Column(
+        modifier = Modifier
+            .padding(16.dp)
+            .verticalScroll(rememberScrollState())
+    ) {
+
+        HomeType(
+            selectedItem = selectedHomeType.value,
+        ){ text, index ->
+            selectedHomeType.value = index
+        }
+
+        Divider(modifier = Modifier.padding(vertical = 16.dp))
+
+        PriceSection(
+            minPrice = minPrice.value,
+            maxPrice = maxPrice.value,
+            onMinPriceChange = { minPrice.value = it },
+            onMaxPriceChange = { maxPrice.value = it }
+        )
+
+        Divider(modifier = Modifier.padding(vertical = 16.dp))
+
+        PropertyConditionPicker(
+            selectedPropertyType.value
+        ) { text, index ->
+            selectedPropertyType.value = index
+        }
+
+        Divider(modifier = Modifier.padding(vertical = 16.dp))
+
+        FacilitySection(
+            bedroomCount,
+            bathroomCount,
+            parkingCount
+        )
+
+        Divider(modifier = Modifier.padding(vertical = 16.dp))
+
+        FacilityBoardingSection(facilities = facilities)
+
+
+        Spacer(modifier = Modifier.height(48.dp))
     }
 }
 
