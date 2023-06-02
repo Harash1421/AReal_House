@@ -23,61 +23,9 @@ import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.FilterAc
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
 
 @Composable
-fun TabLayout(tabNames: List<String>, modifier: Modifier = Modifier){
+fun TabLayout(tabNames: List<String>, modifier: Modifier = Modifier, apartments: List<Apartment>){
     val pagerState = rememberPagerState()
     val context = LocalContext.current
-
-    val apartments = listOf(
-        Apartment(
-            imageUrl = R.drawable.image,
-            name = "Awesome Apartment 1",
-            description = "This is an awesome apartment.",
-            price = "$2000/month",
-            bedroom = 3,
-            bathroom = 2,
-            parking = 1,
-            owner = "Ahmed",
-            ownerProperty = "Simphony Property",
-            isFavorite = true
-        ),
-        Apartment(
-            imageUrl = R.drawable.image_second,
-            name = "Awesome Apartment 2",
-            description = "This is another awesome apartment.",
-            price = "$2500/month",
-            bedroom = 2,
-            bathroom = 2,
-            parking = 1,
-            owner = "Tommy Wong",
-            ownerProperty = "Owner",
-            isFavorite = false
-        ),
-        // Add more apartments here...
-        Apartment(
-            imageUrl = R.drawable.image,
-            name = "Awesome Apartment 1",
-            description = "This is an awesome apartment.",
-            price = "$2000/month",
-            bedroom = 1,
-            bathroom = 1,
-            parking = 1,
-            owner = "Ali",
-            ownerProperty = "Trinity Property",
-            isFavorite = true
-        ),
-        Apartment(
-            imageUrl = R.drawable.image_second,
-            name = "Awesome Apartment 2",
-            description = "This is another awesome apartment.",
-            price = "$2500/month",
-            bedroom = 2,
-            bathroom = 3,
-            parking = 1,
-            owner = "David Carls",
-            ownerProperty = "Agen Independen",
-            isFavorite = false
-        )
-    )
     Column(modifier = modifier) {
         Row(
             modifier = Modifier
@@ -122,5 +70,5 @@ fun TabLayout(tabNames: List<String>, modifier: Modifier = Modifier){
 @Composable
 fun TabLayoutPreview(){
     val names = listOf("Rent", "Sale")
-    TabLayout(tabNames = names)
+//    TabLayout(tabNames = names)
 }

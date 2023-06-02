@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.miab.arealhouse.home_screen.bottom_nav.screens.apartments
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.FacilityBoardingSection
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.FacilitySection
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.FilterActions
@@ -52,6 +53,7 @@ class FilterActivity : ComponentActivity() {
                             )
                         )
                     }
+
                     Column(modifier = Modifier.fillMaxSize()) {
                         TopBarConfiguration(){
                             onBackPressed()
@@ -83,7 +85,6 @@ class FilterActivity : ComponentActivity() {
                                         facilities.value = facilities.value.mapValues { false }
                                     },
                                     onApply = {
-                                        // Apply the filters
                                     }
                                 )
                             }
