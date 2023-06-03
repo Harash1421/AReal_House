@@ -31,6 +31,7 @@ import com.miab.arealhouse.ui.theme.ARealHouseTheme
 
 class FilterActivity : ComponentActivity() {
     private val apartmentViewModel: ApartmentViewModel by viewModels()
+
     @SuppressLint("AutoboxingStateValueProperty")
      override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,9 +105,6 @@ class FilterActivity : ComponentActivity() {
 
                                         apartmentViewModel.updateFilterOptions(newFilterOptions)
 
-                                        val intent = Intent()
-                                        intent.putExtra("FilterOptions", newFilterOptions)
-                                        setResult(Activity.RESULT_OK, intent)
                                         finish()
                                     }
                                 )

@@ -95,7 +95,7 @@ class ApartmentViewModel : ViewModel() {
 
     private fun applyFilters(filterOptions: FilterOptions) {
         _apartments.value = apartments.value!!.filter { apartment ->
-            val price = apartment.price.removePrefix("$").substringBefore("/")
+            val price = apartment.price.removePrefix("$").substringBefore("/month")
             val priceInRange = price.toDoubleOrNull()?.let { numericPrice ->
                 numericPrice >= (filterOptions.minPrice.toDoubleOrNull() ?: Double.MIN_VALUE) &&
                         numericPrice <= (filterOptions.maxPrice.toDoubleOrNull()
