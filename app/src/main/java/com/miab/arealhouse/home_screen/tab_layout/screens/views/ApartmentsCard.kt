@@ -54,8 +54,11 @@ data class Apartment(
     val parking: Int,
     val owner: String,
     val ownerProperty: String,
-    var isFavorite: Boolean
+    var isFavorite: Boolean,
+    val homeType: Int,
+    val facilities: Map<String, Boolean>
 ) : Parcelable
+
 
 // Composable for Apartment card
 @Composable
@@ -269,15 +272,22 @@ fun OwnerPropertyType(ownerProperty: String) {
 fun ApartmentsCardPreview() {
     val apartment = Apartment(
         imageUrl = R.drawable.image,
-        name = "Awesome Apartment",
+        name = "Awesome Apartment 1",
         description = "This is an awesome apartment.",
-        price = "$2000/ month",
-        bedroom = 2,
+        price = "$2000/month",
+        bedroom = 3,
         bathroom = 2,
         parking = 1,
         owner = "Ahmed",
         ownerProperty = "Simphony Property",
-        isFavorite = true
+        isFavorite = true,
+        homeType = 1, // For example
+        facilities = mapOf(
+            "WiFi" to true,
+            "AC" to true,
+            "Fully Furnished" to true,
+            "24 Hour Access" to true
+        )
     )
     ApartmentsCard(apartment = apartment)
 }

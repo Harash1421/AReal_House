@@ -14,7 +14,6 @@ import com.miab.arealhouse.home_screen.tab_layout.TabLayout
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
 
 var names = listOf("Rent", "Sale")
-
 val apartments = listOf(
     Apartment(
         imageUrl = R.drawable.image,
@@ -26,7 +25,9 @@ val apartments = listOf(
         parking = 1,
         owner = "Ahmed",
         ownerProperty = "Simphony Property",
-        isFavorite = true
+        isFavorite = true,
+        homeType = 1,
+        facilities = mapOf("Fully Furnished" to true, "WiFi" to false)
     ),
     Apartment(
         imageUrl = R.drawable.image_second,
@@ -38,7 +39,9 @@ val apartments = listOf(
         parking = 1,
         owner = "Tommy Wong",
         ownerProperty = "Owner",
-        isFavorite = false
+        isFavorite = false,
+        homeType = 2, // set your homeType here
+        facilities = mapOf("WiFi" to true, "AC" to true) // set your facilities here
     ),
     // Add more apartments here...
     Apartment(
@@ -51,7 +54,9 @@ val apartments = listOf(
         parking = 1,
         owner = "Ali",
         ownerProperty = "Trinity Property",
-        isFavorite = true
+        isFavorite = true,
+        homeType = 3,
+        facilities = mapOf("Fully Furnished" to true, "WiFi" to true)
     ),
     Apartment(
         imageUrl = R.drawable.image_second,
@@ -63,9 +68,12 @@ val apartments = listOf(
         parking = 1,
         owner = "David Carls",
         ownerProperty = "Agen Independen",
-        isFavorite = false
+        isFavorite = false,
+        homeType = 3,
+        facilities = mapOf("WiFi" to true, "AC" to false)
     )
 )
+
 @OptIn(ExperimentalStdlibApi::class)
 @Composable
 fun HomeScreen(){

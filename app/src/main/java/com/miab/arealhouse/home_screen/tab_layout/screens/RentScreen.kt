@@ -37,12 +37,14 @@ fun RentScreenPreview(){
             name = "Awesome Apartment 1",
             description = "This is an awesome apartment.",
             price = "$2000/month",
-            bedroom = 2,
+            bedroom = 3,
             bathroom = 2,
             parking = 1,
             owner = "Ahmed",
             ownerProperty = "Simphony Property",
-            isFavorite = true
+            isFavorite = true,
+            homeType = 1,
+            facilities = mapOf("Fully Furnished" to true, "WiFi" to false)
         )
     )
 

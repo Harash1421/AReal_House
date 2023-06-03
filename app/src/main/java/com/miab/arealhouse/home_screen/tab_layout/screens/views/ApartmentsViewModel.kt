@@ -1,8 +1,10 @@
 package com.miab.arealhouse.home_screen.tab_layout.screens.views
 
+import android.os.Parcelable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.android.parcel.Parcelize
 
 class ApartmentViewModel : ViewModel() {
     private val _apartments = MutableLiveData<List<Apartment>>()
@@ -11,6 +13,8 @@ class ApartmentViewModel : ViewModel() {
     fun setApartments(apartments: List<Apartment>) {
         _apartments.value = apartments
     }
+
+    lateinit var propertyConditions: Array<String>
 
     fun applyFilters(filterOptions: FilterOptions) {
         // Replace with your own filtering logic
@@ -22,7 +26,7 @@ class ApartmentViewModel : ViewModel() {
             val bathroomInRange = apartment.bathroom >= filterOptions.minBathroom && apartment.bathroom <= filterOptions.maxBathroom
             val parkingInRange = apartment.parking >= filterOptions.minParking && apartment.parking <= filterOptions.maxParking
             val homeTypeMatch = apartment.homeType == filterOptions.selectedHomeType
-            val propertyTypeMatch = apartment.propertyType == filterOptions.selectedPropertyType
+            val propertyTypeMatch = apartment.ownerProperty == propertyConditions[filterOptions.selectedPropertyType]
             val facilitiesMatch = filterOptions.facilities.all { (key, value) ->
                 !value || (value && apartment.facilities[key] == true)
             }
@@ -32,6 +36,7 @@ class ApartmentViewModel : ViewModel() {
     }
 }
 
+@Parcelize
 data class FilterOptions(
     var selectedHomeType: Int = 0,
     var selectedPropertyType: Int = 0,
@@ -49,5 +54,5 @@ data class FilterOptions(
         "Fully Furnished" to false,
         "24 Hour Access" to false
     )
-)
+): Parcelable
 

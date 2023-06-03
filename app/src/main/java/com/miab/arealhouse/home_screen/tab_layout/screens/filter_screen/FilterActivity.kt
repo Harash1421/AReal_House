@@ -1,6 +1,8 @@
 package com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -23,6 +25,7 @@ import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.Fi
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.HomeType
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.PriceSection
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.PropertyConditionPicker
+import com.miab.arealhouse.home_screen.tab_layout.screens.views.FilterOptions
 import com.miab.arealhouse.ui.theme.ARealHouseTheme
 
 class FilterActivity : ComponentActivity() {
@@ -85,6 +88,22 @@ class FilterActivity : ComponentActivity() {
                                         facilities.value = facilities.value.mapValues { false }
                                     },
                                     onApply = {
+                                        val resultIntent = Intent()
+                                        resultIntent.putExtra("filterOptions", FilterOptions(
+                                            selectedHomeType = selectedHomeType.value,
+                                            selectedPropertyType = selectedPropertyType.value,
+                                            minPrice = minPrice.value,
+                                            maxPrice = maxPrice.value,
+                                            minBedroom = bedroomCount.value,
+                                            maxBedroom = bedroomCount.value,
+                                            minBathroom = bathroomCount.value,
+                                            maxBathroom = bathroomCount.value,
+                                            minParking = parkingCount.value,
+                                            maxParking = parkingCount.value,
+                                            facilities = facilities.value
+                                        )
+                                        )
+                                        onBackPressed()
                                     }
                                 )
                             }
