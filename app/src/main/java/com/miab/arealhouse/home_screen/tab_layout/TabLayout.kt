@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -16,7 +17,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
-import com.miab.arealhouse.R
 import com.miab.arealhouse.home_screen.tab_layout.screens.RentScreen
 import com.miab.arealhouse.home_screen.tab_layout.screens.SaleScreen
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.FilterActivity

@@ -5,13 +5,16 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.miab.arealhouse.R
 import com.miab.arealhouse.home_screen.search_bar.SearchBar
 import com.miab.arealhouse.home_screen.tab_layout.TabLayout
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
+import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
 
 var names = listOf("Rent", "Sale")
 val apartments = listOf(
@@ -76,14 +79,15 @@ val apartments = listOf(
 
 @OptIn(ExperimentalStdlibApi::class)
 @Composable
-fun HomeScreen(){
+fun HomeScreen(apartmentViewModel: ApartmentViewModel = viewModel()){
+    val apartments = apartmentViewModel.apartments.observeAsState(emptyList())
     Column(
         modifier = Modifier
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         SearchBar(modifier = Modifier.fillMaxWidth())
-        TabLayout(tabNames = names, modifier = Modifier.weight(1f), apartments)
+        TabLayout(tabNames = names, modifier = Modifier.weight(1f), apartments.value)
         Spacer(modifier = Modifier.weight(0.001f))
     }
 }

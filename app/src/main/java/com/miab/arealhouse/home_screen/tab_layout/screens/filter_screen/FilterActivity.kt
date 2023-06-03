@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -25,11 +26,13 @@ import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.Fi
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.HomeType
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.PriceSection
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.PropertyConditionPicker
+import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.FilterOptions
 import com.miab.arealhouse.ui.theme.ARealHouseTheme
 
 class FilterActivity : ComponentActivity() {
-     @SuppressLint("AutoboxingStateValueProperty")
+    private val apartmentViewModel: ApartmentViewModel by viewModels()
+    @SuppressLint("AutoboxingStateValueProperty")
      override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -87,22 +90,24 @@ class FilterActivity : ComponentActivity() {
                                         parkingCount.value = 0
                                         facilities.value = facilities.value.mapValues { false }
                                     },
+
                                     onApply = {
-                                        val resultIntent = Intent()
-                                        resultIntent.putExtra("filterOptions", FilterOptions(
+                                        val newFilterOptions = FilterOptions(
                                             selectedHomeType = selectedHomeType.value,
                                             selectedPropertyType = selectedPropertyType.value,
                                             minPrice = minPrice.value,
                                             maxPrice = maxPrice.value,
-                                            minBedroom = bedroomCount.value,
-                                            maxBedroom = bedroomCount.value,
-                                            minBathroom = bathroomCount.value,
-                                            maxBathroom = bathroomCount.value,
-                                            minParking = parkingCount.value,
-                                            maxParking = parkingCount.value,
+                                            bedroom = bedroomCount.value,
+                                            bathroom = bathroomCount.value,
+                                            parking = parkingCount.value,
                                             facilities = facilities.value
                                         )
-                                        )
+
+                                        apartmentViewModel.updateFilterOptions(newFilterOptions)
+
+                                        val intent = Intent()
+                                        intent.putExtra("FilterOptions", newFilterOptions)
+                                        setResult(Activity.RESULT_OK, intent)
                                         onBackPressed()
                                     }
                                 )
