@@ -11,8 +11,10 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.pager.rememberPagerState
 import com.miab.arealhouse.R
+import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
 import kotlinx.coroutines.launch
 
 // Define the list of icons and labels for the bottom navigation
@@ -24,7 +26,7 @@ val bottomList = listOf(
 )
 
 @Composable
-fun BottomBar() {
+fun BottomBar(apartmentViewModel: ApartmentViewModel = viewModel()) {
     val pagerState = rememberPagerState(initialPage = 0)
     val scope = rememberCoroutineScope()
 
@@ -33,7 +35,8 @@ fun BottomBar() {
         BottomNavPager(
             iconsList = bottomList,
             pagerState = pagerState,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
+            apartmentViewModel
         )
 
         // BottomNavigation composable for displaying the bottom navigation items

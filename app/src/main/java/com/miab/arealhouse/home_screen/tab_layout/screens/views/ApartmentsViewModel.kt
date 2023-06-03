@@ -3,6 +3,7 @@ package com.miab.arealhouse.home_screen.tab_layout.screens.views
 import android.os.Parcelable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.res.stringArrayResource
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,6 +13,7 @@ import kotlinx.android.parcel.Parcelize
 class ApartmentViewModel : ViewModel() {
     private val _apartments = MutableLiveData<List<Apartment>>()
     val apartments: LiveData<List<Apartment>> = _apartments
+    private var propertyConditions: List<String>
 
     fun setApartments(apartments: List<Apartment>) {
         _apartments.value = apartments
@@ -28,7 +30,7 @@ class ApartmentViewModel : ViewModel() {
                 bathroom = 2,
                 parking = 2,
                 owner = "Jennifer",
-                ownerProperty = "Grand Properties",
+                ownerProperty = "Owner",
                 isFavorite = false,
                 homeType = 1,
                 facilities = mapOf("Fully Furnished" to true, "WiFi" to true, "AC" to true)
@@ -42,7 +44,7 @@ class ApartmentViewModel : ViewModel() {
                 bathroom = 1,
                 parking = 0,
                 owner = "Brian",
-                ownerProperty = "CityHomes",
+                ownerProperty = "Independent Agent",
                 isFavorite = true,
                 homeType = 2,
                 facilities = mapOf("Fully Furnished" to false, "WiFi" to true, "AC" to true)
@@ -56,7 +58,7 @@ class ApartmentViewModel : ViewModel() {
                 bathroom = 3,
                 parking = 2,
                 owner = "Emma",
-                ownerProperty = "Suburb Realty",
+                ownerProperty = "Owner",
                 isFavorite = true,
                 homeType = 3,
                 facilities = mapOf("Fully Furnished" to false, "WiFi" to true, "AC" to false)
@@ -70,20 +72,20 @@ class ApartmentViewModel : ViewModel() {
                 bathroom = 2,
                 parking = 1,
                 owner = "Oliver",
-                ownerProperty = "Downtown Estates",
+                ownerProperty = "Independent Agent",
                 isFavorite = false,
                 homeType = 1,
                 facilities = mapOf("Fully Furnished" to true, "WiFi" to true, "AC" to true)
             )
         )
+
+        propertyConditions = listOf(
+            "Owner",
+            "Independent Agent"
+        )
     }
 
-    lateinit var propertyConditions: Array<String>
-
     private val _filterOptions = mutableStateOf(FilterOptions())
-
-    // Expose the filter options as read-only state
-    val filterOptions: State<FilterOptions> = _filterOptions
 
     // Function to update the filter options
     fun updateFilterOptions(filterOptions: FilterOptions) {
@@ -92,11 +94,14 @@ class ApartmentViewModel : ViewModel() {
     }
 
     private fun applyFilters(filterOptions: FilterOptions) {
-        // Replace with your own filtering logic
-        _apartments.value = _apartments.value?.filter { apartment ->
-            val priceInRange = apartment.price.removePrefix("$").toDouble().let { price ->
-                price >= filterOptions.minPrice.toDouble() && price <= filterOptions.maxPrice.toDouble()
-            }
+        _apartments.value = apartments.value!!.filter { apartment ->
+            val price = apartment.price.removePrefix("$").substringBefore("/")
+            val priceInRange = price.toDoubleOrNull()?.let { numericPrice ->
+                numericPrice >= (filterOptions.minPrice.toDoubleOrNull() ?: Double.MIN_VALUE) &&
+                        numericPrice <= (filterOptions.maxPrice.toDoubleOrNull()
+                    ?: Double.MAX_VALUE)
+            } ?: false
+
             val bedroomInRange = apartment.bedroom >= filterOptions.bedroom
             val bathroomInRange = apartment.bathroom >= filterOptions.bathroom
             val parkingInRange = apartment.parking >= filterOptions.parking
