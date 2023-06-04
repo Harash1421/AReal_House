@@ -19,6 +19,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.miab.arealhouse.MainActivity
+import com.miab.arealhouse.MainActivity.Companion.viewModel
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.FacilityBoardingSection
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.FacilitySection
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.FilterActions
@@ -28,9 +30,11 @@ import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.Pr
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.FilterOptions
 import com.miab.arealhouse.ui.theme.ARealHouseTheme
+import java.util.logging.Filter
 
 class FilterActivity : ComponentActivity() {
     private val apartmentViewModel: ApartmentViewModel by viewModels()
+    var newFilterOptions: FilterOptions? = null
 
     @SuppressLint("AutoboxingStateValueProperty")
      override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,7 +96,7 @@ class FilterActivity : ComponentActivity() {
                                     },
 
                                     onApply = {
-                                        val newFilterOptions = FilterOptions(
+                                        newFilterOptions = FilterOptions(
                                             selectedHomeType = selectedHomeType.value,
                                             selectedPropertyType = selectedPropertyType.value,
                                             minPrice = minPrice.value,
@@ -103,7 +107,6 @@ class FilterActivity : ComponentActivity() {
                                             facilities = facilities.value
                                         )
 
-                                        apartmentViewModel.updateFilterOptions(newFilterOptions)
 
                                         finish()
                                     }
@@ -114,6 +117,11 @@ class FilterActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun onBackPressed() {
+        viewModel.updateFilterOptions(newFilterOptions!!)
+        super.onBackPressed()
     }
 }
 

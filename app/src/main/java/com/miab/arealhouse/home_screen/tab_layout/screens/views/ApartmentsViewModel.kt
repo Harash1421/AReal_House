@@ -14,6 +14,8 @@ class ApartmentViewModel : ViewModel() {
     private val _apartments = MutableLiveData<List<Apartment>>()
     val apartments: LiveData<List<Apartment>> = _apartments
     private var propertyConditions: List<String>
+    val filterOptions = mutableStateOf(FilterOptions())
+
 
     fun setApartments(apartments: List<Apartment>) {
         _apartments.value = apartments
@@ -85,11 +87,10 @@ class ApartmentViewModel : ViewModel() {
         )
     }
 
-    private val _filterOptions = mutableStateOf(FilterOptions())
 
     // Function to update the filter options
     fun updateFilterOptions(filterOptions: FilterOptions) {
-        _filterOptions.value = filterOptions
+        this.filterOptions.value = filterOptions
         applyFilters(filterOptions)
     }
 

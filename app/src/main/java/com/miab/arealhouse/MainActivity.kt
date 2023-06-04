@@ -15,7 +15,9 @@ import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewMod
 import com.miab.arealhouse.ui.theme.ARealHouseTheme
 
 class MainActivity : ComponentActivity() {
-    private lateinit var viewModel: ApartmentViewModel
+    companion object{
+        lateinit var viewModel: ApartmentViewModel
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
