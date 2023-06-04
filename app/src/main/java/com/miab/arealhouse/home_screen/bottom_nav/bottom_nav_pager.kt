@@ -23,7 +23,7 @@ fun BottomNavPager(iconsList: List<Pair<Int, String>>,
         modifier = modifier
     ) { page ->
         when(page) {
-            0 -> HomeScreen()
+            0 -> HomeScreen(apartmentViewModel)
             1 -> FavoriteScreen()
             2 -> MessageScreen()
             3 -> ProfileScreen()
