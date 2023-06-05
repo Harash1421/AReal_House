@@ -72,7 +72,7 @@ fun PriceSection(
         )
         Spacer(modifier = Modifier.width(16.dp))
         OutlinedTextField(
-            placeholder = { Text(text = if (minPrice.isBlank()) {"Min Price"} else "",
+            placeholder = { Text(text = if (minPrice.isBlank()) {"Max Price"} else "",
                 style = androidx.compose.material3.MaterialTheme.typography.titleSmall.copy(color = Color.Gray)) },
             value = maxPrice,
             onValueChange = { value ->

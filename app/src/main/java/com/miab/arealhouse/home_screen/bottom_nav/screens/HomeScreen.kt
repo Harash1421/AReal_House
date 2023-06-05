@@ -20,16 +20,14 @@ var names = listOf("Rent", "Sale")
 
 @OptIn(ExperimentalStdlibApi::class)
 @Composable
-fun HomeScreen(apartmentViewModel: ApartmentViewModel = viewModel()){
-    val apartments = apartmentViewModel.apartments.observeAsState(emptyList())
-
+fun HomeScreen(){
     Column(
         modifier = Modifier
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         SearchBar(modifier = Modifier.fillMaxWidth())
-        TabLayout(tabNames = names, modifier = Modifier.weight(1f), apartments.value)
+        TabLayout(tabNames = names, modifier = Modifier.weight(1f))
         Spacer(modifier = Modifier.weight(0.001f))
     }
 }

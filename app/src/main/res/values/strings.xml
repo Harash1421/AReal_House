@@ -4,12 +4,14 @@
     <string name="title_activity_filter">FilterActivity</string>
 
     <string-array name="accommodation_types">
+        <item>Select A Home Type</item>
         <item>Apartment</item>
         <item>House</item>
         <item>Villa</item>
     </string-array>
 
     <string-array name="property_conditions">
+        <item>Select A Property Type</item>
         <item>Owner</item>
         <item>Independent Agent</item>
     </string-array>

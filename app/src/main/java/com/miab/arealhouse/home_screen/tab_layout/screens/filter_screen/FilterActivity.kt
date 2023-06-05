@@ -1,9 +1,9 @@
 package com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen
 
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -17,10 +17,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider
 import com.miab.arealhouse.MainActivity
-import com.miab.arealhouse.MainActivity.Companion.viewModel
+import com.miab.arealhouse.R
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.FacilityBoardingSection
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.FacilitySection
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.FilterActions
@@ -29,14 +31,18 @@ import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.Pr
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.PropertyConditionPicker
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.FilterOptions
+import com.miab.arealhouse.list
 import com.miab.arealhouse.ui.theme.ARealHouseTheme
-import java.util.logging.Filter
+import kotlin.math.min
 
 class FilterActivity : ComponentActivity() {
     private val apartmentViewModel: ApartmentViewModel by viewModels()
-    var newFilterOptions: FilterOptions? = null
 
-    @SuppressLint("AutoboxingStateValueProperty")
+    companion object{
+        var newFilterOptions = FilterOptions()
+    }
+
+        @SuppressLint("AutoboxingStateValueProperty")
      override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -52,6 +58,8 @@ class FilterActivity : ComponentActivity() {
                     val bedroomCount = remember { mutableIntStateOf(0) }
                     val bathroomCount = remember { mutableIntStateOf(0) }
                     val parkingCount = remember { mutableIntStateOf(0) }
+                    val homeType = stringArrayResource(id = R.array.accommodation_types)
+                    val propertyType = stringArrayResource(id = R.array.property_conditions)
 
                     val facilities = remember {
                         mutableStateOf(
@@ -93,23 +101,36 @@ class FilterActivity : ComponentActivity() {
                                         bathroomCount.value = 0
                                         parkingCount.value = 0
                                         facilities.value = facilities.value.mapValues { false }
+                                        apartmentViewModel.clearFilters()
                                     },
 
                                     onApply = {
+                                        val selectedPropertyTypeStr =
+                                            if (selectedPropertyType.value > 0)
+                                                propertyType[selectedPropertyType.value]
+                                            else ""
+                                        val selectedHomeTypeStr =
+                                            if (selectedHomeType.value > 0)
+                                                homeType[selectedHomeType.value]
+                                            else ""
+
                                         newFilterOptions = FilterOptions(
-                                            selectedHomeType = selectedHomeType.value,
-                                            selectedPropertyType = selectedPropertyType.value,
-                                            minPrice = minPrice.value,
-                                            maxPrice = maxPrice.value,
-                                            bedroom = bedroomCount.value,
-                                            bathroom = bathroomCount.value,
-                                            parking = parkingCount.value,
+                                            homeType = selectedHomeTypeStr,
+                                            minPrice = 0,
+                                            maxPrice = Int.MAX_VALUE,
+                                            bedroomCount = bedroomCount.value,
+                                            bathroomCount = bathroomCount.value,
+                                            parkingCount = parkingCount.value,
+                                            propertyType = selectedPropertyTypeStr,
                                             facilities = facilities.value
                                         )
 
 
-                                        finish()
+                                        apartmentViewModel.updateFilterSettings(newFilterOptions)
+
+                                        onBackPressed()
                                     }
+
                                 )
                             }
                         }
@@ -119,10 +140,6 @@ class FilterActivity : ComponentActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        viewModel.updateFilterOptions(newFilterOptions!!)
-        super.onBackPressed()
-    }
 }
 
 // Method for top bar configuration

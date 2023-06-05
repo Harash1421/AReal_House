@@ -10,22 +10,27 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.miab.arealhouse.home_screen.tab_layout.screens.RentScreen
 import com.miab.arealhouse.home_screen.tab_layout.screens.SaleScreen
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.FilterActivity
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
+import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
 
 @Composable
-fun TabLayout(tabNames: List<String>, modifier: Modifier = Modifier, apartments: List<Apartment>){
+fun TabLayout(tabNames: List<String>, modifier: Modifier = Modifier){
     val pagerState = rememberPagerState()
     val context = LocalContext.current
+    val apartmentViewModel: ApartmentViewModel = viewModel() // obtain the ViewModel
+    val filteredApartments = apartmentViewModel.apartments.observeAsState(initial = emptyList())
     Column(modifier = modifier) {
         Row(
             modifier = Modifier
@@ -59,7 +64,7 @@ fun TabLayout(tabNames: List<String>, modifier: Modifier = Modifier, apartments:
         ) { page ->
             when(page) {
 
-                0 -> RentScreen(apartments)
+                0 -> RentScreen()
                 1 -> SaleScreen()
             }
         }

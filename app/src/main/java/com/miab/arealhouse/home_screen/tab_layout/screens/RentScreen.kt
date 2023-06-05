@@ -6,22 +6,28 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.miab.arealhouse.R
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
+import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentsCard
+import com.miab.arealhouse.list
 
 @Composable
-fun RentScreen(apartments: List<Apartment>){
+fun RentScreen(){
+    val apartmentViewModel: ApartmentViewModel = viewModel()
+    val filteredApartments = apartmentViewModel.apartments.observeAsState(initial = emptyList())
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        itemsIndexed(apartments) { index, apartment ->
+        itemsIndexed(filteredApartments.value) { index, apartment ->
             ApartmentsCard(apartment, index)
         }
     }
@@ -31,22 +37,5 @@ fun RentScreen(apartments: List<Apartment>){
 @Preview(showBackground = true)
 @Composable
 fun RentScreenPreview(){
-    val apartments = listOf(
-        Apartment(
-            imageUrl = R.drawable.image,
-            name = "Awesome Apartment 1",
-            description = "This is an awesome apartment.",
-            price = "$2000/month",
-            bedroom = 3,
-            bathroom = 2,
-            parking = 1,
-            owner = "Ahmed",
-            ownerProperty = "Simphony Property",
-            isFavorite = true,
-            homeType = 1,
-            facilities = mapOf("Fully Furnished" to true, "WiFi" to false)
-        )
-    )
-
-    RentScreen(apartments)
+    RentScreen()
 }

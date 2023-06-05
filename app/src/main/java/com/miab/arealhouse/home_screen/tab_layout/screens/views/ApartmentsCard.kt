@@ -45,6 +45,7 @@ import kotlinx.android.parcel.Parcelize
 // Data class for Apartment details
 @Parcelize
 data class Apartment(
+    val homeType: String,
     val imageUrl: Int,
     val name: String,
     val description: String,
@@ -55,7 +56,6 @@ data class Apartment(
     val owner: String,
     val ownerProperty: String,
     var isFavorite: Boolean,
-    val homeType: Int,
     val facilities: Map<String, Boolean>
 ) : Parcelable
 
@@ -271,6 +271,7 @@ fun OwnerPropertyType(ownerProperty: String) {
 @Composable
 fun ApartmentsCardPreview() {
     val apartment = Apartment(
+        homeType = "Apartment",
         imageUrl = R.drawable.image,
         name = "Awesome Apartment 1",
         description = "This is an awesome apartment.",
@@ -281,7 +282,6 @@ fun ApartmentsCardPreview() {
         owner = "Ahmed",
         ownerProperty = "Simphony Property",
         isFavorite = true,
-        homeType = 1, // For example
         facilities = mapOf(
             "WiFi" to true,
             "AC" to true,
