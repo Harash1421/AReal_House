@@ -1,11 +1,12 @@
 package com.miab.arealhouse
 
-import android.graphics.drawable.PaintDrawable
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -14,7 +15,6 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -63,7 +63,8 @@ class DetailBuyActivity : ComponentActivity() {
 
             Column(modifier = Modifier
                 .fillMaxHeight()
-                .padding(14.dp)) {
+                .padding(14.dp)
+                .verticalScroll(rememberScrollState())) {
 
                 Column(Modifier.padding(5.dp)) {
                     Text(text = apartment?.name ?: "",
@@ -77,36 +78,81 @@ class DetailBuyActivity : ComponentActivity() {
                 Spacer(Modifier.height(10.dp))
                 Divider()
 
+                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
 
-                Row(
-                    modifier = Modifier.padding(14.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Image(painter = painterResource(R.drawable.bed),
-                        contentDescription = null,
-                        Modifier.size(27.dp))
-                    Spacer(Modifier.width(4.dp))
-                    Text(text = "Bedrooms\n${apartment?.bedroom ?: 0}")
-                    Spacer(Modifier.width(16.dp))
-                    Image(painter = painterResource(R.drawable.bathroom),
-                        contentDescription = null,
-                        Modifier.size(27.dp))
-                    Spacer(Modifier.width(4.dp))
-                    Text(text = "Bathrooms\n${apartment?.bathroom ?: 0}")
-                    Spacer(Modifier.width(16.dp))
-                    Image(painter = painterResource(R.drawable.car),
-                        contentDescription = null,
-                        Modifier.size(27.dp))
-                    Spacer(Modifier.width(4.dp))
-                    Text(text = "Parking\n${apartment?.parking ?: 0}")
+                    Row(
+                        modifier = Modifier.padding(14.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.bed),
+                            contentDescription = null,
+                            Modifier.size(27.dp)
+                        )
+                        Spacer(Modifier.width(4.dp))
+                        Text(text = "Bedrooms\n${apartment?.bedroom ?: 0}")
+                        Spacer(Modifier.width(16.dp))
+                        Image(
+                            painter = painterResource(R.drawable.bathroom),
+                            contentDescription = null,
+                            Modifier.size(27.dp)
+                        )
+                        Spacer(Modifier.width(4.dp))
+                        Text(text = "Bathrooms\n${apartment?.bathroom ?: 0}")
+                        Spacer(Modifier.width(16.dp))
+                        Image(
+                            painter = painterResource(R.drawable.car),
+                            contentDescription = null,
+                            Modifier.size(27.dp)
+                        )
+                        Spacer(Modifier.width(4.dp))
+                        Text(text = "Parking\n${apartment?.parking ?: 0}")
+                    }
                 }
 
                 Divider()
 
-                Text(
-                    text = "Description: ${apartment?.location ?: ""}",
-                    Modifier.padding(16.dp)
-                )
+                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                    Row(
+                        modifier = Modifier.padding(14.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.size),
+                            contentDescription = null,
+                            Modifier.size(27.dp)
+                        )
+                        Spacer(Modifier.width(4.dp))
+                        Text(text = "Land Size\n${apartment?.landSize ?: 0} M2")
+                        Spacer(Modifier.width(16.dp))
+                        Image(
+                            painter = painterResource(R.drawable.size),
+                            contentDescription = null,
+                            Modifier.size(27.dp)
+                        )
+                        Spacer(Modifier.width(4.dp))
+                        Text(text = "Home Size\n${apartment?.homeSize ?: 0} M2")
+                    }
+                }
+
+
+                Divider()
+                Spacer(Modifier.height(10.dp))
+
+                Column{
+                    Text(
+                        text = "Description:",
+                        style = TextStyle(fontWeight = FontWeight.Bold,
+                            fontSize = 18.sp)
+                    )
+                    Spacer(Modifier.height(7.dp))
+                    Text(
+                        text = apartment!!.description,
+                        style = TextStyle(fontWeight = FontWeight.Normal,
+                            fontSize = 15.sp)
+                    )
+                }
             }
 
         }
@@ -141,7 +187,16 @@ fun DetailScreenPreview() {
             owner = "Ahmed",
             ownerProperty = "Simphony Property",
             isFavorite = true,
-            description = "This is a loft Apartment",
+            description = "Classic 2-storey Modern House with Scandinavian theme in Depok, on Jalan Pekapuran, West Java\n" +
+                    "\n" +
+                    "Specifications as follows:\n" +
+                    "2 storey building\n" +
+                    "Dirty Kitchen\n" +
+                    "Clean Kitchen\n" +
+                    "FULL AC 11 Units\n" +
+                    "Electricity 23000 Watt\n" +
+                    "Front / back garden\n" +
+                    "Swimming Pool",
             landSize = 90,
             homeSize = 40,
             facilities = mapOf(

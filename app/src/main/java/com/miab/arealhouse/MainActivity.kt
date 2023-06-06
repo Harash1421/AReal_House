@@ -57,7 +57,16 @@ val list = listOf(
         owner = "Jennifer",
         ownerProperty = "Owner",
         isFavorite = false,
-        description = "This is a loft Apartment",
+        description = "Classic 2-storey Modern House with Scandinavian theme in Depok, on Jalan Pekapuran, West Java\n" +
+                "\n" +
+                "Specifications as follows:\n" +
+                "2 storey building\n" +
+                "Dirty Kitchen\n" +
+                "Clean Kitchen\n" +
+                "FULL AC 11 Units\n" +
+                "Electricity 23000 Watt\n" +
+                "Front / back garden\n" +
+                "Swimming Pool",
         landSize = 90,
         homeSize = 40,
         facilities = mapOf("Fully Furnished" to true, "WiFi" to true, "AC" to true, "24 Hour Access" to false)
