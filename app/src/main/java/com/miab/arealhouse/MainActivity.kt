@@ -1,8 +1,6 @@
 package com.miab.arealhouse
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -11,15 +9,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.miab.arealhouse.home_screen.bottom_nav.BottomBar
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.FilterActivity.Companion.newFilterOptions
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
-import com.miab.arealhouse.home_screen.tab_layout.screens.views.FilterOptions
 import com.miab.arealhouse.ui.theme.ARealHouseTheme
 
 class MainActivity : ComponentActivity() {
@@ -55,7 +49,7 @@ val list = listOf(
         homeType = "Apartment",
         imageUrl = R.drawable.image,
         name = "Luxury Loft",
-        description = "This is a luxurious loft apartment.",
+        location = "Los Angles, United States",
         price = "$3000/month",
         bedroom = 2,
         bathroom = 2,
@@ -63,13 +57,16 @@ val list = listOf(
         owner = "Jennifer",
         ownerProperty = "Owner",
         isFavorite = false,
+        description = "This is a loft Apartment",
+        landSize = 90,
+        homeSize = 40,
         facilities = mapOf("Fully Furnished" to true, "WiFi" to true, "AC" to true, "24 Hour Access" to false)
     ),
     Apartment(
         homeType = "House",
         imageUrl = R.drawable.image_second,
         name = "Cosy Studio",
-        description = "A cosy studio apartment in the city center.",
+        location = "New York, United Stated",
         price = "$1200/month",
         bedroom = 1,
         bathroom = 1,
@@ -77,13 +74,16 @@ val list = listOf(
         owner = "Brian",
         ownerProperty = "Independent Agent",
         isFavorite = true,
+        description = "A cosy studio apartment in the city center.",
+        landSize = 100,
+        homeSize = 50,
         facilities = mapOf("Fully Furnished" to false, "WiFi" to true, "AC" to true, "24 Hour Access" to true)
     ),
     Apartment(
         homeType = "Villa",
         imageUrl = R.drawable.image,
-        name = "Suburban House",
-        description = "A spacious house in the suburbs.",
+        name = "Suburban Villa",
+        location = "Los Angles, United States",
         price = "$2200/month",
         bedroom = 4,
         bathroom = 3,
@@ -91,13 +91,16 @@ val list = listOf(
         owner = "Emma",
         ownerProperty = "Owner",
         isFavorite = true,
+        description = "A spacious Villa in the suburbs.",
+        landSize = 300,
+        homeSize = 250,
         facilities = mapOf("Fully Furnished" to false, "WiFi" to true, "AC" to false, "24 Hour Access" to false)
     ),
     Apartment(
         homeType = "Apartment",
         imageUrl = R.drawable.image_second,
         name = "Downtown Flat",
-        description = "A modern flat in the downtown area.",
+        location = "New York, United States",
         price = "$1800/month",
         bedroom = 2,
         bathroom = 2,
@@ -105,6 +108,9 @@ val list = listOf(
         owner = "Oliver",
         ownerProperty = "Independent Agent",
         isFavorite = false,
+        description = "A modern flat in the downtown area.",
+        landSize = 120,
+        homeSize = 65,
         facilities = mapOf("Fully Furnished" to false, "WiFi" to true, "AC" to false, "24 Hour Access" to true)
     )
 )

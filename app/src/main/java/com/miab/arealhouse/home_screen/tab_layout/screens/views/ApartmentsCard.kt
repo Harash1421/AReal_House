@@ -34,6 +34,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,7 +49,7 @@ data class Apartment(
     val homeType: String,
     val imageUrl: Int,
     val name: String,
-    val description: String,
+    val location: String,
     val price: String,
     val bedroom: Int,
     val bathroom: Int,
@@ -56,6 +57,11 @@ data class Apartment(
     val owner: String,
     val ownerProperty: String,
     var isFavorite: Boolean,
+
+    //Apartment Configuration
+    val description: String,
+    val landSize: Int,
+    val homeSize: Int,
     val facilities: Map<String, Boolean>
 ) : Parcelable
 
@@ -118,7 +124,7 @@ fun ApartmentDetails(apartment: Apartment) {
         modifier = Modifier.padding(17.dp)
     ) {
         ApartmentName(apartment.name)
-        ApartmentDescription(apartment.description)
+        ApartmentLocation(apartment.location)
         Spacer(modifier = Modifier.height(14.dp))
         ApartmentPriceAndIcons(apartment.price, apartment.bedroom, apartment.bathroom, apartment.parking)
     }
@@ -137,7 +143,7 @@ fun ApartmentName(name: String) {
 
 // Composable for Apartment description
 @Composable
-fun ApartmentDescription(description: String) {
+fun ApartmentLocation(description: String) {
     Text(
         text = description,
         style = TextStyle(color = Color.Gray, fontSize = 14.sp),
@@ -163,7 +169,7 @@ fun ApartmentPriceAndIcons(price: String, bedroom: Int, bathroom: Int, parking: 
 fun ApartmentPrice(price: String, modifier: Modifier = Modifier) {
     Text(
         text = price,
-        style = TextStyle(color = Color.Black, fontSize = 16.sp),
+        style = TextStyle(color = Color.Black, fontSize = 20.sp, fontWeight = FontWeight.SemiBold),
         modifier = modifier
     )
 }
@@ -274,7 +280,7 @@ fun ApartmentsCardPreview() {
         homeType = "Apartment",
         imageUrl = R.drawable.image,
         name = "Awesome Apartment 1",
-        description = "This is an awesome apartment.",
+        location = "Los Angles, United States",
         price = "$2000/month",
         bedroom = 3,
         bathroom = 2,
@@ -282,6 +288,9 @@ fun ApartmentsCardPreview() {
         owner = "Ahmed",
         ownerProperty = "Simphony Property",
         isFavorite = true,
+        description = "This is a loft Apartment",
+        landSize = 90,
+        homeSize = 40,
         facilities = mapOf(
             "WiFi" to true,
             "AC" to true,
