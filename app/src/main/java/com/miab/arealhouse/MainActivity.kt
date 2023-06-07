@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.miab.arealhouse.home_screen.bottom_nav.BottomBar
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.FilterActivity.Companion.newFilterOptions
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
@@ -23,6 +24,13 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val systemUiController = rememberSystemUiController()
+            SideEffect {
+                systemUiController.setStatusBarColor(
+                    color = Color.Magenta,
+                    darkIcons = false
+                )
+            }
             ARealHouseTheme {
 
                 // A surface container using the 'background' color from the theme
@@ -30,6 +38,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color.White
                 ) {
+
                     Column {
                         BottomBar()
                     }

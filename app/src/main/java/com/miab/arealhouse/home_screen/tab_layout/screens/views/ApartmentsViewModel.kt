@@ -27,6 +27,13 @@ class ApartmentViewModel : ViewModel() {
         apartments.value = list
     }
 
+    fun filterByName(query: String) {
+        val filteredList = list.filter { apartment ->
+            apartment.name.contains(query, ignoreCase = true)
+        }
+        apartments.value = filteredList
+    }
+
 
     fun applyFilters(filterOptions: FilterOptions) {
         if (filterOptions != FilterOptions()) {

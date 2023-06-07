@@ -26,10 +26,11 @@ import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
 
 @Composable
-fun TabLayout(tabNames: List<String>, modifier: Modifier = Modifier){
+fun TabLayout(tabNames: List<String>,
+              modifier: Modifier = Modifier,
+              apartmentViewModel: ApartmentViewModel = viewModel()){
     val pagerState = rememberPagerState()
     val context = LocalContext.current
-    val apartmentViewModel: ApartmentViewModel = viewModel() // obtain the ViewModel
     val filteredApartments = apartmentViewModel.apartments.observeAsState(initial = emptyList())
     Column(modifier = modifier) {
         Row(

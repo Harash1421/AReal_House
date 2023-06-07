@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 
 @ExperimentalStdlibApi
 @Composable
-fun SearchTextField(hint: String = "", onSearch: (String) -> Unit = { }){
+fun SearchTextField(hint: String = "", onSearch: (String) -> Unit){
     var text by remember { mutableStateOf("") }
 
     TextField(
@@ -42,5 +42,5 @@ fun SearchTextField(hint: String = "", onSearch: (String) -> Unit = { }){
 @Composable
 @Preview
 fun SearchTextFieldPreview(){
-    SearchTextField(hint = "Search")
+//    SearchTextField(hint = "Search")
 }

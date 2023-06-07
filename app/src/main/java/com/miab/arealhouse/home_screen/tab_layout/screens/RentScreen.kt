@@ -19,15 +19,14 @@ import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentsCard
 import com.miab.arealhouse.list
 
 @Composable
-fun RentScreen(){
-    val apartmentViewModel: ApartmentViewModel = viewModel()
-    val filteredApartments = apartmentViewModel.apartments.observeAsState(initial = emptyList())
+fun RentScreen(apartmentViewModel: ApartmentViewModel = viewModel()){
+    val apartments = apartmentViewModel.apartments.observeAsState(initial = emptyList())
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        itemsIndexed(filteredApartments.value) { index, apartment ->
+        itemsIndexed(apartments.value) { index, apartment ->
             ApartmentsCard(apartment, index)
         }
     }
