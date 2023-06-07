@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.miab.arealhouse.home_screen.bottom_nav.BottomBar
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.FilterActivity.Companion.newFilterOptions
@@ -27,7 +28,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = Color.White
                 ) {
                     Column {
                         BottomBar()

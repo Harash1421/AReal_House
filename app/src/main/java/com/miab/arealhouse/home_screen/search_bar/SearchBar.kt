@@ -1,5 +1,6 @@
 package com.miab.arealhouse.home_screen.search_bar
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,14 +28,14 @@ fun SearchBar(modifier: Modifier = Modifier, ) {
     Column(
         modifier = modifier
             .padding(top = 7.dp, start = 12.dp, end = 12.dp)
-            .size(48.dp),
+            .size(54.dp),
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.border(1.dp, Color.Gray, RoundedCornerShape(8.dp))
         ) {
             Surface(
-                color = MaterialTheme.colorScheme.surface,
+                color = Color.White,
                 elevation = 8.dp,
                 modifier = Modifier
                     .weight(0.7f)

@@ -13,12 +13,16 @@ import androidx.compose.material.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -37,7 +41,7 @@ class DetailBuyActivity : ComponentActivity() {
             ARealHouseTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = Color.White
                 ) {
                     DetailScreen(apartment)
                 }
@@ -63,16 +67,22 @@ class DetailBuyActivity : ComponentActivity() {
 
             Column(modifier = Modifier
                 .fillMaxHeight()
-                .padding(14.dp)
+                .padding(10.dp)
                 .verticalScroll(rememberScrollState())) {
 
                 Column(Modifier.padding(5.dp)) {
                     Text(text = apartment?.name ?: "",
                         style = TextStyle(fontSize = 24.sp,
                             fontWeight = FontWeight.SemiBold))
+                    Spacer(Modifier.height(5.dp))
                     Text(text = apartment?.location ?: "",
                         style = TextStyle(fontSize = 14.sp,
                             fontWeight = FontWeight.Light))
+                    Spacer(Modifier.height(14.dp))
+                    Text(text = apartment?.price ?: "",
+                        style = TextStyle(fontSize = 27.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Blue))
                 }
 
                 Spacer(Modifier.height(10.dp))
@@ -140,23 +150,34 @@ class DetailBuyActivity : ComponentActivity() {
                 Divider()
                 Spacer(Modifier.height(10.dp))
 
-                Column{
-                    Text(
-                        text = "Description:",
-                        style = TextStyle(fontWeight = FontWeight.Bold,
-                            fontSize = 18.sp)
-                    )
-                    Spacer(Modifier.height(7.dp))
-                    Text(
-                        text = apartment!!.description,
-                        style = TextStyle(fontWeight = FontWeight.Normal,
-                            fontSize = 15.sp)
-                    )
-                }
+                ShowFullText(apartment = apartment!!)
             }
 
         }
     }
+
+    @Composable
+    fun ShowFullText(apartment: Apartment) {
+        val (showFullText, setShowFullText) = remember { mutableStateOf(false) }
+        Column {
+            Text(
+                text = "Description:",
+                style = TextStyle(fontWeight = FontWeight.Bold, fontSize = 18.sp)
+            )
+            Spacer(Modifier.height(7.dp))
+            Text(
+                text = if (showFullText) apartment.description else apartment.description.take(200) + "...",
+                style = TextStyle(fontWeight = FontWeight.Normal, fontSize = 15.sp)
+            )
+            // Only show the "More" and "Less" button if the description is longer than 100 characters
+            if (apartment.description.length > 200) {
+                TextButton(onClick = { setShowFullText(!showFullText) }) {
+                    Text(if (showFullText) "Less" else "More", color = Color.Blue)
+                }
+            }
+        }
+    }
+
 
     @Composable
     fun ApartmentImage(imageUrl: Int) {
