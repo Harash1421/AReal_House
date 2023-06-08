@@ -4,14 +4,19 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.material3.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.TopAppBar
@@ -22,6 +27,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -31,6 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
+import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentsCard
 import com.miab.arealhouse.ui.theme.ARealHouseTheme
 
 class DetailBuyActivity : ComponentActivity() {
@@ -43,7 +50,13 @@ class DetailBuyActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color.White
                 ) {
-                    DetailScreen(apartment)
+                    Box(modifier = Modifier.fillMaxSize()){
+                        DetailScreen(apartment = apartment)
+
+                        Box(modifier = Modifier.align(Alignment.BottomStart)) {
+                            BottomActions({}, apartment!!)
+                        }
+                    }
                 }
             }
         }
@@ -63,96 +76,120 @@ class DetailBuyActivity : ComponentActivity() {
                 contentColor = androidx.compose.material.MaterialTheme.colors.onSurface,
             )
 
-            ApartmentImage(apartment?.imageUrl ?: 0)
 
-            Column(modifier = Modifier
-                .fillMaxHeight()
-                .padding(10.dp)
-                .verticalScroll(rememberScrollState())) {
+            Column(
+                Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+            ) {
+                ApartmentImage(apartment?.imageUrl ?: 0)
 
-                Column(Modifier.padding(5.dp)) {
-                    Text(text = apartment?.name ?: "",
-                        style = TextStyle(fontSize = 24.sp,
-                            fontWeight = FontWeight.SemiBold))
-                    Spacer(Modifier.height(5.dp))
-                    Text(text = apartment?.location ?: "",
-                        style = TextStyle(fontSize = 14.sp,
-                            fontWeight = FontWeight.Light))
-                    Spacer(Modifier.height(14.dp))
-                    Text(text = apartment?.price ?: "",
-                        style = TextStyle(fontSize = 27.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.Blue))
-                }
+                Column(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .padding(10.dp)
+                ) {
 
-                Spacer(Modifier.height(10.dp))
-                Divider()
-
-                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-
-                    Row(
-                        modifier = Modifier.padding(14.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Image(
-                            painter = painterResource(R.drawable.bed),
-                            contentDescription = null,
-                            Modifier.size(27.dp)
+                    Column(Modifier.padding(5.dp)) {
+                        Text(
+                            text = apartment?.name ?: "",
+                            style = TextStyle(
+                                fontSize = 24.sp,
+                                fontWeight = FontWeight.SemiBold
+                            )
                         )
-                        Spacer(Modifier.width(4.dp))
-                        Text(text = "Bedrooms\n${apartment?.bedroom ?: 0}")
-                        Spacer(Modifier.width(16.dp))
-                        Image(
-                            painter = painterResource(R.drawable.bathroom),
-                            contentDescription = null,
-                            Modifier.size(27.dp)
+                        Spacer(Modifier.height(5.dp))
+                        Text(
+                            text = apartment?.location ?: "",
+                            style = TextStyle(
+                                fontSize = 14.sp,
+                                fontWeight = FontWeight.Light
+                            )
                         )
-                        Spacer(Modifier.width(4.dp))
-                        Text(text = "Bathrooms\n${apartment?.bathroom ?: 0}")
-                        Spacer(Modifier.width(16.dp))
-                        Image(
-                            painter = painterResource(R.drawable.car),
-                            contentDescription = null,
-                            Modifier.size(27.dp)
+                        Spacer(Modifier.height(14.dp))
+                        Text(
+                            text = apartment?.price ?: "",
+                            style = TextStyle(
+                                fontSize = 27.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Blue
+                            )
                         )
-                        Spacer(Modifier.width(4.dp))
-                        Text(text = "Parking\n${apartment?.parking ?: 0}")
                     }
-                }
 
-                Divider()
+                    Spacer(Modifier.height(10.dp))
+                    Divider()
 
-                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-                    Row(
-                        modifier = Modifier.padding(14.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Image(
-                            painter = painterResource(R.drawable.size),
-                            contentDescription = null,
-                            Modifier.size(27.dp)
-                        )
-                        Spacer(Modifier.width(4.dp))
-                        Text(text = "Land Size\n${apartment?.landSize ?: 0} M2")
-                        Spacer(Modifier.width(16.dp))
-                        Image(
-                            painter = painterResource(R.drawable.size),
-                            contentDescription = null,
-                            Modifier.size(27.dp)
-                        )
-                        Spacer(Modifier.width(4.dp))
-                        Text(text = "Home Size\n${apartment?.homeSize ?: 0} M2")
+                    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+
+                        Row(
+                            modifier = Modifier.padding(14.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.bed),
+                                contentDescription = null,
+                                Modifier.size(27.dp)
+                            )
+                            Spacer(Modifier.width(4.dp))
+                            Text(text = "Bedrooms\n${apartment?.bedroom ?: 0}")
+                            Spacer(Modifier.width(16.dp))
+                            Image(
+                                painter = painterResource(R.drawable.bathroom),
+                                contentDescription = null,
+                                Modifier.size(27.dp)
+                            )
+                            Spacer(Modifier.width(4.dp))
+                            Text(text = "Bathrooms\n${apartment?.bathroom ?: 0}")
+                            Spacer(Modifier.width(16.dp))
+                            Image(
+                                painter = painterResource(R.drawable.car),
+                                contentDescription = null,
+                                Modifier.size(27.dp)
+                            )
+                            Spacer(Modifier.width(4.dp))
+                            Text(text = "Parking\n${apartment?.parking ?: 0}")
+                        }
                     }
+
+                    Divider()
+
+                    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                        Row(
+                            modifier = Modifier.padding(14.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.size),
+                                contentDescription = null,
+                                Modifier.size(27.dp)
+                            )
+                            Spacer(Modifier.width(4.dp))
+                            Text(text = "Land Size\n${apartment?.landSize ?: 0} M2")
+                            Spacer(Modifier.width(16.dp))
+                            Image(
+                                painter = painterResource(R.drawable.size),
+                                contentDescription = null,
+                                Modifier.size(27.dp)
+                            )
+                            Spacer(Modifier.width(4.dp))
+                            Text(text = "Home Size\n${apartment?.homeSize ?: 0} M2")
+                        }
+                    }
+
+
+                    Divider()
+                    Spacer(Modifier.height(10.dp))
+
+                    ShowFullText(apartment = apartment!!)
+
+                    Divider()
+                    Spacer(Modifier.height(10.dp))
                 }
-
-
-                Divider()
-                Spacer(Modifier.height(10.dp))
-
-                ShowFullText(apartment = apartment!!)
+                ShowSuggestedApartments(list, apartment!!)
+                Spacer(Modifier.height(64.dp))
             }
-
         }
     }
 
@@ -188,6 +225,105 @@ class DetailBuyActivity : ComponentActivity() {
                 .fillMaxWidth()
                 .height(275.dp),
             contentScale = ContentScale.FillBounds
+        )
+    }
+
+    @Composable
+    fun ShowSuggestedApartments(apartments: List<Apartment>, apartment: Apartment) {
+        val suggestedApartments = remember { getRandomSuggestedApartments(apartments, 2, apartment) }
+
+        Column{
+            Text(
+                text = "Suggested Apartments",
+                style = TextStyle(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp
+                ),
+                modifier = Modifier.padding(start = 10.dp)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            suggestedApartments.forEach { apartment ->
+                ApartmentsCard(apartment = apartment)
+            }
+        }
+    }
+
+    // Helper function to get random suggested apartments without duplicates
+    private fun getRandomSuggestedApartments(apartments: List<Apartment>, count: Int, currentApartment: Apartment?): List<Apartment> {
+        val shuffledApartments = apartments.shuffled()
+        val filteredApartments = shuffledApartments.filter { it != currentApartment }
+        return filteredApartments.take(count)
+    }
+
+    //Button Actions
+    @Composable
+    fun BottomActions(onApply: () -> Unit, apartment: Apartment) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(64.dp)
+                .background(Color.White),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            OwnerInfo(owner = apartment.owner,
+                ownerProperty = apartment.ownerProperty,
+                modifier = Modifier.padding(7.dp).weight(0.5f))
+            Button(
+                onClick = { onApply() },
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue),
+                modifier = Modifier
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
+                    .height(40.dp)
+                    .weight(0.5f)
+            ) {
+                Text(
+                    text = "Chat",
+                    style = TextStyle(color = Color.White)
+                )
+            }
+        }
+    }
+
+}
+
+
+@Composable
+fun OwnerInfo(owner: String, ownerProperty: String, modifier: Modifier = Modifier) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        OwnerImage()
+        Spacer(modifier = Modifier.width(8.dp))
+        OwnerDetails(owner, ownerProperty)
+    }
+}
+
+@Composable
+fun OwnerImage() {
+    Image(
+        painter = painterResource(R.drawable.image),
+        contentDescription = "Owner Image",
+        contentScale = ContentScale.FillHeight,
+        modifier = Modifier
+            .size(40.dp)
+            .clip(CircleShape)
+            .border(2.dp, Color.Gray, CircleShape)
+    )
+}
+
+@Composable
+fun OwnerDetails(owner: String, ownerProperty: String) {
+    Column {
+        Text(
+            text = owner,
+            style = TextStyle(color = Color.Black, fontSize = 12.sp)
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            text = ownerProperty,
+            style = TextStyle(color = Color.Gray, fontSize = 12.sp)
         )
     }
 }
