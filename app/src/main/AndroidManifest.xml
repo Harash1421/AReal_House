@@ -18,7 +18,7 @@
             android:label="@string/title_activity_filter"
             android:theme="@style/Theme.ARealHouse" />
         <activity
-            android:name=".DetailBuyActivity"
+            android:name=".detail_buy_screen.DetailBuyActivity"
             android:exported="false"
             android:label="@string/title_activity_detail_buy"
             android:theme="@style/Theme.ARealHouse" />

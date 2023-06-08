@@ -39,7 +39,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.miab.arealhouse.DetailBuyActivity
+import com.miab.arealhouse.detail_buy_screen.DetailBuyActivity
 import com.miab.arealhouse.R
 import kotlinx.android.parcel.Parcelize
 

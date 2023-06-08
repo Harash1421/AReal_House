@@ -1,4 +1,4 @@
-package com.miab.arealhouse
+package com.miab.arealhouse.detail_buy_screen
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -15,7 +15,6 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
@@ -36,8 +35,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.miab.arealhouse.R
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentsCard
+import com.miab.arealhouse.list
 import com.miab.arealhouse.ui.theme.ARealHouseTheme
 
 class DetailBuyActivity : ComponentActivity() {
