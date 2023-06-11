@@ -269,7 +269,7 @@ fun CountryList(context: Context,
                     selectedCountry.value = index
                     expanded = false
                     selectedCity.value = 0
-                    updateCityList(context, countryList, index, cityList)
+                    updateCityList(context, countryList[selectedCountry.value], cityList)
                 }) {
                     Text(text = type)
                 }
@@ -321,21 +321,28 @@ fun CityList(cityList: List<String>, selectedCity: MutableState<Int>) {
 }
 
 // Function to update the city list based on the selected country
+@SuppressLint("DiscouragedApi")
 private fun updateCityList(
     context: Context,
-    countryList: Array<String>,
-    selectedCountryIndex: Int,
+    country: String,
     cityList: MutableList<String>
 ) {
-    val selectedCountry = countryList[selectedCountryIndex]
-    val citiesResourceId = context.resources.getIdentifier(
-        "cities_${selectedCountry.lowercase(Locale.getDefault()).replace(" ", "_")}",
+    // Clear the city list
+    cityList.clear()
+
+    // Fetch the array resource ID dynamically based on the selected country
+    val cityArrayResourceId = context.resources.getIdentifier(
+        "cities_${country.lowercase()}",
         "array",
         context.packageName
     )
-    val citiesArray = context.resources.getStringArray(citiesResourceId)
-    cityList.clear()
-    cityList.addAll(citiesArray)
+    if (cityArrayResourceId != 0) {
+        // Retrieve the city array using the resource ID
+        val cities = context.resources.getStringArray(cityArrayResourceId)
+
+        // Add the cities to the city list
+        cityList.addAll(cities)
+    }
 }
 
 @Preview(showBackground = true)
