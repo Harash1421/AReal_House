@@ -1,27 +1,28 @@
 package com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModelProvider
-import com.miab.arealhouse.MainActivity
 import com.miab.arealhouse.R
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.FacilityBoardingSection
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.FacilitySection
@@ -31,24 +32,22 @@ import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.Pr
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.views.PropertyConditionPicker
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.FilterOptions
-import com.miab.arealhouse.list
 import com.miab.arealhouse.ui.theme.ARealHouseTheme
-import kotlin.math.min
+import java.util.Locale
 
 class FilterActivity : ComponentActivity() {
     private val apartmentViewModel: ApartmentViewModel by viewModels()
 
-    companion object{
+    companion object {
         var newFilterOptions = FilterOptions()
     }
 
-        @SuppressLint("AutoboxingStateValueProperty")
-     override fun onCreate(savedInstanceState: Bundle?) {
+    @SuppressLint("AutoboxingStateValueProperty")
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ARealHouseTheme {
                 val context = LocalContext.current
-                // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     val selectedHomeType = remember { mutableIntStateOf(0) }
                     val selectedPropertyType = remember { mutableIntStateOf(0) }
@@ -73,12 +72,13 @@ class FilterActivity : ComponentActivity() {
                     }
 
                     Column(modifier = Modifier.fillMaxSize()) {
-                        TopBarConfiguration(){
+                        TopBarConfiguration {
                             onBackPressed()
                         }
 
                         Box(modifier = Modifier.fillMaxSize()) {
                             WidgetsConfiguration(
+                                context = context,
                                 selectedHomeType = selectedHomeType,
                                 minPrice = minPrice,
                                 maxPrice = maxPrice,
@@ -87,7 +87,6 @@ class FilterActivity : ComponentActivity() {
                                 bathroomCount = bathroomCount,
                                 parkingCount = parkingCount,
                                 facilities = facilities
-
                             )
                             Box(modifier = Modifier.align(Alignment.BottomStart)) {
                                 FilterActions(
@@ -125,12 +124,10 @@ class FilterActivity : ComponentActivity() {
                                             facilities = facilities.value
                                         )
 
-
                                         apartmentViewModel.updateFilterSettings(newFilterOptions)
 
                                         onBackPressed()
                                     }
-
                                 )
                             }
                         }
@@ -139,12 +136,10 @@ class FilterActivity : ComponentActivity() {
             }
         }
     }
-
 }
 
-// Method for top bar configuration
 @Composable
-fun TopBarConfiguration(onClick: () -> Unit){
+fun TopBarConfiguration(onClick: () -> Unit) {
     TopAppBar(
         title = { Text(text = "Filter") },
         navigationIcon = {
@@ -157,9 +152,9 @@ fun TopBarConfiguration(onClick: () -> Unit){
     )
 }
 
-// Function for Widgets on Screen
 @Composable
 fun WidgetsConfiguration(
+    context: Context,
     selectedHomeType: MutableState<Int>,
     minPrice: MutableState<String>,
     maxPrice: MutableState<String>,
@@ -168,16 +163,15 @@ fun WidgetsConfiguration(
     bathroomCount: MutableState<Int>,
     parkingCount: MutableState<Int>,
     facilities: MutableState<Map<String, Boolean>>
-    ){
+) {
     Column(
         modifier = Modifier
             .padding(16.dp)
             .verticalScroll(rememberScrollState())
     ) {
-
         HomeType(
-            selectedItem = selectedHomeType.value,
-        ){ text, index ->
+            selectedItem = selectedHomeType.value
+        ) { text, index ->
             selectedHomeType.value = index
         }
 
@@ -192,29 +186,157 @@ fun WidgetsConfiguration(
 
         Divider(modifier = Modifier.padding(vertical = 16.dp))
 
-        PropertyConditionPicker(
-            selectedPropertyType.value
-        ) { text, index ->
+        PropertyConditionPicker(selectedPropertyType.value) { text, index ->
             selectedPropertyType.value = index
         }
 
         Divider(modifier = Modifier.padding(vertical = 16.dp))
 
         FacilitySection(
-            bedroomCount,
-            bathroomCount,
-            parkingCount
+            bedroomCount = bedroomCount,
+            bathroomCount = bathroomCount,
+            parkingCount = parkingCount
+        )
+
+        Divider(modifier = Modifier.padding(vertical = 16.dp))
+
+        //Country lists variables
+        val countryList = stringArrayResource(id = R.array.countries)
+        val cityList = remember { mutableStateListOf<String>() }
+
+        val selectedCountry = remember { mutableStateOf(0) }
+        val selectedCity = remember { mutableStateOf(0) }
+
+        CountryList(
+            context,
+            countryList = countryList,
+            selectedCountry = selectedCountry,
+            cityList = cityList,
+            selectedCity = selectedCity
+        )
+
+        Divider(modifier = Modifier.padding(vertical = 16.dp))
+
+        CityList(
+            cityList = cityList,
+            selectedCity = selectedCity
         )
 
         Divider(modifier = Modifier.padding(vertical = 16.dp))
 
         FacilityBoardingSection(facilities = facilities)
 
-
         Spacer(modifier = Modifier.height(48.dp))
     }
 }
 
+@Composable
+fun CountryList(context: Context,
+                countryList: Array<String>,
+                selectedCountry: MutableState<Int>,
+                cityList: MutableList<String>,
+                selectedCity: MutableState<Int>) {
+    var expanded by rememberSaveable { mutableStateOf(false) }
+
+    val icon = if (expanded) {
+        Icons.Filled.KeyboardArrowUp
+    } else {
+        Icons.Filled.KeyboardArrowDown
+    }
+
+    Box {
+        OutlinedTextField(
+            value = countryList[selectedCountry.value],
+            onValueChange = {},
+            readOnly = true,
+            modifier = Modifier.fillMaxWidth(),
+            trailingIcon = {
+                Icon(
+                    icon,
+                    contentDescription = "",
+                    modifier = Modifier.clickable { expanded = !expanded }
+                )
+            }
+        )
+
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            countryList.forEachIndexed { index, type ->
+                DropdownMenuItem(onClick = {
+                    selectedCountry.value = index
+                    expanded = false
+                    selectedCity.value = 0
+                    updateCityList(context, countryList, index, cityList)
+                }) {
+                    Text(text = type)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun CityList(cityList: List<String>, selectedCity: MutableState<Int>) {
+    var expanded by rememberSaveable { mutableStateOf(false) }
+
+    val icon = if (expanded) {
+        Icons.Filled.KeyboardArrowUp
+    } else {
+        Icons.Filled.KeyboardArrowDown
+    }
+
+    Box {
+        OutlinedTextField(
+            value = cityList.getOrElse(selectedCity.value) {"Select Country First"},
+            onValueChange = {},
+            readOnly = true,
+            modifier = Modifier.fillMaxWidth(),
+            trailingIcon = {
+                Icon(
+                    icon,
+                    contentDescription = "",
+                    modifier = Modifier.clickable { expanded = !expanded }
+                )
+            }
+        )
+
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            cityList.forEachIndexed { index, city ->
+                DropdownMenuItem(onClick = {
+                    selectedCity.value = index
+                    expanded = false
+                }) {
+                    Text(text = city)
+                }
+            }
+        }
+    }
+}
+
+// Function to update the city list based on the selected country
+private fun updateCityList(
+    context: Context,
+    countryList: Array<String>,
+    selectedCountryIndex: Int,
+    cityList: MutableList<String>
+) {
+    val selectedCountry = countryList[selectedCountryIndex]
+    val citiesResourceId = context.resources.getIdentifier(
+        "cities_${selectedCountry.lowercase(Locale.getDefault()).replace(" ", "_")}",
+        "array",
+        context.packageName
+    )
+    val citiesArray = context.resources.getStringArray(citiesResourceId)
+    cityList.clear()
+    cityList.addAll(citiesArray)
+}
 
 @Preview(showBackground = true)
 @Composable

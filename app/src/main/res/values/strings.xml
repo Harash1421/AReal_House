@@ -15,4 +15,23 @@
         <item>Owner</item>
         <item>Independent Agent</item>
     </string-array>
+
+
+    <!-- Countries -->
+    <string-array name="countries">
+        <item>Select A Country</item>
+        <item>Afghanistan</item>
+        <item>Albania</item>
+    </string-array>
+
+    <!-- Cities -->
+    <string-array name="cities_afghanistan">
+        <item>Kabul</item>
+        <item>Herat</item>
+    </string-array>
+
+    <string-array name="cities_albania">
+        <item>Tirana</item>
+        <item>Durres</item>
+    </string-array>
 </resources>

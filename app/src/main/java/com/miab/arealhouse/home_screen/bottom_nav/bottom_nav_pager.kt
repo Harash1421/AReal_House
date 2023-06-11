@@ -1,6 +1,7 @@
 package com.miab.arealhouse.home_screen.bottom_nav
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.pager.HorizontalPager
@@ -12,6 +13,7 @@ import com.miab.arealhouse.home_screen.bottom_nav.screens.ProfileScreen
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun BottomNavPager(iconsList: List<Pair<Int, String>>,
                    pagerState: PagerState,
