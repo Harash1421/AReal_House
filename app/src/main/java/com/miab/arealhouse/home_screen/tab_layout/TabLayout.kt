@@ -31,7 +31,6 @@ fun TabLayout(tabNames: List<String>,
               apartmentViewModel: ApartmentViewModel = viewModel()){
     val pagerState = rememberPagerState()
     val context = LocalContext.current
-    val filteredApartments = apartmentViewModel.apartments.observeAsState(initial = emptyList())
     Column(modifier = modifier) {
         Row(
             modifier = Modifier
@@ -65,7 +64,7 @@ fun TabLayout(tabNames: List<String>,
         ) { page ->
             when(page) {
 
-                0 -> RentScreen()
+                0 -> RentScreen(apartmentViewModel = apartmentViewModel)
                 1 -> SaleScreen()
             }
         }

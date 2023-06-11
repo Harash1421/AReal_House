@@ -1,15 +1,8 @@
 package com.miab.arealhouse.home_screen.tab_layout.screens.views
 
-import android.app.Application
 import android.os.Parcelable
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.res.stringArrayResource
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.miab.arealhouse.R
 import com.miab.arealhouse.list
 import kotlinx.android.parcel.Parcelize
 
@@ -28,7 +21,7 @@ class ApartmentViewModel : ViewModel() {
     }
 
     fun filterByName(query: String) {
-        val filteredList = apartments.value!!.filter { apartment ->
+        val filteredList = list.filter { apartment ->
             apartment.name.contains(query, ignoreCase = true)
         }
         apartments.value = filteredList

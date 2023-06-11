@@ -28,6 +28,7 @@ import com.miab.arealhouse.list
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun RentScreen(apartmentViewModel: ApartmentViewModel = viewModel()){
+
     val apartments = apartmentViewModel.apartments.observeAsState(initial = emptyList())
 
     val keyboardController = LocalSoftwareKeyboardController.current

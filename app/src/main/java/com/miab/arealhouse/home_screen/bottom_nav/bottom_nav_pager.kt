@@ -13,7 +13,7 @@ import com.miab.arealhouse.home_screen.bottom_nav.screens.ProfileScreen
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
 
-@OptIn(ExperimentalComposeUiApi::class)
+@ExperimentalComposeUiApi
 @Composable
 fun BottomNavPager(iconsList: List<Pair<Int, String>>,
                    pagerState: PagerState,
