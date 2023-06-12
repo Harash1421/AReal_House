@@ -4,10 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -20,6 +23,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun CountriesSection(context: Context,
@@ -36,6 +40,8 @@ fun CountriesSection(context: Context,
         Icons.Filled.KeyboardArrowDown
     }
 
+    Text(text = "Country", style = MaterialTheme.typography.h6)
+    Spacer(modifier = Modifier.height(12.dp))
     Box {
         OutlinedTextField(
             value = countryList[selectedCountry.value],

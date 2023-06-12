@@ -94,7 +94,7 @@ class FilterActivity : ComponentActivity() {
                                         selectedHomeType.value = 0
                                         selectedPropertyType.value = 0
                                         minPrice.value = 0.0
-                                        maxPrice.value = 0.0
+                                        maxPrice.value = 5000.0
                                         bedroomCount.value = 0
                                         bathroomCount.value = 0
                                         parkingCount.value = 0
@@ -116,8 +116,8 @@ class FilterActivity : ComponentActivity() {
 
                                         newFilterOptions = FilterOptions(
                                             homeType = selectedHomeTypeStr,
-                                            minPrice = 0.0,
-                                            maxPrice = Double.MAX_VALUE,
+                                            minPrice = minPrice.value,
+                                            maxPrice = maxPrice.value,
                                             bedroomCount = bedroomCount.value,
                                             bathroomCount = bathroomCount.value,
                                             parkingCount = parkingCount.value,
@@ -128,7 +128,7 @@ class FilterActivity : ComponentActivity() {
                                         apartmentViewModel.updateFilterSettings(newFilterOptions)
 
                                         onBackPressed()
-                                    }
+                                    },
                                 )
                             }
                         }

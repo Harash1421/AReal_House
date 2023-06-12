@@ -15,15 +15,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.max
-import java.text.NumberFormat
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -38,7 +35,6 @@ fun PriceSection(
     var seekBarMax by remember { mutableFloatStateOf(maxPrice.toFloat()) }
 
     Text(text = "Price", style = MaterialTheme.typography.h6)
-    Spacer(modifier = Modifier.height(8.dp))
     RangeSlider(
         value = seekBarMin..seekBarMax,
         onValueChange = { range ->
@@ -53,11 +49,10 @@ fun PriceSection(
             inactiveTrackColor = Color.LightGray
         ),
         steps = 100,
-        valueRange = 0.0f..5000.0f,
+        valueRange = 0.0f..5000.0f
     )
-    Spacer(modifier = Modifier.height(0.dp))
-    Row {
-        Column(modifier = Modifier.weight(1f).height(75.dp)) {
+    Row(Modifier.height(74.dp)) {
+        Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = "Min Price",
                 style = MaterialTheme.typography.subtitle1.copy(color = Color.Gray)
@@ -69,12 +64,11 @@ fun PriceSection(
                     onMinPriceChange(value.toDoubleOrNull() ?: 0.0)
                     val floatValue = value.toFloatOrNull() ?: 0f
                     seekBarMin = floatValue.coerceIn(0f, seekBarMax)
-                },
-                modifier = Modifier.weight(1f).height(48.dp)
+                }
             )
         }
-        Spacer(modifier = Modifier.width(16.dp))
-        Column(modifier = Modifier.weight(1f).height(75.dp)) {
+        Spacer(modifier = Modifier.width(28.dp))
+        Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = "Max Price",
                 style = MaterialTheme.typography.subtitle1.copy(color = Color.Gray)
@@ -86,15 +80,13 @@ fun PriceSection(
                     onMaxPriceChange(value.toDoubleOrNull()?.coerceAtMost(5000.0) ?: 5000.0)
                     val floatValue = value.toFloatOrNull() ?: 5000.0f
                     seekBarMax = floatValue.coerceIn(seekBarMin, 5000.0f)
-                },
-                modifier = Modifier.weight(1f).height(48.dp)
+                }
             )
         }
+
     }
 
 }
-
-
 
 
 @Preview(showBackground = true)
