@@ -123,13 +123,14 @@ fun DetailScreenPreview() {
             imageUrl = R.drawable.image,
             name = "Awesome Apartment 1",
             location = "Los Angles, United States",
-            price = "$2000/month",
+            price = 2000.0,
             bedroom = 3,
             bathroom = 2,
             parking = 1,
             owner = "Ahmed",
             ownerProperty = "Simphony Property",
             isFavorite = true,
+            isSale = false,
             description = "Classic 2-storey Modern House with Scandinavian theme in Depok, on Jalan Pekapuran, West Java\n" +
                     "\n" +
                     "Specifications as follows:\n" +

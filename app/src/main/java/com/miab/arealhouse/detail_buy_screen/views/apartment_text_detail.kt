@@ -37,7 +37,7 @@ fun ApartmentTextDetail(apartment: Apartment?){
         )
         Spacer(Modifier.height(14.dp))
         Text(
-            text = apartment?.price ?: "",
+            text = "${apartment?.price ?: ""}",
             style = TextStyle(
                 fontSize = 27.sp,
                 fontWeight = FontWeight.Bold,

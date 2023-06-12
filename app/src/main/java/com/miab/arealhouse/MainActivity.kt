@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.*
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,6 +22,7 @@ import com.miab.arealhouse.ui.theme.ARealHouseTheme
 class MainActivity : ComponentActivity() {
     private val apartmentViewModel: ApartmentViewModel by viewModels()
 
+    @ExperimentalComposeUiApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -60,13 +62,14 @@ val list = listOf(
         imageUrl = R.drawable.image,
         name = "Luxury Loft",
         location = "Los Angles, United States",
-        price = "$3000/month",
+        price = 3000.0,
         bedroom = 2,
         bathroom = 2,
         parking = 2,
         owner = "Jennifer",
         ownerProperty = "Owner",
         isFavorite = false,
+        isSale = false,
         description = "Classic 2-storey Modern House with Scandinavian theme in Depok, on Jalan Pekapuran, West Java\n" +
                 "\n" +
                 "Specifications as follows:\n" +
@@ -86,13 +89,14 @@ val list = listOf(
         imageUrl = R.drawable.image_second,
         name = "Cosy Studio",
         location = "New York, United Stated",
-        price = "$1200/month",
+        price = 1200.0,
         bedroom = 1,
         bathroom = 1,
         parking = 0,
         owner = "Brian",
         ownerProperty = "Independent Agent",
         isFavorite = true,
+        isSale = false,
         description = "A cosy studio apartment in the city center.",
         landSize = 100,
         homeSize = 50,
@@ -103,13 +107,14 @@ val list = listOf(
         imageUrl = R.drawable.image,
         name = "Suburban Villa",
         location = "Los Angles, United States",
-        price = "$2200/month",
+        price = 2200.0,
         bedroom = 4,
         bathroom = 3,
         parking = 2,
         owner = "Emma",
         ownerProperty = "Owner",
         isFavorite = true,
+        isSale = false,
         description = "A spacious Villa in the suburbs.",
         landSize = 300,
         homeSize = 250,
@@ -120,13 +125,14 @@ val list = listOf(
         imageUrl = R.drawable.image_second,
         name = "Downtown Flat",
         location = "New York, United States",
-        price = "$1800/month",
+        price = 1800.0,
         bedroom = 2,
         bathroom = 2,
         parking = 1,
         owner = "Oliver",
         ownerProperty = "Independent Agent",
         isFavorite = false,
+        isSale = false,
         description = "A modern flat in the downtown area.",
         landSize = 120,
         homeSize = 65,
@@ -135,6 +141,7 @@ val list = listOf(
 )
 
 
+@ExperimentalComposeUiApi
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {

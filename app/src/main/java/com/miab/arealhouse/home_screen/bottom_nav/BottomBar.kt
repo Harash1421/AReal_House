@@ -6,6 +6,7 @@ import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
@@ -26,6 +27,7 @@ val bottomList = listOf(
     R.drawable.profile to "Profile"
 )
 
+@ExperimentalComposeUiApi
 @Composable
 fun BottomBar() {
     val pagerState = rememberPagerState(initialPage = 0)
@@ -66,6 +68,7 @@ fun BottomBar() {
     }
 }
 
+@ExperimentalComposeUiApi
 @Preview(showBackground = true)
 @Composable
 fun BottomBarPreview(){

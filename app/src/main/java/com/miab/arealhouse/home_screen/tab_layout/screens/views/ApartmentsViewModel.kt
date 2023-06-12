@@ -31,10 +31,8 @@ class ApartmentViewModel : ViewModel() {
     fun applyFilters(filterOptions: FilterOptions) {
         if (filterOptions != FilterOptions()) {
             val filteredList = list.filter { apartment ->
-                val priceInt = apartment.price.replace("$", "").replace("/month", "").trim().toIntOrNull() ?: 0
-
                 val isHomeType = apartment.homeType == filterOptions.homeType || filterOptions.homeType == ""
-                val isPriceValid = priceInt in filterOptions.minPrice..filterOptions.maxPrice
+                val isPriceValid = apartment.price in filterOptions.minPrice..filterOptions.maxPrice
                 val isBedroomValid = apartment.bedroom == filterOptions.bedroomCount || filterOptions.bedroomCount == 0
                 val isBathroomValid = apartment.bathroom == filterOptions.bathroomCount || filterOptions.bathroomCount == 0
                 val isParkingValid = apartment.parking == filterOptions.parkingCount || filterOptions.parkingCount == 0
@@ -58,8 +56,8 @@ class ApartmentViewModel : ViewModel() {
 @Parcelize
 data class FilterOptions(
     val homeType: String = "",
-    val minPrice: Int = 0,
-    val maxPrice: Int = Int.MAX_VALUE,
+    val minPrice: Double = 0.0,
+    val maxPrice: Double = Double.MAX_VALUE,
     val bedroomCount: Int = 0,
     val bathroomCount: Int = 0,
     val parkingCount: Int = 0,

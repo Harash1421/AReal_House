@@ -39,8 +39,8 @@ class FilterActivity : ComponentActivity() {
                 Surface(color = MaterialTheme.colors.background) {
                     val selectedHomeType = remember { mutableIntStateOf(0) }
                     val selectedPropertyType = remember { mutableIntStateOf(0) }
-                    val minPrice = remember { mutableStateOf("") }
-                    val maxPrice = remember { mutableStateOf("") }
+                    val minPrice = remember { mutableDoubleStateOf(0.0) }
+                    val maxPrice = remember { mutableDoubleStateOf(5000.0) }
 
                     val bedroomCount = remember { mutableIntStateOf(0) }
                     val bathroomCount = remember { mutableIntStateOf(0) }
@@ -93,8 +93,8 @@ class FilterActivity : ComponentActivity() {
                                         // Reset the filter state
                                         selectedHomeType.value = 0
                                         selectedPropertyType.value = 0
-                                        minPrice.value = ""
-                                        maxPrice.value = ""
+                                        minPrice.value = 0.0
+                                        maxPrice.value = 0.0
                                         bedroomCount.value = 0
                                         bathroomCount.value = 0
                                         parkingCount.value = 0
@@ -116,8 +116,8 @@ class FilterActivity : ComponentActivity() {
 
                                         newFilterOptions = FilterOptions(
                                             homeType = selectedHomeTypeStr,
-                                            minPrice = 0,
-                                            maxPrice = Int.MAX_VALUE,
+                                            minPrice = 0.0,
+                                            maxPrice = Double.MAX_VALUE,
                                             bedroomCount = bedroomCount.value,
                                             bathroomCount = bathroomCount.value,
                                             parkingCount = parkingCount.value,

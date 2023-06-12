@@ -50,13 +50,14 @@ data class Apartment(
     val imageUrl: Int,
     val name: String,
     val location: String,
-    val price: String,
+    val price: Double,
     val bedroom: Int,
     val bathroom: Int,
     val parking: Int,
     val owner: String,
     val ownerProperty: String,
     var isFavorite: Boolean,
+    var isSale: Boolean,
 
     //Apartment Configuration
     val description: String,
@@ -126,7 +127,7 @@ fun ApartmentDetails(apartment: Apartment) {
         ApartmentName(apartment.name)
         ApartmentLocation(apartment.location)
         Spacer(modifier = Modifier.height(14.dp))
-        ApartmentPriceAndIcons(apartment.price, apartment.bedroom, apartment.bathroom, apartment.parking)
+        ApartmentPriceAndIcons(apartment.price, apartment.bedroom, apartment.bathroom, apartment.parking, apartment.isSale)
     }
 }
 
@@ -154,21 +155,21 @@ fun ApartmentLocation(description: String) {
 
 // Composable for Apartment price and icons
 @Composable
-fun ApartmentPriceAndIcons(price: String, bedroom: Int, bathroom: Int, parking: Int) {
+fun ApartmentPriceAndIcons(price: Double, bedroom: Int, bathroom: Int, parking: Int, isSale: Boolean) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        ApartmentPrice(price, modifier = Modifier.weight(1f))
+        ApartmentPrice(price, modifier = Modifier.weight(1f), isSale)
         ApartmentIcons(bedroom, bathroom, parking)
     }
 }
 
 // Composable for Apartment price
 @Composable
-fun ApartmentPrice(price: String, modifier: Modifier = Modifier) {
+fun ApartmentPrice(price: Double, modifier: Modifier = Modifier, isSale: Boolean) {
     Text(
-        text = price,
+        text = if (isSale) "$$price" else "$$price/month",
         style = TextStyle(color = Color.Black, fontSize = 20.sp, fontWeight = FontWeight.SemiBold),
         modifier = modifier
     )
@@ -281,13 +282,14 @@ fun ApartmentsCardPreview() {
         imageUrl = R.drawable.image,
         name = "Awesome Apartment 1",
         location = "Los Angles, United States",
-        price = "$2000/month",
+        price = 1999.9,
         bedroom = 3,
         bathroom = 2,
         parking = 1,
         owner = "Ahmed",
         ownerProperty = "Simphony Property",
         isFavorite = true,
+        isSale = true,
         description = "This is a loft Apartment",
         landSize = 90,
         homeSize = 40,

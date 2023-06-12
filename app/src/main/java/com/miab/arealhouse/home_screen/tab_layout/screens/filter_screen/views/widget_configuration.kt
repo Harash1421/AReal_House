@@ -17,8 +17,8 @@ import androidx.compose.ui.unit.dp
 fun WidgetsConfiguration(
     context: Context,
     selectedHomeType: MutableState<Int>,
-    minPrice: MutableState<String>,
-    maxPrice: MutableState<String>,
+    minPrice: MutableState<Double>,
+    maxPrice: MutableState<Double>,
     selectedPropertyType: MutableState<Int>,
     bedroomCount: MutableState<Int>,
     bathroomCount: MutableState<Int>,
@@ -41,6 +41,9 @@ fun WidgetsConfiguration(
         }
 
         Divider(modifier = Modifier.padding(vertical = 16.dp))
+
+        minPrice.value = String.format("%.2f", minPrice.value).toDouble()
+        maxPrice.value = String.format("%.2f", maxPrice.value).toDouble()
 
         PriceSection(
             minPrice = minPrice.value,
