@@ -49,7 +49,8 @@ data class Apartment(
     val homeType: String,
     val imageUrl: Int,
     val name: String,
-    val location: String,
+    val country: String,
+    val city: String,
     val price: Double,
     val bedroom: Int,
     val bathroom: Int,
@@ -125,7 +126,7 @@ fun ApartmentDetails(apartment: Apartment) {
         modifier = Modifier.padding(17.dp)
     ) {
         ApartmentName(apartment.name)
-        ApartmentLocation(apartment.location)
+        ApartmentLocation(apartment.city, apartment.country)
         Spacer(modifier = Modifier.height(14.dp))
         ApartmentPriceAndIcons(apartment.price, apartment.bedroom, apartment.bathroom, apartment.parking, apartment.isSale)
     }
@@ -144,9 +145,9 @@ fun ApartmentName(name: String) {
 
 // Composable for Apartment description
 @Composable
-fun ApartmentLocation(description: String) {
+fun ApartmentLocation(city: String, country: String) {
     Text(
-        text = description,
+        text = "$city, $country",
         style = TextStyle(color = Color.Gray, fontSize = 14.sp),
         maxLines = 1,
         overflow = TextOverflow.Ellipsis
@@ -281,7 +282,8 @@ fun ApartmentsCardPreview() {
         homeType = "Apartment",
         imageUrl = R.drawable.image,
         name = "Awesome Apartment 1",
-        location = "Los Angles, United States",
+        country = "United States",
+        city = "Los Angles",
         price = 1999.9,
         bedroom = 3,
         bathroom = 2,

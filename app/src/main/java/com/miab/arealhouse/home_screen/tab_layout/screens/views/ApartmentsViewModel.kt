@@ -37,12 +37,15 @@ class ApartmentViewModel : ViewModel() {
                 val isBathroomValid = apartment.bathroom == filterOptions.bathroomCount || filterOptions.bathroomCount == 0
                 val isParkingValid = apartment.parking == filterOptions.parkingCount || filterOptions.parkingCount == 0
                 val isOwnerPropertyValid = apartment.ownerProperty == filterOptions.propertyType || filterOptions.propertyType == ""
+                val isCountryValid = apartment.country == filterOptions.country || filterOptions.country == ""
+                val isCityValid = apartment.city == filterOptions.city || filterOptions.city == ""
 
                 val isFacilityValid = filterOptions.facilities.entries.all { entry ->
                     !entry.value || apartment.facilities.getOrDefault(entry.key, false)
                 }
 
-                isHomeType && isPriceValid && isBedroomValid && isBathroomValid && isParkingValid && isOwnerPropertyValid && isFacilityValid
+                isHomeType && isPriceValid && isBedroomValid && isBathroomValid && isParkingValid && isOwnerPropertyValid
+                        && isCountryValid && isCityValid && isFacilityValid
             }.toMutableList()
 
             apartments.value = filteredList
@@ -62,6 +65,8 @@ data class FilterOptions(
     val bathroomCount: Int = 0,
     val parkingCount: Int = 0,
     val propertyType: String = "",
+    val country: String = "",
+    val city: String = "",
     val facilities: Map<String, Boolean> = mapOf()
     // Add more fields for other filter settings
 ) : Parcelable

@@ -29,7 +29,7 @@ fun ApartmentTextDetail(apartment: Apartment?){
         )
         Spacer(Modifier.height(5.dp))
         Text(
-            text = apartment?.location ?: "",
+            text = "${apartment?.city}, ${apartment?.country}" ?: "",
             style = TextStyle(
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Light

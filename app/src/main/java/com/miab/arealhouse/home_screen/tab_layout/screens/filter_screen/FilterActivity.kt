@@ -114,6 +114,15 @@ class FilterActivity : ComponentActivity() {
                                                 homeType[selectedHomeType.value]
                                             else ""
 
+                                        val selectedCountryTypeStr =
+                                            if (selectedCountry.value > 0)
+                                                countryList[selectedCountry.value]
+                                            else ""
+                                        val selectedCityTypeStr =
+                                            if (selectedCity.value > 0)
+                                                cityList[selectedCity.value]
+                                            else ""
+
                                         newFilterOptions = FilterOptions(
                                             homeType = selectedHomeTypeStr,
                                             minPrice = minPrice.value,
@@ -122,6 +131,8 @@ class FilterActivity : ComponentActivity() {
                                             bathroomCount = bathroomCount.value,
                                             parkingCount = parkingCount.value,
                                             propertyType = selectedPropertyTypeStr,
+                                            country = selectedCountryTypeStr,
+                                            city = selectedCityTypeStr,
                                             facilities = facilities.value
                                         )
 
