@@ -28,7 +28,10 @@ import androidx.compose.ui.unit.dp
 
 @ExperimentalStdlibApi
 @Composable
-fun SearchBar(modifier: Modifier = Modifier, onSearch: (String) -> Unit) {
+fun SearchBar(modifier: Modifier = Modifier,
+              onSearch: (String) -> Unit,
+              onMapClick: () -> Unit,
+              isMap:Boolean = false) {
     var text by remember { mutableStateOf("") }
     Column(
         modifier = modifier
@@ -60,7 +63,9 @@ fun SearchBar(modifier: Modifier = Modifier, onSearch: (String) -> Unit) {
                     .width(1.dp)
             )
 
-            MapTextButton(modifier = Modifier.weight(0.2f), buttonText = "Map")
+            MapTextButton(modifier = Modifier.weight(0.2f),
+                buttonText = if(isMap) "List" else "Map",
+                onClick = { onMapClick() })
         }
     }
 }

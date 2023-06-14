@@ -9,12 +9,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.miab.arealhouse.home_screen.tab_layout.screens.RentScreen
@@ -25,7 +27,8 @@ import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewMod
 @Composable
 fun TabLayout(tabNames: List<String>,
               modifier: Modifier = Modifier,
-              apartmentViewModel: ApartmentViewModel = viewModel()){
+              apartmentViewModel: ApartmentViewModel = viewModel(),
+              showMap: MutableState<Boolean>){
     val pagerState = rememberPagerState()
     val context = LocalContext.current
     Column(modifier = modifier) {
@@ -61,8 +64,8 @@ fun TabLayout(tabNames: List<String>,
         ) { page ->
             when(page) {
 
-                0 -> RentScreen(apartmentViewModel = apartmentViewModel)
-                1 -> SaleScreen(apartmentViewModel = apartmentViewModel)
+                0 -> RentScreen(apartmentViewModel = apartmentViewModel, showMap)
+                1 -> SaleScreen(apartmentViewModel = apartmentViewModel, showMap)
             }
         }
     }

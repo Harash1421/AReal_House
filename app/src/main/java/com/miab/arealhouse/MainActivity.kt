@@ -13,11 +13,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.miab.arealhouse.home_screen.bottom_nav.BottomBar
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.FilterActivity.Companion.newFilterOptions
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
+import com.miab.arealhouse.maps_screen.MapsActivity
 import com.miab.arealhouse.ui.theme.ARealHouseTheme
 
 class MainActivity : ComponentActivity() {
@@ -150,7 +154,7 @@ fun GreetingPreview() {
         ) {
             Column {
                 val apartmentViewModel: ApartmentViewModel = viewModel()
-                BottomBar(apartmentViewModel = apartmentViewModel)
+//                BottomBar(apartmentViewModel = apartmentViewModel)
             }
         }
     }

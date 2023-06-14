@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.google.accompanist.pager.rememberPagerState
 import com.miab.arealhouse.R
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
@@ -39,8 +40,7 @@ fun BottomBar(apartmentViewModel: ApartmentViewModel) {
             iconsList = bottomList,
             pagerState = pagerState,
             modifier = Modifier.weight(1f),
-            apartmentViewModel = apartmentViewModel
-        )
+            apartmentViewModel = apartmentViewModel)
 
         // BottomNavigation composable for displaying the bottom navigation items
         BottomNavigation(
@@ -74,5 +74,5 @@ fun BottomBar(apartmentViewModel: ApartmentViewModel) {
 @Composable
 fun BottomBarPreview(){
     val apartmentViewModel: ApartmentViewModel = viewModel()
-    BottomBar(apartmentViewModel = apartmentViewModel)
+//    BottomBar(apartmentViewModel = apartmentViewModel)
 }

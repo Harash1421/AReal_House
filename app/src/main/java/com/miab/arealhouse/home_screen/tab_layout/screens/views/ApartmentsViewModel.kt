@@ -10,7 +10,6 @@ class ApartmentViewModel : ViewModel() {
     var filterOptions = MutableLiveData(FilterOptions())
     val apartments: MutableLiveData<List<Apartment>> = MutableLiveData(list)
 
-
     fun updateFilterSettings(filterOptions: FilterOptions) {
         this.filterOptions.value = filterOptions
     }

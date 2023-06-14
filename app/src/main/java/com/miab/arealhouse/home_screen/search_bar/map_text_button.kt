@@ -15,12 +15,12 @@ import androidx.compose.ui.tooling.preview.Preview
 fun MapTextButton(
     modifier: Modifier = Modifier,
     buttonText:String,
-    onButtonClick: () -> Unit = { }){
+    onClick: () -> Unit = { }){
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
             .fillMaxHeight()
-            .clickable { onButtonClick() }
+            .clickable { onClick() }
     ) {
         Text(text = buttonText, color = Color.Blue)
     }

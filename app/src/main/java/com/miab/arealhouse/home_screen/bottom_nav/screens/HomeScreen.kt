@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.miab.arealhouse.home_screen.search_bar.SearchBar
 import com.miab.arealhouse.home_screen.tab_layout.TabLayout
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
@@ -27,11 +28,12 @@ var names = listOf("Rent", "Sale")
 @OptIn(ExperimentalStdlibApi::class)
 @Composable
 fun HomeScreen(apartmentViewModel: ApartmentViewModel){
-    val keyboardController = LocalSoftwareKeyboardController.current
+    val showMap = remember { mutableStateOf(false) }
+//    val keyboardController = LocalSoftwareKeyboardController.current
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .clickable { keyboardController!!.hide() },
+            .fillMaxSize(),
+//            .clickable { keyboardController!!.hide() },
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         var searchQuery by remember { mutableStateOf("") }
@@ -40,14 +42,18 @@ fun HomeScreen(apartmentViewModel: ApartmentViewModel){
             onSearch = { query ->
                 searchQuery = query
                 apartmentViewModel.filterByName(searchQuery)
-            }
+            },
+            onMapClick = {
+                showMap.value = !showMap.value
+            },
+            isMap = showMap.value
         )
         LaunchedEffect(Unit) {
             if(searchQuery.isNotEmpty()) {
                 apartmentViewModel.filterByName(searchQuery)
             }
         }
-        TabLayout(tabNames = names, modifier = Modifier.weight(1f), apartmentViewModel = apartmentViewModel)
+        TabLayout(tabNames = names, modifier = Modifier.weight(1f), apartmentViewModel = apartmentViewModel, showMap)
         Spacer(modifier = Modifier.weight(0.001f))
     }
 }
@@ -58,5 +64,5 @@ fun HomeScreen(apartmentViewModel: ApartmentViewModel){
 fun HomeScreenPreview(){
     val apartmentViewModel: ApartmentViewModel = viewModel()
 
-    HomeScreen(apartmentViewModel = apartmentViewModel)
+//    HomeScreen(apartmentViewModel = apartmentViewModel)
 }
