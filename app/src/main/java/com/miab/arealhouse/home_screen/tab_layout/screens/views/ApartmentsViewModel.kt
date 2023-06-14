@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 
 class ApartmentViewModel : ViewModel() {
     var filterOptions = MutableLiveData(FilterOptions())
-    var apartments = MutableLiveData(list)
+    val apartments: MutableLiveData<List<Apartment>> = MutableLiveData(list)
 
 
     fun updateFilterSettings(filterOptions: FilterOptions) {
@@ -23,6 +23,13 @@ class ApartmentViewModel : ViewModel() {
     fun filterByName(query: String) {
         val filteredList = list.filter { apartment ->
             apartment.name.contains(query, ignoreCase = true)
+        }
+        apartments.value = filteredList
+    }
+
+    fun filterBySale(isSale: Boolean) {
+        val filteredList = list.filter { apartment ->
+            apartment.isSale == isSale
         }
         apartments.value = filteredList
     }
@@ -49,11 +56,8 @@ class ApartmentViewModel : ViewModel() {
             }.toMutableList()
 
             apartments.value = filteredList
-        } else {
-            apartments.value = list
         }
     }
-
 }
 
 @Parcelize

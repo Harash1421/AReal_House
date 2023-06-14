@@ -29,7 +29,7 @@ val bottomList = listOf(
 
 @ExperimentalComposeUiApi
 @Composable
-fun BottomBar() {
+fun BottomBar(apartmentViewModel: ApartmentViewModel) {
     val pagerState = rememberPagerState(initialPage = 0)
     val scope = rememberCoroutineScope()
 
@@ -38,7 +38,8 @@ fun BottomBar() {
         BottomNavPager(
             iconsList = bottomList,
             pagerState = pagerState,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
+            apartmentViewModel = apartmentViewModel
         )
 
         // BottomNavigation composable for displaying the bottom navigation items
@@ -72,5 +73,6 @@ fun BottomBar() {
 @Preview(showBackground = true)
 @Composable
 fun BottomBarPreview(){
-    BottomBar()
+    val apartmentViewModel: ApartmentViewModel = viewModel()
+    BottomBar(apartmentViewModel = apartmentViewModel)
 }

@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -22,7 +20,6 @@ import com.google.accompanist.pager.rememberPagerState
 import com.miab.arealhouse.home_screen.tab_layout.screens.RentScreen
 import com.miab.arealhouse.home_screen.tab_layout.screens.SaleScreen
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.FilterActivity
-import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
 
 @Composable
@@ -65,7 +62,7 @@ fun TabLayout(tabNames: List<String>,
             when(page) {
 
                 0 -> RentScreen(apartmentViewModel = apartmentViewModel)
-                1 -> SaleScreen()
+                1 -> SaleScreen(apartmentViewModel = apartmentViewModel)
             }
         }
     }

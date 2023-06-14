@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -25,9 +26,8 @@ var names = listOf("Rent", "Sale")
 @ExperimentalComposeUiApi
 @OptIn(ExperimentalStdlibApi::class)
 @Composable
-fun HomeScreen(){
+fun HomeScreen(apartmentViewModel: ApartmentViewModel){
     val keyboardController = LocalSoftwareKeyboardController.current
-    val apartmentViewModel: ApartmentViewModel = viewModel()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -42,6 +42,11 @@ fun HomeScreen(){
                 apartmentViewModel.filterByName(searchQuery)
             }
         )
+        LaunchedEffect(Unit) {
+            if(searchQuery.isNotEmpty()) {
+                apartmentViewModel.filterByName(searchQuery)
+            }
+        }
         TabLayout(tabNames = names, modifier = Modifier.weight(1f), apartmentViewModel = apartmentViewModel)
         Spacer(modifier = Modifier.weight(0.001f))
     }
@@ -51,5 +56,7 @@ fun HomeScreen(){
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview(){
-    HomeScreen()
+    val apartmentViewModel: ApartmentViewModel = viewModel()
+
+    HomeScreen(apartmentViewModel = apartmentViewModel)
 }

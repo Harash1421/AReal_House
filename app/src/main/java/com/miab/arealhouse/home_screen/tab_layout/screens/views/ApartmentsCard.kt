@@ -284,7 +284,7 @@ fun ApartmentsCardPreview() {
         name = "Awesome Apartment 1",
         country = "United States",
         city = "Los Angles",
-        price = 1999.9,
+        price = 2000.0,
         bedroom = 3,
         bathroom = 2,
         parking = 1,

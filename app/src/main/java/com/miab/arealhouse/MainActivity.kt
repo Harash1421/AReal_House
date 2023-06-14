@@ -12,6 +12,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.miab.arealhouse.home_screen.bottom_nav.BottomBar
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.FilterActivity.Companion.newFilterOptions
@@ -26,34 +27,27 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val systemUiController = rememberSystemUiController()
-            SideEffect {
-                systemUiController.setStatusBarColor(
-                    color = Color.Magenta,
-                    darkIcons = false
-                )
-            }
             ARealHouseTheme {
-
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = Color.White
                 ) {
 
                     Column {
-                        BottomBar()
+                        BottomBar(apartmentViewModel)
                     }
                 }
             }
-
         }
     }
 
     override fun onStart() {
         super.onStart()
-        apartmentViewModel.applyFilters(newFilterOptions)
+        newFilterOptions.let {
+            apartmentViewModel.applyFilters(it)
+        }
     }
+
 }
 
 val list = listOf(
@@ -63,14 +57,14 @@ val list = listOf(
         name = "Luxury Loft",
         country = "United States",
         city = "Los Angles",
-        price = 3000.0,
+        price = 120000.50,
         bedroom = 2,
         bathroom = 2,
         parking = 2,
         owner = "Jennifer",
         ownerProperty = "Owner",
         isFavorite = false,
-        isSale = false,
+        isSale = true,
         description = "Classic 2-storey Modern House with Scandinavian theme in Depok, on Jalan Pekapuran, West Java\n" +
                 "\n" +
                 "Specifications as follows:\n" +
@@ -155,7 +149,8 @@ fun GreetingPreview() {
             color = MaterialTheme.colorScheme.background
         ) {
             Column {
-                BottomBar()
+                val apartmentViewModel: ApartmentViewModel = viewModel()
+                BottomBar(apartmentViewModel = apartmentViewModel)
             }
         }
     }

@@ -36,8 +36,9 @@ fun ApartmentTextDetail(apartment: Apartment?){
             )
         )
         Spacer(Modifier.height(14.dp))
+        val price = apartment!!.price
         Text(
-            text = "${apartment?.price ?: ""}",
+            text = if (apartment.isSale) "$$price" else "$$price/month",
             style = TextStyle(
                 fontSize = 27.sp,
                 fontWeight = FontWeight.Bold,

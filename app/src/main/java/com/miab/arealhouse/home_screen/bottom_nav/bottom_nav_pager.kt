@@ -17,7 +17,8 @@ import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewMod
 @Composable
 fun BottomNavPager(iconsList: List<Pair<Int, String>>,
                    pagerState: PagerState,
-                   modifier: Modifier = Modifier)
+                   modifier: Modifier = Modifier,
+                   apartmentViewModel: ApartmentViewModel)
 {
     HorizontalPager(
         count = iconsList.size,
@@ -25,7 +26,7 @@ fun BottomNavPager(iconsList: List<Pair<Int, String>>,
         modifier = modifier
     ) { page ->
         when(page) {
-            0 -> HomeScreen()
+            0 -> HomeScreen(apartmentViewModel = apartmentViewModel)
             1 -> FavoriteScreen()
             2 -> MessageScreen()
             3 -> ProfileScreen()
