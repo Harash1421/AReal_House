@@ -2,6 +2,8 @@
     <string name="app_name">ARealHouse</string>
     <string name="title_activity_detail_buy">DetailBuyActivity</string>
     <string name="title_activity_filter">FilterActivity</string>
+    <string name="title_activity_maps">MapsActivity</string>
+
 
     <string-array name="accommodation_types">
         <item>Select A Home Type</item>
@@ -100,7 +102,6 @@
         <item>Morocco</item>
         <item>Mozambique</item>
         <item>Myanmar</item>
-        <item>Nepal</item>
         <item>Netherlands</item>
         <item>New Caledonia</item>
         <item>New Zealand</item>
@@ -162,13 +163,2006 @@
     </string-array>
 
     <!-- Cities -->
+    <!-- Afghanistan -->
     <string-array name="cities_afghanistan">
         <item>Kabul</item>
         <item>Herat</item>
+        <item>Kandahar</item>
+        <item>Mazar-i-Sharif</item>
+        <item>Jalalabad</item>
+        <item>Kunduz</item>
+        <item>Taloqan</item>
+        <item>Puli Khumri</item>
+        <item>Ghazni</item>
+        <item>Farah</item>
+        <item>Bamyan</item>
+        <item>Samangan</item>
+        <item>Sar-e Pul</item>
+        <item>Chaghcharan</item>
+        <item>Maymana</item>
+        <item>Sheberghan</item>
+        <item>Pul-e Alam</item>
+        <item>Gardez</item>
+        <item>Asadabad</item>
+        <item>Mehtar Lam</item>
+        <!-- Add more cities here -->
     </string-array>
 
+    <!-- Albania -->
     <string-array name="cities_albania">
         <item>Tirana</item>
-        <item>Durres</item>
+        <item>Durrës</item>
+        <item>Vlorë</item>
+        <item>Elbasan</item>
+        <item>Shkodër</item>
+        <item>Korçë</item>
+        <item>Fier</item>
+        <item>Berat</item>
+        <item>Lushnjë</item>
+        <item>Pogradec</item>
+        <item>Kavajë</item>
+        <item>Patos</item>
+        <item>Lezhë</item>
+        <item>Kukës</item>
+        <item>Gjirokastër</item>
+        <item>Sarandë</item>
+        <!-- Add more cities here -->
     </string-array>
+
+    <!-- Algeria -->
+    <string-array name="cities_algeria">
+        <item>Algiers</item>
+        <item>Oran</item>
+        <item>Constantine</item>
+        <item>Annaba</item>
+        <item>Blida</item>
+        <item>Tlemcen</item>
+        <item>Setif</item>
+        <item>Batna</item>
+        <item>Bejaia</item>
+        <item>Skikda</item>
+        <item>Mostaganem</item>
+        <item>Chlef</item>
+        <item>Tiaret</item>
+        <item>Sidi Bel Abbès</item>
+        <item>El Oued</item>
+        <item>Biskra</item>
+        <item>Tizi Ouzou</item>
+        <item>Oran</item>
+        <item>Skikda</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Argentina -->
+    <string-array name="cities_argentina">
+        <item>Buenos Aires</item>
+        <item>Córdoba</item>
+        <item>Rosario</item>
+        <item>Mendoza</item>
+        <item>Tucumán</item>
+        <item>La Plata</item>
+        <item>Mar del Plata</item>
+        <item>Salta</item>
+        <item>Santa Fe</item>
+        <item>San Juan</item>
+        <item>Resistencia</item>
+        <item>Corrientes</item>
+        <item>Posadas</item>
+        <item>San Miguel de Tucumán</item>
+        <item>San Salvador de Jujuy</item>
+        <item>Neuquén</item>
+        <item>Formosa</item>
+        <item>Santiago del Estero</item>
+        <item>San Luis</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Armenia -->
+    <string-array name="cities_armenia">
+        <item>Yerevan</item>
+        <item>Gyumri</item>
+        <item>Vanadzor</item>
+        <item>Ejmiatsin</item>
+        <item>Hrazdan</item>
+        <item>Abovyan</item>
+        <item>Kapan</item>
+        <item>Armavir</item>
+        <item>Gavar</item>
+        <item>Artashat</item>
+        <item>Masis</item>
+        <item>Ashtarak</item>
+        <item>Sevan</item>
+        <item>Spitak</item>
+        <item>Ijevan</item>
+        <item>Goris</item>
+        <item>Vagharshapat</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Australia -->
+    <string-array name="cities_australia">
+        <item>Sydney</item>
+        <item>Melbourne</item>
+        <item>Brisbane</item>
+        <item>Perth</item>
+        <item>Adelaide</item>
+        <item>Gold Coast</item>
+        <item>Newcastle</item>
+        <item>Canberra</item>
+        <item>Wollongong</item>
+        <item>Sunshine Coast</item>
+        <item>Hobart</item>
+        <item>Geelong</item>
+        <item>Townsville</item>
+        <item>Cairns</item>
+        <item>Darwin</item>
+        <item>Toowoomba</item>
+        <item>Ballarat</item>
+        <item>Bendigo</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Austria -->
+    <string-array name="cities_austria">
+        <item>Vienna</item>
+        <item>Graz</item>
+        <item>Linz</item>
+        <item>Salzburg</item>
+        <item>Innsbruck</item>
+        <item>Klagenfurt</item>
+        <item>Villach</item>
+        <item>Wels</item>
+        <item>Sankt Pölten</item>
+        <item>Dornbirn</item>
+        <item>Wiener Neustadt</item>
+        <item>Steyr</item>
+        <item>Feldkirch</item>
+        <item>Bregenz</item>
+        <item>Leonding</item>
+        <item>Klosterneuburg</item>
+        <item>Baden</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Azerbaijan -->
+    <string-array name="cities_azerbaijan">
+        <item>Baku</item>
+        <item>Ganja</item>
+        <item>Sumqayit</item>
+        <item>Mingachevir</item>
+        <item>Shirvan</item>
+        <item>Shaki</item>
+        <item>Lankaran</item>
+        <item>Barda</item>
+        <item>Yevlakh</item>
+        <item>Nakhchivan</item>
+        <item>Quba</item>
+        <item>Saatly</item>
+        <item>Goychay</item>
+        <item>Mardakan</item>
+        <item>Khirdalan</item>
+        <item>Shamkir</item>
+        <item>Shahdag</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Bahrain -->
+    <string-array name="cities_bahrain">
+        <item>Manama</item>
+        <item>Riffa</item>
+        <item>Muharraq</item>
+        <item>Hidd</item>
+        <item>Isa Town</item>
+        <item>Sitra</item>
+        <item>Budaiya</item>
+        <item>Jidhafs</item>
+        <item>Hamad Town</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Bangladesh -->
+    <string-array name="cities_bangladesh">
+        <item>Dhaka</item>
+        <item>Chittagong</item>
+        <item>Khulna</item>
+        <item>Rajshahi</item>
+        <item>Sylhet</item>
+        <item>Barisal</item>
+        <item>Rangpur</item>
+        <item>Narayanganj</item>
+        <item>Gazipur</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Belarus -->
+    <string-array name="cities_belarus">
+        <item>Minsk</item>
+        <item>Gomel</item>
+        <item>Mogilev</item>
+        <item>Vitebsk</item>
+        <item>Hrodna</item>
+        <item>Brest</item>
+        <item>Bobruisk</item>
+        <item>Baranovichi</item>
+        <item>Pinsk</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Belgium -->
+    <string-array name="cities_belgium">
+        <item>Brussels</item>
+        <item>Antwerp</item>
+        <item>Ghent</item>
+        <item>Charleroi</item>
+        <item>Liège</item>
+        <item>Bruges</item>
+        <item>Namur</item>
+        <item>Leuven</item>
+        <item>Mons</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Bhutan -->
+    <string-array name="cities_bhutan">
+        <item>Thimphu</item>
+        <item>Phuntsholing</item>
+        <item>Paro</item>
+        <item>Punakha</item>
+        <item>Trongsa</item>
+        <item>Bumthang</item>
+        <item>Wangdue Phodrang</item>
+        <item>Mongar</item>
+        <item>Trashigang</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Bolivia -->
+    <string-array name="cities_bolivia">
+        <item>La Paz</item>
+        <item>Sucre</item>
+        <item>Cochabamba</item>
+        <item>Santa Cruz de la Sierra</item>
+        <item>El Alto</item>
+        <item>Oruro</item>
+        <item>Tarija</item>
+        <item>Potosí</item>
+        <item>Sacaba</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Bosnia and Herzegovina -->
+    <string-array name="cities_bosnia_and_herzegovina">
+        <item>Sarajevo</item>
+        <item>Banja Luka</item>
+        <item>Tuzla</item>
+        <item>Zenica</item>
+        <item>Mostar</item>
+        <item>Bihać</item>
+        <item>Brčko</item>
+        <item>Visoko</item>
+        <item>Goražde</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Brazil -->
+    <string-array name="cities_brazil">
+        <item>São Paulo</item>
+        <item>Rio de Janeiro</item>
+        <item>Salvador</item>
+        <item>Brasília</item>
+        <item>Fortaleza</item>
+        <item>Belo Horizonte</item>
+        <item>Manaus</item>
+        <item>Curitiba</item>
+        <item>Recife</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Brunei -->
+    <string-array name="cities_brunei">
+        <item>Bandar Seri Begawan</item>
+        <item>Kuala Belait</item>
+        <item>Seria</item>
+        <item>Tutong</item>
+        <item>Batu Apoi</item>
+        <item>Sungai Liang</item>
+        <item>Mentiri</item>
+        <item>Jerudong</item>
+        <item>Seria</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Bulgaria -->
+    <string-array name="cities_bulgaria">
+        <item>Sofia</item>
+        <item>Plovdiv</item>
+        <item>Varna</item>
+        <item>Burgas</item>
+        <item>Ruse</item>
+        <item>Stara Zagora</item>
+        <item>Pleven</item>
+        <item>Sliven</item>
+        <item>Dobrich</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Cameroon -->
+    <string-array name="cities_cameroon">
+        <item>Yaoundé</item>
+        <item>Douala</item>
+        <item>Bamenda</item>
+        <item>Maroua</item>
+        <item>Bafoussam</item>
+        <item>Garoua</item>
+        <item>Ngaoundéré</item>
+        <item>Bertoua</item>
+        <item>Kumba</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Canada -->
+    <string-array name="cities_canada">
+        <item>Toronto</item>
+        <item>Montreal</item>
+        <item>Vancouver</item>
+        <item>Calgary</item>
+        <item>Ottawa</item>
+        <item>Edmonton</item>
+        <item>Winnipeg</item>
+        <item>Quebec City</item>
+        <item>Hamilton</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Chad -->
+    <string-array name="cities_chad">
+        <item>N\'Djamena</item>
+        <item>Moundou</item>
+        <item>Sarh</item>
+        <item>Abeché</item>
+        <item>Kelo</item>
+        <item>Koumra</item>
+        <item>Pala</item>
+        <item>Am Timan</item>
+        <item>Bongor</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Chile -->
+    <string-array name="cities_chile">
+        <item>Santiago</item>
+        <item>Valparaíso</item>
+        <item>Concepción</item>
+        <item>Antofagasta</item>
+        <item>Vina del Mar</item>
+        <item>Temuco</item>
+        <item>Valdivia</item>
+        <item>Punta Arenas</item>
+        <item>Talca</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- China -->
+    <string-array name="cities_china">
+        <item>Beijing</item>
+        <item>Shanghai</item>
+        <item>Guangzhou</item>
+        <item>Shenzhen</item>
+        <item>Chengdu</item>
+        <item>Tianjin</item>
+        <item>Chongqing</item>
+        <item>Wuhan</item>
+        <item>Nanjing</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Congo -->
+    <string-array name="cities_congo">
+        <item>Brazzaville</item>
+        <item>Pointe-Noire</item>
+        <item>Dolisie</item>
+        <item>Kayes</item>
+        <item>Nkayi</item>
+        <item>Ouésso</item>
+        <item>Owando</item>
+        <item>Impfondo</item>
+        <item>Sibiti</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Costa Rica -->
+    <string-array name="cities_costa_rica">
+        <item>San José</item>
+        <item>Limón</item>
+        <item>Heredia</item>
+        <item>Alajuela</item>
+        <item>Cartago</item>
+        <item>Puntarenas</item>
+        <item>Guanacaste</item>
+        <item>Desamparados</item>
+        <item>San Francisco</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Cote d'Ivoire -->
+    <string-array name="cities_cote_divoire">
+        <item>Abidjan</item>
+        <item>Bouaké</item>
+        <item>Daloa</item>
+        <item>Korhogo</item>
+        <item>Yamoussoukro</item>
+        <item>San-Pédro</item>
+        <item>Gagnoa</item>
+        <item>Man</item>
+        <item>Divo</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Croatia -->
+    <string-array name="cities_croatia">
+        <item>Zagreb</item>
+        <item>Split</item>
+        <item>Rijeka</item>
+        <item>Osijek</item>
+        <item>Zadar</item>
+        <item>Pula</item>
+        <item>Slavonski Brod</item>
+        <item>Karlovac</item>
+        <item>Sisak</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Cuba -->
+    <string-array name="cities_cuba">
+        <item>Havana</item>
+        <item>Santiago de Cuba</item>
+        <item>Camagüey</item>
+        <item>Holguín</item>
+        <item>Santa Clara</item>
+        <item>Guantánamo</item>
+        <item>Pinar del Río</item>
+        <item>Cienfuegos</item>
+        <item>Matanzas</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Cyprus -->
+    <string-array name="cities_cyprus">
+        <item>Nicosia</item>
+        <item>Limassol</item>
+        <item>Larnaca</item>
+        <item>Paphos</item>
+        <item>Famagusta</item>
+        <item>Kyrenia</item>
+        <item>Protaras</item>
+        <item>Paralimni</item>
+        <item>Polis</item>
+        <!-- Add more cities here -->
+    </string-array>
+    <!-- Czech Republic -->
+    <string-array name="cities_czech_republic">
+        <item>Prague</item>
+        <item>Brno</item>
+        <item>Ostrava</item>
+        <item>Plzeň</item>
+        <item>Liberec</item>
+        <item>Olomouc</item>
+        <item>Ústí nad Labem</item>
+        <item>Hradec Králové</item>
+        <item>Pardubice</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Denmark -->
+    <string-array name="cities_denmark">
+        <item>Copenhagen</item>
+        <item>Aarhus</item>
+        <item>Odense</item>
+        <item>Aalborg</item>
+        <item>Esbjerg</item>
+        <item>Frederiksberg</item>
+        <item>Gentofte</item>
+        <item>Kolding</item>
+        <item>Horsens</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Dominica -->
+    <string-array name="cities_dominica">
+        <item>Roseau</item>
+        <item>Portsmouth</item>
+        <item>Marigot</item>
+        <item>Wesley</item>
+        <item>Salisbury</item>
+        <item>Castle Bruce</item>
+        <item>La Plaine</item>
+        <item>Grand Bay</item>
+        <item>Berekua</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Dominican Republic -->
+    <string-array name="cities_dominican_republic">
+        <item>Santo Domingo</item>
+        <item>Santiago</item>
+        <item>Santo Domingo Oeste</item>
+        <item>Santo Domingo Este</item>
+        <item>Santo Domingo Norte</item>
+        <item>Puerto Plata</item>
+        <item>San Pedro de Macorís</item>
+        <item>La Romana</item>
+        <item>San Cristóbal</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Egypt -->
+    <string-array name="cities_egypt">
+        <item>Cairo</item>
+        <item>Alexandria</item>
+        <item>Giza</item>
+        <item>Shubra El Kheima</item>
+        <item>Port Said</item>
+        <item>Suez</item>
+        <item>Luxor</item>
+        <item>Aswan</item>
+        <item>Tanta</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- El Salvador -->
+    <string-array name="cities_el_salvador">
+        <item>San Salvador</item>
+        <item>Santa Ana</item>
+        <item>San Miguel</item>
+        <item>Soyapango</item>
+        <item>Santa Tecla</item>
+        <item>San Marcos</item>
+        <item>Usulután</item>
+        <item>Cojutepeque</item>
+        <item>Apopa</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Estonia -->
+    <string-array name="cities_estonia">
+        <item>Tallinn</item>
+        <item>Tartu</item>
+        <item>Narva</item>
+        <item>Kohtla-Järve</item>
+        <item>Pärnu</item>
+        <item>Viljandi</item>
+        <item>Rakvere</item>
+        <item>Sillamäe</item>
+        <item>Maardu</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Eswatini -->
+    <string-array name="cities_eswatini">
+        <item>Mbabane</item>
+        <item>Manzini</item>
+        <item>Lobamba</item>
+        <item>Big Bend</item>
+        <item>Malkerns</item>
+        <item>Mhlume</item>
+        <item>Hlatikulu</item>
+        <item>Mhlambanyatsi</item>
+        <item>Piggs Peak</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Ethiopia -->
+    <string-array name="cities_ethiopia">
+        <item>Addis Ababa</item>
+        <item>Adama</item>
+        <item>Gondar</item>
+        <item>Dire Dawa</item>
+        <item>Hawassa</item>
+        <item>Dessie</item>
+        <item>Bahir Dar</item>
+        <item>Jijiga</item>
+        <item>Mek\'ele</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Finland -->
+    <string-array name="cities_finland">
+        <item>Helsinki</item>
+        <item>Espoo</item>
+        <item>Tampere</item>
+        <item>Vantaa</item>
+        <item>Oulu</item>
+        <item>Turku</item>
+        <item>Jyväskylä</item>
+        <item>Lahti</item>
+        <item>Kuopio</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- France -->
+    <string-array name="cities_france">
+        <item>Paris</item>
+        <item>Marseille</item>
+        <item>Lyon</item>
+        <item>Toulouse</item>
+        <item>Nice</item>
+        <item>Nantes</item>
+        <item>Strasbourg</item>
+        <item>Montpellier</item>
+        <item>Bordeaux</item>
+        <!-- Add more cities here -->
+    </string-array>
+    <!-- Gabon -->
+    <string-array name="cities_gabon">
+        <item>Libreville</item>
+        <item>Port-Gentil</item>
+        <item>Franceville</item>
+        <item>Oyem</item>
+        <item>Mouila</item>
+        <item>Lambaréné</item>
+        <item>Tchibanga</item>
+        <item>Koulamoutou</item>
+        <item>Makokou</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Georgia -->
+    <string-array name="cities_georgia">
+        <item>Tbilisi</item>
+        <item>Kutaisi</item>
+        <item>Batumi</item>
+        <item>Rustavi</item>
+        <item>Gori</item>
+        <item>Zugdidi</item>
+        <item>Poti</item>
+        <item>Samtredia</item>
+        <item>Khashuri</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Germany -->
+    <string-array name="cities_germany">
+        <item>Berlin</item>
+        <item>Hamburg</item>
+        <item>Munich</item>
+        <item>Cologne</item>
+        <item>Frankfurt</item>
+        <item>Stuttgart</item>
+        <item>Düsseldorf</item>
+        <item>Dortmund</item>
+        <item>Essen</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Ghana -->
+    <string-array name="cities_ghana">
+        <item>Accra</item>
+        <item>Kumasi</item>
+        <item>Tamale</item>
+        <item>Takoradi</item>
+        <item>Ashiaman</item>
+        <item>Tema</item>
+        <item>Sekondi-Takoradi</item>
+        <item>Cape Coast</item>
+        <item>Obuasi</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Greece -->
+    <string-array name="cities_greece">
+        <item>Athens</item>
+        <item>Thessaloniki</item>
+        <item>Piraeus</item>
+        <item>Patras</item>
+        <item>Heraklion</item>
+        <item>Larissa</item>
+        <item>Volos</item>
+        <item>Ioannina</item>
+        <item>Chania</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Greenland -->
+    <string-array name="cities_greenland">
+        <item>Nuuk</item>
+        <item>Sisimiut</item>
+        <item>Ilulissat</item>
+        <item>Qaqortoq</item>
+        <item>Aasiaat</item>
+        <item>Narsaq</item>
+        <item>Pituffik</item>
+        <item>Paamiut</item>
+        <item>Tasiilaq</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Guinea -->
+    <string-array name="cities_guinea">
+        <item>Conakry</item>
+        <item>Nzérékoré</item>
+        <item>Kankan</item>
+        <item>Kindia</item>
+        <item>Labé</item>
+        <item>Boke</item>
+        <item>Mamou</item>
+        <item>Conakry</item>
+        <item>Guéckédou</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Haiti -->
+    <string-array name="cities_haiti">
+        <item>Port-au-Prince</item>
+        <item>Carrefour</item>
+        <item>Delmas</item>
+        <item>Cité Soleil</item>
+        <item>Pétion-Ville</item>
+        <item>Gonaïves</item>
+        <item>Saint-Marc</item>
+        <item>Les Cayes</item>
+        <item>Cap-Haïtien</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Hong Kong -->
+    <string-array name="cities_hong_kong">
+        <item>Hong Kong Island</item>
+        <item>Kowloon</item>
+        <item>New Territories</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Hungary -->
+    <string-array name="cities_hungary">
+        <item>Budapest</item>
+        <item>Debrecen</item>
+        <item>Szeged</item>
+        <item>Miskolc</item>
+        <item>Pécs</item>
+        <item>Győr</item>
+        <item>Nyíregyháza</item>
+        <item>Kecskemét</item>
+        <item>Székesfehérvár</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Iceland -->
+    <string-array name="cities_iceland">
+        <item>Reykjavik</item>
+        <item>Kópavogur</item>
+        <item>Hafnarfjörður</item>
+        <item>Akureyri</item>
+        <item>Garðabaer</item>
+        <item>Mosfellsbær</item>
+        <item>Selfoss</item>
+        <item>Akranes</item>
+        <item>Egilsstaðir</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- India -->
+    <string-array name="cities_india">
+        <item>Mumbai</item>
+        <item>Delhi</item>
+        <item>Bangalore</item>
+        <item>Hyderabad</item>
+        <item>Ahmedabad</item>
+        <item>Chennai</item>
+        <item>Kolkata</item>
+        <item>Surat</item>
+        <item>Pune</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Indonesia -->
+    <string-array name="cities_indonesia">
+        <item>Jakarta</item>
+        <item>Surabaya</item>
+        <item>Bandung</item>
+        <item>Medan</item>
+        <item>Denpasar</item>
+        <item>Semarang</item>
+        <item>Palembang</item>
+        <item>Makassar</item>
+        <item>Batam</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Iran -->
+    <string-array name="cities_iran">
+        <item>Tehran</item>
+        <item>Mashhad</item>
+        <item>Isfahan</item>
+        <item>Karaj</item>
+        <item>Tabriz</item>
+        <item>Shiraz</item>
+        <item>Qom</item>
+        <item>Ahvaz</item>
+        <item>Kermanshah</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Iraq -->
+    <string-array name="cities_iraq">
+        <item>Baghdad</item>
+        <item>Basra</item>
+        <item>Mosul</item>
+        <item>Erbil</item>
+        <item>Kirkuk</item>
+        <item>Sulaymaniyah</item>
+        <item>Najaf</item>
+        <item>Karbala</item>
+        <item>Nasiriyah</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Ireland -->
+    <string-array name="cities_ireland">
+        <item>Dublin</item>
+        <item>Cork</item>
+        <item>Limerick</item>
+        <item>Galway</item>
+        <item>Waterford</item>
+        <item>Drogheda</item>
+        <item>Swords</item>
+        <item>Sligo</item>
+        <item>Clonmel</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Italy -->
+    <string-array name="cities_italy">
+        <item>Rome</item>
+        <item>Milan</item>
+        <item>Naples</item>
+        <item>Turin</item>
+        <item>Palermo</item>
+        <item>Genoa</item>
+        <item>Bologna</item>
+        <item>Florence</item>
+        <item>Verona</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Jamaica -->
+    <string-array name="cities_jamaica">
+        <item>Kingston</item>
+        <item>Montego Bay</item>
+        <item>Spanish Town</item>
+        <item>Portmore</item>
+        <item>Mandeville</item>
+        <item>May Pen</item>
+        <item>Old Harbour</item>
+        <item>Savanna-la-Mar</item>
+        <item>Ocho Rios</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Japan -->
+    <string-array name="cities_japan">
+        <item>Tokyo</item>
+        <item>Yokohama</item>
+        <item>Osaka</item>
+        <item>Nagoya</item>
+        <item>Sapporo</item>
+        <item>Fukuoka</item>
+        <item>Kobe</item>
+        <item>Kyoto</item>
+        <item>Sendai</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Jordan -->
+    <string-array name="cities_jordan">
+        <item>Amman</item>
+        <item>Irbid</item>
+        <item>Aqaba</item>
+        <item>Zarqa</item>
+        <item>Balqa</item>
+        <item>Ajloun</item>
+        <item>Ma\'an</item>
+        <item>Ar Ramtha</item>
+        <item>Al Karak</item>
+        <item>Madaba</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Kazakhstan -->
+    <string-array name="cities_kazakhstan">
+        <item>Nur-Sultan</item>
+        <item>Almaty</item>
+        <item>Shymkent</item>
+        <item>Astana</item>
+        <item>Karaganda</item>
+        <item>Taraz</item>
+        <item>Pavlodar</item>
+        <item>Ust-Kamenogorsk</item>
+        <item>Semei</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Kuwait -->
+    <string-array name="cities_kuwait">
+        <item>Kuwait City</item>
+        <item>Al Ahmadi</item>
+        <item>Hawalli</item>
+        <item>Salmiya</item>
+        <item>Jahra</item>
+        <item>Farwaniya</item>
+        <item>Mubarak Al-Kabeer</item>
+        <item>Ahmadi</item>
+        <item>Hawally</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Lebanon -->
+    <string-array name="cities_lebanon">
+        <item>Beirut</item>
+        <item>Tripoli</item>
+        <item>Sidon</item>
+        <item>Byblos</item>
+        <item>Tyre</item>
+        <item>Nabatieh</item>
+        <item>Halba</item>
+        <item>Zahlé</item>
+        <item>Baalbek</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Liberia -->
+    <string-array name="cities_liberia">
+        <item>Monrovia</item>
+        <item>Gbarnga</item>
+        <item>Kakata</item>
+        <item>Harper</item>
+        <item>Buchanan</item>
+        <item>Zwedru</item>
+        <item>Greenville</item>
+        <item>Voinjama</item>
+        <item>Robertsport</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Libya -->
+    <string-array name="cities_libya">
+        <item>Tripoli</item>
+        <item>Benghazi</item>
+        <item>Misrata</item>
+        <item>Zawiya</item>
+        <item>Sabratha</item>
+        <item>Al Bayda</item>
+        <item>Zliten</item>
+        <item>Tobruk</item>
+        <item>Ajdabiya</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Lithuania -->
+    <string-array name="cities_lithuania">
+        <item>Vilnius</item>
+        <item>Kaunas</item>
+        <item>Klaipėda</item>
+        <item>Šiauliai</item>
+        <item>Panevėžys</item>
+        <item>Alytus</item>
+        <item>Marijampolė</item>
+        <item>Mazeikiai</item>
+        <item>Jonava</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Luxembourg -->
+    <string-array name="cities_luxembourg">
+        <item>Luxembourg City</item>
+        <item>Esch-sur-Alzette</item>
+        <item>Dudelange</item>
+        <item>Schifflange</item>
+        <item>Pétange</item>
+        <item>Ettelbruck</item>
+        <item>Diekirch</item>
+        <item>Strassen</item>
+        <item>Bertrange</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Macau -->
+    <string-array name="cities_macau">
+        <item>Macau Peninsula</item>
+        <item>Taipa</item>
+        <item>Cotai</item>
+        <item>Coloane</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Madagascar -->
+    <string-array name="cities_madagascar">
+        <item>Antananarivo</item>
+        <item>Toamasina</item>
+        <item>Antsirabe</item>
+        <item>Fianarantsoa</item>
+        <item>Mahajanga</item>
+        <item>Toliara</item>
+        <item>Antsiranana</item>
+        <item>Ambovombe</item>
+        <item>Ambanja</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Malaysia -->
+    <string-array name="cities_malaysia">
+        <item>Kuala Lumpur</item>
+        <item>George Town</item>
+        <item>Ipoh</item>
+        <item>Shah Alam</item>
+        <item>Petaling Jaya</item>
+        <item>Johor Bahru</item>
+        <item>Malacca City</item>
+        <item>Kuching</item>
+        <item>Kota Kinabalu</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Maldives -->
+    <string-array name="cities_maldives">
+        <item>Malé</item>
+        <item>Addu City</item>
+        <item>Fuvahmulah</item>
+        <item>Hithadhoo</item>
+        <item>Kulhudhuffushi</item>
+        <item>Thinadhoo</item>
+        <item>Nolhivaranfaru</item>
+        <item>Viligili</item>
+        <item>Mahibadhoo</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Mali -->
+    <string-array name="cities_mali">
+        <item>Bamako</item>
+        <item>Sikasso</item>
+        <item>Mopti</item>
+        <item>Koutiala</item>
+        <item>Timbuktu</item>
+        <item>Segou</item>
+        <item>Kayes</item>
+        <item>Kati</item>
+        <item>Kolokani</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Malta -->
+    <string-array name="cities_malta">
+        <item>Valletta</item>
+        <item>Birkirkara</item>
+        <item>Mosta</item>
+        <item>Qormi</item>
+        <item>Zabbar</item>
+        <item>Sliema</item>
+        <item>San Pawl il-Baħar</item>
+        <item>Saint Julian\'s</item>
+        <item>Luqa</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Mexico -->
+    <string-array name="cities_mexico">
+        <item>Mexico City</item>
+        <item>Guadalajara</item>
+        <item>Monterrey</item>
+        <item>Puebla</item>
+        <item>Tijuana</item>
+        <item>León</item>
+        <item>Juárez</item>
+        <item>Zapopan</item>
+        <item>Mérida</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Moldova -->
+    <string-array name="cities_moldova">
+        <item>Chisinau</item>
+        <item>Tiraspol</item>
+        <item>Bălți</item>
+        <item>Bender</item>
+        <item>Rîșcani</item>
+        <item>Cahul</item>
+        <item>Ungheni</item>
+        <item>Orhei</item>
+        <item>Soroca</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Monaco -->
+    <string-array name="cities_monaco">
+        <item>Monaco</item>
+        <item>Monte Carlo</item>
+        <item>La Condamine</item>
+        <item>Fontvieille</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Mongolia -->
+    <string-array name="cities_mongolia">
+        <item>Ulaanbaatar</item>
+        <item>Erdenet</item>
+        <item>Dalandzadgad</item>
+        <item>Choibalsan</item>
+        <item>Mörön</item>
+        <item>Khovd</item>
+        <item>Ölgii</item>
+        <item>Uliastai</item>
+        <item>Bayankhongor</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Morocco -->
+    <string-array name="cities_morocco">
+        <item>Casablanca</item>
+        <item>Rabat</item>
+        <item>Fes</item>
+        <item>Marrakesh</item>
+        <item>Tangier</item>
+        <item>Agadir</item>
+        <item>Meknes</item>
+        <item>Oujda</item>
+        <item>Kenitra</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Mozambique -->
+    <string-array name="cities_mozambique">
+        <item>Maputo</item>
+        <item>Matola</item>
+        <item>Beira</item>
+        <item>Nampula</item>
+        <item>Chimoio</item>
+        <item>Nacala</item>
+        <item>Quelimane</item>
+        <item>Tete</item>
+        <item>Xai-Xai</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Myanmar -->
+    <string-array name="cities_myanmar">
+        <item>Yangon</item>
+        <item>Mandalay</item>
+        <item>Naypyidaw</item>
+        <item>Mawlamyine</item>
+        <item>Bago</item>
+        <item>Pathein</item>
+        <item>Monywa</item>
+        <item>Meiktila</item>
+        <item>Sittwe</item>
+        <!-- Add more cities here -->
+    </string-array>
+    <!-- Netherlands -->
+    <string-array name="cities_netherlands">
+        <item>Amsterdam</item>
+        <item>Rotterdam</item>
+        <item>The Hague</item>
+        <item>Utrecht</item>
+        <item>Eindhoven</item>
+        <item>Tilburg</item>
+        <item>Groningen</item>
+        <item>Almere</item>
+        <item>Breda</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- New Caledonia -->
+    <string-array name="cities_new_caledonia">
+        <item>Nouméa</item>
+        <item>Mont-Dore</item>
+        <item>Dumbéa</item>
+        <item>Paita</item>
+        <item>Tontouta</item>
+        <item>Yaté</item>
+        <item>Bouloupari</item>
+        <item>La Foa</item>
+        <item>Koumac</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- New Zealand -->
+    <string-array name="cities_new_zealand">
+        <item>Auckland</item>
+        <item>Wellington</item>
+        <item>Christchurch</item>
+        <item>Hamilton</item>
+        <item>Tauranga</item>
+        <item>Napier</item>
+        <item>Dunedin</item>
+        <item>Palmerston North</item>
+        <item>Nelson</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Niger -->
+    <string-array name="cities_niger">
+        <item>Niamey</item>
+        <item>Zinder</item>
+        <item>Maradi</item>
+        <item>Agadez</item>
+        <item>Tahoua</item>
+        <item>Diffa</item>
+        <item>Dosso</item>
+        <item>Tillabéri</item>
+        <item>Arlit</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Nigeria -->
+    <string-array name="cities_nigeria">
+        <item>Lagos</item>
+        <item>Kano</item>
+        <item>Ibadan</item>
+        <item>Kaduna</item>
+        <item>Port Harcourt</item>
+        <item>Benin City</item>
+        <item>Maiduguri</item>
+        <item>Zaria</item>
+        <item>Aba</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Norway -->
+    <string-array name="cities_norway">
+        <item>Oslo</item>
+        <item>Bergen</item>
+        <item>Trondheim</item>
+        <item>Stavanger</item>
+        <item>Drammen</item>
+        <item>Fredrikstad</item>
+        <item>Tromsø</item>
+        <item>Sandnes</item>
+        <item>Sarpsborg</item>
+        <!-- Add more cities here -->
+    </string-array>
+    <!-- Oman -->
+    <string-array name="cities_oman">
+        <item>Muscat</item>
+        <item>Salalah</item>
+        <item>Sohar</item>
+        <item>Nizwa</item>
+        <item>Sur</item>
+        <item>Barka</item>
+        <item>Rustaq</item>
+        <item>Al Buraimi</item>
+        <item>Ibri</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Pakistan -->
+    <string-array name="cities_pakistan">
+        <item>Karachi</item>
+        <item>Lahore</item>
+        <item>Faisalabad</item>
+        <item>Rawalpindi</item>
+        <item>Gujranwala</item>
+        <item>Peshawar</item>
+        <item>Multan</item>
+        <item>Hyderabad</item>
+        <item>Islamabad</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Panama -->
+    <string-array name="cities_panama">
+        <item>Panama City</item>
+        <item>San Miguelito</item>
+        <item>Tocumen</item>
+        <item>David</item>
+        <item>Arraiján</item>
+        <item>Colón</item>
+        <item>Las Cumbres</item>
+        <item>La Chorrera</item>
+        <item>Pacora</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Paraguay -->
+    <string-array name="cities_paraguay">
+        <item>Asunción</item>
+        <item>San Lorenzo</item>
+        <item>Luque</item>
+        <item>Capiatá</item>
+        <item>Lambaré</item>
+        <item>Fernando de la Mora</item>
+        <item>Encarnación</item>
+        <item>Ciudad del Este</item>
+        <item>Itauguá</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Peru -->
+    <string-array name="cities_peru">
+        <item>Lima</item>
+        <item>Arequipa</item>
+        <item>Trujillo</item>
+        <item>Chiclayo</item>
+        <item>Callao</item>
+        <item>Iquitos</item>
+        <item>Piura</item>
+        <item>Cusco</item>
+        <item>Chimbote</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Philippines -->
+    <string-array name="cities_philippines">
+        <item>Manila</item>
+        <item>Quezon City</item>
+        <item>Davao City</item>
+        <item>Cebu City</item>
+        <item>Taguig</item>
+        <item>Caloocan</item>
+        <item>Antipolo</item>
+        <item>Pasig</item>
+        <item>Valenzuela</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Poland -->
+    <string-array name="cities_poland">
+        <item>Warsaw</item>
+        <item>Kraków</item>
+        <item>Łódź</item>
+        <item>Wrocław</item>
+        <item>Poznań</item>
+        <item>Gdańsk</item>
+        <item>Szczecin</item>
+        <item>Bydgoszcz</item>
+        <item>Lublin</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Portugal -->
+    <string-array name="cities_portugal">
+        <item>Lisbon</item>
+        <item>Porto</item>
+        <item>Vila Nova de Gaia</item>
+        <item>Amadora</item>
+        <item>Braga</item>
+        <item>Setúbal</item>
+        <item>Coimbra</item>
+        <item>Funchal</item>
+        <item>Almada</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Qatar -->
+    <string-array name="cities_qatar">
+        <item>Doha</item>
+        <item>Al Rayyan</item>
+        <item>Umm Salal</item>
+        <item>Madinat ash Shamal</item>
+        <item>Al Wakrah</item>
+        <item>Al Khor</item>
+        <item>Al Dhakira</item>
+        <item>Al Ruwais</item>
+        <item>Dukhan</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Romania -->
+    <string-array name="cities_romania">
+        <item>Bucharest</item>
+        <item>Cluj-Napoca</item>
+        <item>Timișoara</item>
+        <item>Iași</item>
+        <item>Constanța</item>
+        <item>Craiova</item>
+        <item>Brasov</item>
+        <item>Galați</item>
+        <item>Ploiești</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Russia -->
+    <string-array name="cities_russia">
+        <item>Moscow</item>
+        <item>Saint Petersburg</item>
+        <item>Novosibirsk</item>
+        <item>Yekaterinburg</item>
+        <item>Nizhny Novgorod</item>
+        <item>Kazan</item>
+        <item>Chelyabinsk</item>
+        <item>Omsk</item>
+        <item>Samara</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Rwanda -->
+    <string-array name="cities_rwanda">
+        <item>Kigali</item>
+        <item>Butare</item>
+        <item>Ruhengeri</item>
+        <item>Gisenyi</item>
+        <item>Gitarama</item>
+        <item>Cyangugu</item>
+        <item>Kibuye</item>
+        <item>Nyanza</item>
+        <item>Kibungo</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Saint Lucia -->
+    <string-array name="cities_saint_lucia">
+        <item>Castries</item>
+        <item>Vieux Fort</item>
+        <item>Micoud</item>
+        <item>Gros Islet</item>
+        <item>Dennery</item>
+        <item>Soufrière</item>
+        <item>Praslin</item>
+        <item>Canaries</item>
+        <item>Anse La Raye</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Saint Pierre and Miquelon -->
+    <string-array name="cities_saint_pierre_miquelon">
+        <item>Saint-Pierre</item>
+        <item>Miquelon</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Saint Vincent and the Grenadines -->
+    <string-array name="cities_saint_vincent_grenadines">
+        <item>Kingstown</item>
+        <item>Georgetown</item>
+        <item>Chateaubelair</item>
+        <item>Barrouallie</item>
+        <item>Port Elizabeth</item>
+        <item>Layou</item>
+        <item>Biabou</item>
+        <item>Calliaqua</item>
+        <item>Byera Village</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Samoa -->
+    <string-array name="cities_samoa">
+        <item>Apia</item>
+        <item>Asau</item>
+        <item>Faleula</item>
+        <item>Malie</item>
+        <item>Vailima</item>
+        <item>Faleolo</item>
+        <item>Fasito\'o-uta</item>
+        <item>Satapuala</item>
+        <item>Vaitele</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Saudi Arabia -->
+    <string-array name="cities_saudi_arabia">
+        <item>Riyadh</item>
+        <item>Jeddah</item>
+        <item>Mecca</item>
+        <item>Medina</item>
+        <item>Al-Ahsa</item>
+        <item>Ta\'if</item>
+        <item>Dammam</item>
+        <item>Buraydah</item>
+        <item>Khamis Mushait</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Senegal -->
+    <string-array name="cities_senegal">
+        <item>Dakar</item>
+        <item>Touba</item>
+        <item>Thiès</item>
+        <item>Thiès Nones</item>
+        <item>Mbour</item>
+        <item>Kaolack</item>
+        <item>Ziguinchor</item>
+        <item>Saint-Louis</item>
+        <item>Rufisque</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Serbia -->
+    <string-array name="cities_serbia">
+        <item>Belgrade</item>
+        <item>Novi Sad</item>
+        <item>Niš</item>
+        <item>Zemun</item>
+        <item>Kragujevac</item>
+        <item>Čačak</item>
+        <item>Subotica</item>
+        <item>Leskovac</item>
+        <item>Zrenjanin</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Singapore -->
+    <string-array name="cities_singapore">
+        <item>Singapore</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Slovakia -->
+    <string-array name="cities_slovakia">
+        <item>Bratislava</item>
+        <item>Košice</item>
+        <item>Prešov</item>
+        <item>Nitra</item>
+        <item>Žilina</item>
+        <item>Banská Bystrica</item>
+        <item>Trnava</item>
+        <item>Martin</item>
+        <item>Trenčín</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Slovenia -->
+    <string-array name="cities_slovenia">
+        <item>Ljubljana</item>
+        <item>Maribor</item>
+        <item>Celje</item>
+        <item>Kranj</item>
+        <item>Velenje</item>
+        <item>Koper</item>
+        <item>Novo Mesto</item>
+        <item>Ptuj</item>
+        <item>Nova Gorica</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Somalia -->
+    <string-array name="cities_somalia">
+        <item>Mogadishu</item>
+        <item>Hargeisa</item>
+        <item>Bosaso</item>
+        <item>Kismayo</item>
+        <item>Marka</item>
+        <item>Jamaame</item>
+        <item>Baidoa</item>
+        <item>Gaalkacyo</item>
+        <item>Beledweyne</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- South Africa -->
+    <string-array name="cities_south_africa">
+        <item>Johannesburg</item>
+        <item>Cape Town</item>
+        <item>Durban</item>
+        <item>Pretoria</item>
+        <item>Port Elizabeth</item>
+        <item>Bloemfontein</item>
+        <item>Nelspruit</item>
+        <item>Kimberley</item>
+        <item>Pietermaritzburg</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- South Korea -->
+    <string-array name="cities_south_korea">
+        <item>Seoul</item>
+        <item>Busan</item>
+        <item>Incheon</item>
+        <item>Daegu</item>
+        <item>Daejeon</item>
+        <item>Gwangju</item>
+        <item>Suwon</item>
+        <item>Ulsan</item>
+        <item>Seongnam</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- South Sudan -->
+    <string-array name="cities_south_sudan">
+        <item>Juba</item>
+        <item>Wau</item>
+        <item>Malakal</item>
+        <item>Yei</item>
+        <item>Aweil</item>
+        <item>Gogrial</item>
+        <item>Rumbek</item>
+        <item>Torit</item>
+        <item>Bor</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Spain -->
+    <string-array name="cities_spain">
+        <item>Madrid</item>
+        <item>Barcelona</item>
+        <item>Valencia</item>
+        <item>Seville</item>
+        <item>Zaragoza</item>
+        <item>Málaga</item>
+        <item>Murcia</item>
+        <item>Palma</item>
+        <item>Las Palmas de Gran Canaria</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Sri Lanka -->
+    <string-array name="cities_sri_lanka">
+        <item>Colombo</item>
+        <item>Gampaha</item>
+        <item>Kandy</item>
+        <item>Jaffna</item>
+        <item>Negombo</item>
+        <item>Batticaloa</item>
+        <item>Anuradhapura</item>
+        <item>Kalutara</item>
+        <item>Kalmunai</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Sudan -->
+    <string-array name="cities_sudan">
+        <item>Khartoum</item>
+        <item>Omdurman</item>
+        <item>Port Sudan</item>
+        <item>Kassala</item>
+        <item>El Obeid</item>
+        <item>Medani</item>
+        <item>El Geneina</item>
+        <item>Wad Medani</item>
+        <item>Al Fashir</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Suriname -->
+    <string-array name="cities_suriname">
+        <item>Paramaribo</item>
+        <item>Lelydorp</item>
+        <item>Nieuw Nickerie</item>
+        <item>Moengo</item>
+        <item>Nieuw Amsterdam</item>
+        <item>Marowijne</item>
+        <item>Albina</item>
+        <item>Groningen</item>
+        <item>Wageningen</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Swaziland -->
+    <string-array name="cities_swaziland">
+        <item>Mbabane</item>
+        <item>Manzini</item>
+        <item>Lobamba</item>
+        <item>Siteki</item>
+        <item>Piggs Peak</item>
+        <item>Kwaluseni</item>
+        <item>Mhlume</item>
+        <item>Hlatikulu</item>
+        <item>Bulembu</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Sweden -->
+    <string-array name="cities_sweden">
+        <item>Stockholm</item>
+        <item>Gothenburg</item>
+        <item>Malmö</item>
+        <item>Uppsala</item>
+        <item>Västerås</item>
+        <item>Örebro</item>
+        <item>Linköping</item>
+        <item>Helsingborg</item>
+        <item>Jönköping</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Switzerland -->
+    <string-array name="cities_switzerland">
+        <item>Zurich</item>
+        <item>Geneva</item>
+        <item>Basel</item>
+        <item>Lausanne</item>
+        <item>Bern</item>
+        <item>Winterthur</item>
+        <item>Lucerne</item>
+        <item>St. Gallen</item>
+        <item>Lugano</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Syria -->
+    <string-array name="cities_syria">
+        <item>Damascus</item>
+        <item>Aleppo</item>
+        <item>Homs</item>
+        <item>Hama</item>
+        <item>Latakia</item>
+        <item>Daraa</item>
+        <item>Deir ez-Zor</item>
+        <item>Raqqa</item>
+        <item>Idlib</item>
+        <item>As-Suwayda</item>
+        <item>Tartus</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Taiwan -->
+    <string-array name="cities_taiwan">
+        <item>Taipei</item>
+        <item>Kaohsiung</item>
+        <item>Taichung</item>
+        <item>Tainan</item>
+        <item>Banqiao</item>
+        <item>Hsinchu</item>
+        <item>Keelung</item>
+        <item>Chiayi</item>
+        <item>Taoyuan</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Tajikistan -->
+    <string-array name="cities_tajikistan">
+        <item>Dushanbe</item>
+        <item>Khujand</item>
+        <item>Kulob</item>
+        <item>Qurghonteppa</item>
+        <item>Istaravshan</item>
+        <item>Isfara</item>
+        <item>Vahdat</item>
+        <item>Konibodom</item>
+        <item>Tursunzoda</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Thailand -->
+    <string-array name="cities_thailand">
+        <item>Bangkok</item>
+        <item>Chiang Mai</item>
+        <item>Pattaya</item>
+        <item>Phuket</item>
+        <item>Hua Hin</item>
+        <item>Nonthaburi</item>
+        <item>Udon Thani</item>
+        <item>Nakhon Ratchasima</item>
+        <item>Chiang Rai</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Tunisia -->
+    <string-array name="cities_tunisia">
+        <item>Tunis</item>
+        <item>Sfax</item>
+        <item>Sousse</item>
+        <item>Kairouan</item>
+        <item>Bizerte</item>
+        <item>Gabès</item>
+        <item>Ariana</item>
+        <item>Gafsa</item>
+        <item>Ben Arous</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Turkey -->
+    <string-array name="cities_turkey">
+        <item>Istanbul</item>
+        <item>Ankara</item>
+        <item>Izmir</item>
+        <item>Bursa</item>
+        <item>Antalya</item>
+        <item>Adana</item>
+        <item>Gaziantep</item>
+        <item>Konya</item>
+        <item>Çankaya</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Turkmenistan -->
+    <string-array name="cities_turkmenistan">
+        <item>Ashgabat</item>
+        <item>Turkmenabat</item>
+        <item>Daşoguz</item>
+        <item>Mary</item>
+        <item>Balkanabat</item>
+        <item>Bayramaly</item>
+        <item>Türkmenbaşy</item>
+        <item>Tejen</item>
+        <item>Abadan</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Virgin Islands -->
+    <string-array name="cities_virgin_islands">
+        <item>Charlotte Amalie</item>
+        <item>Cruz Bay</item>
+        <item>Frederiksted</item>
+        <item>Christiansted</item>
+        <item>Road Town</item>
+        <item>Spanish Town</item>
+        <item>East End</item>
+        <item>Saint John</item>
+        <item>Saint Thomas</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Uganda -->
+    <string-array name="cities_uganda">
+        <item>Kampala</item>
+        <item>Nansana</item>
+        <item>Kira</item>
+        <item>Mbarara</item>
+        <item>Mukono</item>
+        <item>Gulu</item>
+        <item>Lira</item>
+        <item>Jinja</item>
+        <item>Bwizibwera</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- Ukraine -->
+    <string-array name="cities_ukraine">
+        <item>Kiev</item>
+        <item>Kharkiv</item>
+        <item>Dnipro</item>
+        <item>Odessa</item>
+        <item>Donetsk</item>
+        <item>Zaporizhzhia</item>
+        <item>Lviv</item>
+        <item>Kryvyi Rih</item>
+        <item>Mykolaiv</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- United Arab Emirates -->
+    <string-array name="cities_united_arab_emirates">
+        <item>Dubai</item>
+        <item>Abu Dhabi</item>
+        <item>Sharjah</item>
+        <item>Al Ain</item>
+        <item>Ajman</item>
+        <item>Ras Al Khaimah</item>
+        <item>Fujairah</item>
+        <item>Umm Al Quwain</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- United Kingdom -->
+    <string-array name="cities_united_kingdom">
+        <item>London</item>
+        <item>Birmingham</item>
+        <item>Manchester</item>
+        <item>Edinburgh</item>
+        <item>Glasgow</item>
+        <item>Liverpool</item>
+        <item>Bristol</item>
+        <item>Leeds</item>
+        <item>Sheffield</item>
+        <!-- Add more cities here -->
+    </string-array>
+
+    <!-- United States -->
+    <string-array name="cities_united_states">
+        <item>Alabama</item>
+        <item>Alaska</item>
+        <item>Arizona</item>
+        <item>Arkansas</item>
+        <item>California</item>
+        <item>Colorado</item>
+        <item>Connecticut</item>
+        <item>Delaware</item>
+        <item>Florida</item>
+        <item>Georgia</item>
+        <item>Hawaii</item>
+        <item>Idaho</item>
+        <item>Illinois</item>
+        <item>Indiana</item>
+        <item>Iowa</item>
+        <item>Kansas</item>
+        <item>Kentucky</item>
+        <item>Louisiana</item>
+        <item>Maine</item>
+        <item>Maryland</item>
+        <item>Massachusetts</item>
+        <item>Michigan</item>
+        <item>Minnesota</item>
+        <item>Mississippi</item>
+        <item>Missouri</item>
+        <item>Montana</item>
+        <item>Nebraska</item>
+        <item>Nevada</item>
+        <item>New Hampshire</item>
+        <item>New Jersey</item>
+        <item>New Mexico</item>
+        <item>New York</item>
+        <item>North Carolina</item>
+        <item>North Dakota</item>
+        <item>Ohio</item>
+        <item>Oklahoma</item>
+        <item>Oregon</item>
+        <item>Pennsylvania</item>
+        <item>Rhode Island</item>
+        <item>South Carolina</item>
+        <item>South Dakota</item>
+        <item>Tennessee</item>
+        <item>Texas</item>
+        <item>Utah</item>
+        <item>Vermont</item>
+        <item>Virginia</item>
+        <item>Washington</item>
+        <item>West Virginia</item>
+        <item>Wisconsin</item>
+        <item>Wyoming</item>
+    </string-array>
+
+        <!-- Uruguay -->
+        <string-array name="cities_uruguay">
+            <item>Montevideo</item>
+            <item>Salto</item>
+            <item>Paysandú</item>
+            <item>Las Piedras</item>
+            <item>Rivera</item>
+            <item>Maldonado</item>
+            <item>Tacuarembó</item>
+            <item>Melo</item>
+            <item>Mercedes</item>
+            <!-- Add more cities here -->
+        </string-array>
+
+        <!-- Uzbekistan -->
+        <string-array name="cities_uzbekistan">
+            <item>Tashkent</item>
+            <item>Samarkand</item>
+            <item>Andijan</item>
+            <item>Namangan</item>
+            <item>Urgench</item>
+            <item>Fergana</item>
+            <item>Bukhara</item>
+            <item>Nukus</item>
+            <item>Jizzakh</item>
+            <!-- Add more cities here -->
+        </string-array>
+
+        <!-- Vatican City -->
+        <string-array name="cities_vatican_city">
+            <item>Vatican City</item>
+            <!-- Add more cities here -->
+        </string-array>
+
+        <!-- Venezuela -->
+        <string-array name="cities_venezuela">
+            <item>Caracas</item>
+            <item>Maracaibo</item>
+            <item>Valencia</item>
+            <item>Barquisimeto</item>
+            <item>Maracay</item>
+            <item>Ciudad Guayana</item>
+            <item>Barcelona</item>
+            <item>Maturín</item>
+            <item>Puerto La Cruz</item>
+            <!-- Add more cities here -->
+        </string-array>
+
+        <!-- Vietnam -->
+        <string-array name="cities_vietnam">
+            <item>Hanoi</item>
+            <item>Ho Chi Minh City</item>
+            <item>Da Nang</item>
+            <item>Hai Phong</item>
+            <item>Can Tho</item>
+            <item>Biên Hòa</item>
+            <item>Nha Trang</item>
+            <item>Hue</item>
+            <item>Haiphong</item>
+            <!-- Add more cities here -->
+        </string-array>
+
+        <!-- Yemen -->
+        <string-array name="cities_yemen">
+            <item>Sana\'a</item>
+            <item>Aden</item>
+            <item>Taiz</item>
+            <item>Hodeidah</item>
+            <item>Al-Mukalla</item>
+            <item>Ibb</item>
+            <item>Dhamar</item>
+            <item>Amran</item>
+            <item>Sayyan</item>
+            <!-- Add more cities here -->
+        </string-array>
+
 </resources>

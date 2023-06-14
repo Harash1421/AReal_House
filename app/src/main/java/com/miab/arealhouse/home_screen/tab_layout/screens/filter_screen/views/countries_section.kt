@@ -87,8 +87,9 @@ fun updateCityList(
     cityList.clear()
 
     // Fetch the array resource ID dynamically based on the selected country
+    val countryLowerCase = country.lowercase().replace(" ", "_")
     val cityArrayResourceId = context.resources.getIdentifier(
-        "cities_${country.lowercase()}",
+        "cities_$countryLowerCase",
         "array",
         context.packageName
     )
