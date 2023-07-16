@@ -1,5 +1,6 @@
 package com.miab.arealhouse.home_screen.bottom_nav.screens
 
+import android.content.Context
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -14,6 +15,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -27,7 +29,7 @@ var names = listOf("Rent", "Sale")
 @ExperimentalComposeUiApi
 @OptIn(ExperimentalStdlibApi::class)
 @Composable
-fun HomeScreen(apartmentViewModel: ApartmentViewModel){
+fun HomeScreen(context: Context, apartmentViewModel: ApartmentViewModel){
     val showMap = remember { mutableStateOf(false) }
 //    val keyboardController = LocalSoftwareKeyboardController.current
     Column(
@@ -38,6 +40,7 @@ fun HomeScreen(apartmentViewModel: ApartmentViewModel){
     ) {
         var searchQuery by remember { mutableStateOf("") }
         SearchBar(
+            context,
             modifier = Modifier.fillMaxWidth(),
             onSearch = { query ->
                 searchQuery = query

@@ -1,5 +1,6 @@
 package com.miab.arealhouse.home_screen.bottom_nav
 
+import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -19,15 +20,17 @@ import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewMod
 fun BottomNavPager(iconsList: List<Pair<Int, String>>,
                    pagerState: PagerState,
                    modifier: Modifier = Modifier,
-                   apartmentViewModel: ApartmentViewModel)
+                   apartmentViewModel: ApartmentViewModel,
+                   context: Context)
 {
     HorizontalPager(
         count = iconsList.size,
         state = pagerState,
-        modifier = modifier
+        modifier = modifier,
+        userScrollEnabled = false
     ) { page ->
         when(page) {
-            0 -> HomeScreen(apartmentViewModel = apartmentViewModel)
+            0 -> HomeScreen(context, apartmentViewModel = apartmentViewModel)
             1 -> FavoriteScreen()
             2 -> MessageScreen()
             3 -> ProfileScreen()

@@ -11,17 +11,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.miab.arealhouse.home_screen.bottom_nav.BottomBar
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.FilterActivity.Companion.newFilterOptions
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
-import com.miab.arealhouse.maps_screen.MapsActivity
 import com.miab.arealhouse.ui.theme.ARealHouseTheme
 
 class MainActivity : ComponentActivity() {
@@ -36,9 +32,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color.White
                 ) {
-
                     Column {
-                        BottomBar(apartmentViewModel)
+                        BottomBar(this@MainActivity, apartmentViewModel)
                     }
                 }
             }
@@ -51,7 +46,6 @@ class MainActivity : ComponentActivity() {
             apartmentViewModel.applyFilters(it)
         }
     }
-
 }
 
 val list = listOf(
@@ -81,8 +75,11 @@ val list = listOf(
                 "Swimming Pool",
         landSize = 90,
         homeSize = 40,
-        facilities = mapOf("Fully Furnished" to true, "WiFi" to true, "AC" to true, "24 Hour Access" to false)
+        facilities = mapOf("Fully Furnished" to true, "WiFi" to true, "AC" to true, "24 Hour Access" to false),
+        latitude = 34.19111323372549,
+        longitude = -118.84451455373413
     ),
+
     Apartment(
         homeType = "House",
         imageUrl = R.drawable.image_second,
@@ -100,7 +97,9 @@ val list = listOf(
         description = "A cosy studio apartment in the city center.",
         landSize = 100,
         homeSize = 50,
-        facilities = mapOf("Fully Furnished" to false, "WiFi" to true, "AC" to true, "24 Hour Access" to true)
+        facilities = mapOf("Fully Furnished" to false, "WiFi" to true, "AC" to true, "24 Hour Access" to true),
+        latitude = 40.74041824661507,
+        longitude = -73.990781100667
     ),
     Apartment(
         homeType = "Villa",
@@ -119,7 +118,9 @@ val list = listOf(
         description = "A spacious Villa in the suburbs.",
         landSize = 300,
         homeSize = 250,
-        facilities = mapOf("Fully Furnished" to false, "WiFi" to true, "AC" to false, "24 Hour Access" to false)
+        facilities = mapOf("Fully Furnished" to false, "WiFi" to true, "AC" to false, "24 Hour Access" to false),
+        latitude = 34.18932049210181,
+        longitude = -118.84181089004043
     ),
     Apartment(
         homeType = "Apartment",
@@ -138,7 +139,9 @@ val list = listOf(
         description = "A modern flat in the downtown area.",
         landSize = 120,
         homeSize = 65,
-        facilities = mapOf("Fully Furnished" to false, "WiFi" to true, "AC" to false, "24 Hour Access" to true)
+        facilities = mapOf("Fully Furnished" to false, "WiFi" to true, "AC" to false, "24 Hour Access" to true),
+        latitude = 40.74414122348834,
+        longitude = -73.99208998139481
     )
 )
 
@@ -148,13 +151,14 @@ val list = listOf(
 @Composable
 fun GreetingPreview() {
     ARealHouseTheme {
+        val context = LocalContext.current
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
             Column {
                 val apartmentViewModel: ApartmentViewModel = viewModel()
-//                BottomBar(apartmentViewModel = apartmentViewModel)
+                BottomBar(context, apartmentViewModel)
             }
         }
     }

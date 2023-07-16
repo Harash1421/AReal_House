@@ -19,9 +19,10 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.google.android.gms.maps.MapView
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentsCard
-import com.miab.arealhouse.maps_screen.MapsActivity
+import com.miab.arealhouse.maps_screen.MapView
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -39,10 +40,11 @@ fun SaleScreen(apartmentViewModel: ApartmentViewModel = viewModel(), showMap: Mu
         }
     }
     if(showMap.value){
-        MapsActivity()
+        MapView(apartments.value)
     }else{
         LazyColumn(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
                 .nestedScroll(nestedScrollConnection),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(10.dp)

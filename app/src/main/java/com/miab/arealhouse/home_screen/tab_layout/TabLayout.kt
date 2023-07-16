@@ -60,16 +60,19 @@ fun TabLayout(tabNames: List<String>,
         HorizontalPager(
             count = tabNames.size,
             state = pagerState,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
+            userScrollEnabled = false
         ) { page ->
             when(page) {
 
-                0 -> RentScreen(apartmentViewModel = apartmentViewModel, showMap)
+                0 -> RentScreen(context, apartmentViewModel = apartmentViewModel, showMap)
                 1 -> SaleScreen(apartmentViewModel = apartmentViewModel, showMap)
             }
         }
     }
 }
+
+
 
 @Preview(showBackground = true)
 @Composable

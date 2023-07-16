@@ -1,5 +1,6 @@
 package com.miab.arealhouse.home_screen.bottom_nav
 
+import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.BottomNavigation
@@ -30,7 +31,7 @@ val bottomList = listOf(
 
 @ExperimentalComposeUiApi
 @Composable
-fun BottomBar(apartmentViewModel: ApartmentViewModel) {
+fun BottomBar(context: Context, apartmentViewModel: ApartmentViewModel) {
     val pagerState = rememberPagerState(initialPage = 0)
     val scope = rememberCoroutineScope()
 
@@ -40,7 +41,8 @@ fun BottomBar(apartmentViewModel: ApartmentViewModel) {
             iconsList = bottomList,
             pagerState = pagerState,
             modifier = Modifier.weight(1f),
-            apartmentViewModel = apartmentViewModel)
+            apartmentViewModel = apartmentViewModel,
+            context)
 
         // BottomNavigation composable for displaying the bottom navigation items
         BottomNavigation(

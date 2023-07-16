@@ -157,7 +157,9 @@ fun DetailScreenPreview() {
                 "AC" to true,
                 "Fully Furnished" to true,
                 "24 Hour Access" to true
-            )
+            ),
+            latitude = 34.19111323372549,
+            longitude = -118.84451455373413
         )
         DetailBuyActivity().DetailScreen(apartment)
     }
