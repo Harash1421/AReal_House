@@ -63,7 +63,7 @@ fun SearchBar(context: Context,
             )
 
             MapTextButton(modifier = Modifier.weight(0.2f),
-                buttonText = if(isMap) "List" else "Map",
+                buttonText = if(isMap) "Map" else "List",
                 onClick = {
                     onMapClick()
                 })

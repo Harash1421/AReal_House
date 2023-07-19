@@ -40,8 +40,6 @@ fun SaleScreen(apartmentViewModel: ApartmentViewModel = viewModel(), showMap: Mu
         }
     }
     if(showMap.value){
-        MapView(apartments.value)
-    }else{
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -53,6 +51,8 @@ fun SaleScreen(apartmentViewModel: ApartmentViewModel = viewModel(), showMap: Mu
                 ApartmentsCard(apartment, index)
             }
         }
+    }else{
+        MapView(apartments.value)
     }
 }
 

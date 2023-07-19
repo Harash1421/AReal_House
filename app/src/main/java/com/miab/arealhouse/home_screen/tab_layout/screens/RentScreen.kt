@@ -40,8 +40,6 @@ fun RentScreen(context: Context, apartmentViewModel: ApartmentViewModel = viewMo
         }
     }
     if(showMap.value){
-        MapView(apartments.value)
-    }else{
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -53,6 +51,8 @@ fun RentScreen(context: Context, apartmentViewModel: ApartmentViewModel = viewMo
                 ApartmentsCard(apartment, index)
             }
         }
+    }else{
+        MapView(apartments.value)
     }
 }
 
