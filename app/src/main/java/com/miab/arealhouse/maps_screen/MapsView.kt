@@ -1,12 +1,13 @@
 package com.miab.arealhouse.maps_screen
 
 import android.Manifest
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -19,13 +20,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.google.android.gms.maps.CameraUpdateFactory
+import androidx.core.content.ContextCompat
+import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
@@ -40,8 +41,6 @@ import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.miab.arealhouse.R
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
-import com.miab.arealhouse.list
-import kotlinx.coroutines.CoroutineScope
 
 @Composable
 fun MapView(apartmentList: List<Apartment>) {
@@ -74,7 +73,6 @@ fun MapView(apartmentList: List<Apartment>) {
                 MapContent(
                     cameraPosition = cameraPosition,
                     apartmentList = apartmentList,
-                    selectedApartment = selectedApartment,
                     selectedMarker = selectedMarker,
                     onMarkerClick = { apartment ->
                         selectedApartment = apartment
@@ -131,15 +129,30 @@ fun ScrollToApartment(
     }
 }
 
+fun bitmapDescriptorFromVector(
+    context: Context,
+    vectorResId: Int
+): BitmapDescriptor {
+    val vectorDrawable = ContextCompat.getDrawable(context, vectorResId)
+    vectorDrawable?.setBounds(0, 0, vectorDrawable.intrinsicWidth, vectorDrawable.intrinsicHeight)
+    val bitmap = Bitmap.createBitmap(
+        vectorDrawable!!.intrinsicWidth,
+        vectorDrawable.intrinsicHeight,
+        Bitmap.Config.ARGB_8888
+    )
+    val canvas = Canvas(bitmap)
+    vectorDrawable.draw(canvas)
+    return BitmapDescriptorFactory.fromBitmap(bitmap)
+}
 
 @Composable
 private fun MapContent(
     cameraPosition: CameraPositionState,
     apartmentList: List<Apartment>,
-    selectedApartment: Apartment,
     selectedMarker: Apartment,
     onMarkerClick: (Apartment) -> Unit
 ) {
+    val context = LocalContext.current
     val mapStyle = MapStyleOptions.loadRawResourceStyle(
         LocalContext.current,
         R.raw.map_style
@@ -164,16 +177,15 @@ private fun MapContent(
     ) {
         apartmentList.forEach { apartment ->
             val apartmentLocation = LatLng(apartment.latitude, apartment.longitude)
-            val isSelectedApartment = apartment == selectedApartment
             val isSelectedMarker = apartment == selectedMarker
 
+            val pinUnselected = bitmapDescriptorFromVector(context, R.drawable.pin_unselected)
+            val pinSelected = bitmapDescriptorFromVector(context, R.drawable.pin_selected)
             Marker(
                 state = MarkerState(position = apartmentLocation),
                 title = apartment.name,
                 snippet = "Marker for ${apartment.name}",
-                icon = BitmapDescriptorFactory.defaultMarker(
-                    if (isSelectedMarker) BitmapDescriptorFactory.HUE_RED else BitmapDescriptorFactory.HUE_ORANGE
-                ),
+                icon = if (isSelectedMarker) pinSelected else pinUnselected,
                 onClick = {
                     onMarkerClick(apartment)
                     true
