@@ -26,6 +26,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -69,13 +73,18 @@ data class Apartment(
     //Apartment Location
     val latitude: Double,
     val longitude: Double
-) : Parcelable
+) : Parcelable {
+    fun calculateTotalSize(): Int {
+        return landSize + homeSize
+    }
+}
 
 
 // Composable for Apartment card
 @Composable
 fun ApartmentsCard(apartment: Apartment, index: Int = 0) {
     val context = LocalContext.current
+    var isFavorite by remember { mutableStateOf(apartment.isFavorite) }
     // Main card container
     Box(
         modifier = Modifier
@@ -84,7 +93,7 @@ fun ApartmentsCard(apartment: Apartment, index: Int = 0) {
             .border(1.dp, Color.Gray, RoundedCornerShape(8.dp))
             .background(Color.White)
             .clip(RoundedCornerShape(topEnd = 8.dp))
-            .clickable { // Add this line to make the card clickable
+            .clickable {
                 val intent = Intent(context, DetailBuyActivity::class.java)
                 intent.putExtra("Apartment", apartment)
                 intent.putExtra("Index", index)
@@ -101,10 +110,11 @@ fun ApartmentsCard(apartment: Apartment, index: Int = 0) {
         }
 
         // Favorite icon button
-        FavoriteIcon(apartment.isFavorite,
+        FavoriteIcon(isFavorite,
             onFavoriteClick = {
                 // change the isFavorite status
-                apartment.isFavorite = !apartment.isFavorite
+                isFavorite = !isFavorite
+                apartment.isFavorite = isFavorite
             },
             modifier = Modifier.align(Alignment.TopEnd))
     }

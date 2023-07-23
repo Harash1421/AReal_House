@@ -33,6 +33,10 @@ class ApartmentViewModel : ViewModel() {
         apartments.value = filteredList
     }
 
+    fun getFavoriteApartments(): List<Apartment> {
+        return list.filter { it.isFavorite }
+    }
+
 
     fun applyFilters(filterOptions: FilterOptions) {
         if (filterOptions != FilterOptions()) {

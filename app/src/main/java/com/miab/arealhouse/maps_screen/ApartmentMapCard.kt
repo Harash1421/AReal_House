@@ -32,9 +32,9 @@ import com.miab.arealhouse.R
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
 
 @Composable
-fun ApartmentMapCard(apartment: Apartment, isSelected: Boolean, onCardClick: () -> Unit = {}){
+fun ApartmentMapCard(apartment: Apartment, isSelected: Boolean, onCardClick: () -> Unit = {}, modifier: Modifier = Modifier){
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(12.dp)
             .border(1.dp, if (isSelected) Color.Green else Color.Gray, RoundedCornerShape(8.dp))

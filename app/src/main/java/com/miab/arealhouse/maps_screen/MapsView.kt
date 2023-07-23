@@ -1,45 +1,35 @@
 package com.miab.arealhouse.maps_screen
 
 import android.Manifest
-import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
+import android.content.Intent
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
-import com.google.android.gms.maps.model.BitmapDescriptor
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.PagerState
+import com.google.accompanist.pager.rememberPagerState
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MapStyleOptions
-import com.google.maps.android.compose.CameraPositionState
-import com.google.maps.android.compose.GoogleMap
-import com.google.maps.android.compose.MapProperties
-import com.google.maps.android.compose.MapType
-import com.google.maps.android.compose.MapUiSettings
-import com.google.maps.android.compose.Marker
-import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
-import com.miab.arealhouse.R
+import com.miab.arealhouse.detail_buy_screen.DetailBuyActivity
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
 
 @Composable
@@ -57,56 +47,83 @@ fun MapView(apartmentList: List<Apartment>) {
         }
     )
 
+    val context = LocalContext.current
+
     val cameraPosition = rememberCameraPositionState {
         val firstApartmentLocation = LatLng(apartmentList[0].latitude, apartmentList[0].longitude)
         position = CameraPosition.fromLatLngZoom(firstApartmentLocation, 15f)
     }
 
-    var selectedApartment by remember { mutableStateOf(apartmentList.first()) }
-    var selectedMarker by remember { mutableStateOf(apartmentList.first()) }
+    val selectedApartment = remember { mutableStateOf(apartmentList.first()) }
+    val selectedMarker = remember { mutableStateOf(apartmentList.first()) }
 
-    val lazyListState = rememberLazyListState()
+    val pagerState = rememberPagerState(
+        initialPage = apartmentList.indexOf(selectedApartment.value)
+    )
+
+    // Filter apartments based on the visible area of the map
+    val currentCameraPosition = cameraPosition.position
+    val zoomLevel = currentCameraPosition.zoom
+    val visibleApartments = apartmentList.filter { apartment ->
+        val apartmentLocation = LatLng(apartment.latitude, apartment.longitude)
+        apartmentLocation.latitude in (currentCameraPosition.target.latitude - zoomLevel) .. (currentCameraPosition.target.latitude + zoomLevel) &&
+                apartmentLocation.longitude in (currentCameraPosition.target.longitude - zoomLevel) .. (currentCameraPosition.target.longitude + zoomLevel)
+    }
+
+    // Update the selected apartment when the pager state changes
+    LaunchedEffect(pagerState) {
+        snapshotFlow { pagerState.currentPage }
+            .collect { page ->
+                val apartment = visibleApartments[page]
+                selectedApartment.value = apartment
+                selectedMarker.value = apartment
+            }
+    }
 
     Column {
         Box(modifier = Modifier.fillMaxSize()) {
             if (permissionState.value) {
                 MapContent(
+                    context,
                     cameraPosition = cameraPosition,
                     apartmentList = apartmentList,
-                    selectedMarker = selectedMarker,
+                    selectedMarker = selectedMarker.value,
                     onMarkerClick = { apartment ->
-                        selectedApartment = apartment
-                        selectedMarker = apartment
-
+                        selectedApartment.value = apartment
+                        selectedMarker.value = apartment
+                        // When a marker is clicked, scroll the HorizontalPager to the selected apartment
                     }
                 )
-                LazyRow(
-                    modifier = Modifier.align(Alignment.BottomCenter),
-                    state = lazyListState
-                ) {
-                    items(apartmentList) { apartment ->
-                        ApartmentMapCard(
-                            apartment = apartment,
-                            isSelected = apartment == selectedApartment,
-                            onCardClick = {
-                                selectedApartment = apartment
-                                selectedMarker = apartment
-
-                                val apartmentLocation = LatLng(apartment.latitude, apartment.longitude)
-                                cameraPosition.position = CameraPosition.fromLatLngZoom(apartmentLocation, 15f)
-                            }
-                        )
-                    }
+                HorizontalPager(
+                    state = pagerState,
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth(),
+                    count = visibleApartments.size
+                ) { page ->
+                    val apartment = visibleApartments[page]
+                        if(cameraPosition.position.zoom >= 10f) {
+                            ApartmentMapCard(
+                                apartment = apartment,
+                                isSelected = apartment == selectedApartment.value,
+                                onCardClick = {
+                                    val intent = Intent(context, DetailBuyActivity::class.java)
+                                    intent.putExtra("Apartment", apartment)
+                                    intent.putExtra("Index", visibleApartments[page])
+                                    context.startActivity(intent)
+                                }
+                            )
+                        }else{
+                            // Handle the case where Camera Position are not 10f
+                        }
                 }
-                Spacer(modifier = Modifier.height(14.dp))
             } else {
                 // Handle the case where permissions are not granted
             }
         }
     }
 
-    ScrollToApartment(apartmentList, selectedApartment, lazyListState)
-
+    ScrollPagerToApartment(visibleApartments, selectedApartment.value, pagerState)
 
     LaunchedEffect(key1 = true) {
         if (!permissionState.value) {
@@ -116,85 +133,18 @@ fun MapView(apartmentList: List<Apartment>) {
 }
 
 @Composable
-fun ScrollToApartment(
-    apartmentList: List<Apartment>,
-    selectedApartment: Apartment,
-    lazyListState: LazyListState
-) {
-    val index = apartmentList.indexOf(selectedApartment)
+fun ScrollPagerToApartment(
+    visibleApartments:List<Apartment>,
+    apartment: Apartment,
+    pagerState: PagerState) {
+    // Scroll the HorizontalPager to show the selected apartment
+    val index = visibleApartments.indexOf(apartment)
     if (index != -1) {
         LaunchedEffect(key1 = index) {
-            lazyListState.animateScrollToItem(index)
+            pagerState.animateScrollToPage(index)
         }
     }
 }
-
-fun bitmapDescriptorFromVector(
-    context: Context,
-    vectorResId: Int
-): BitmapDescriptor {
-    val vectorDrawable = ContextCompat.getDrawable(context, vectorResId)
-    vectorDrawable?.setBounds(0, 0, vectorDrawable.intrinsicWidth, vectorDrawable.intrinsicHeight)
-    val bitmap = Bitmap.createBitmap(
-        vectorDrawable!!.intrinsicWidth,
-        vectorDrawable.intrinsicHeight,
-        Bitmap.Config.ARGB_8888
-    )
-    val canvas = Canvas(bitmap)
-    vectorDrawable.draw(canvas)
-    return BitmapDescriptorFactory.fromBitmap(bitmap)
-}
-
-@Composable
-private fun MapContent(
-    cameraPosition: CameraPositionState,
-    apartmentList: List<Apartment>,
-    selectedMarker: Apartment,
-    onMarkerClick: (Apartment) -> Unit
-) {
-    val context = LocalContext.current
-    val mapStyle = MapStyleOptions.loadRawResourceStyle(
-        LocalContext.current,
-        R.raw.map_style
-    )
-    val properties = MapProperties(
-        mapType = MapType.NORMAL,
-        isMyLocationEnabled = true,
-        isTrafficEnabled = false,
-        mapStyleOptions = mapStyle,
-    )
-    val uiSettings = MapUiSettings(
-        zoomControlsEnabled = false,
-        rotationGesturesEnabled = false,
-        mapToolbarEnabled = false,
-    )
-
-    GoogleMap(
-        modifier = Modifier.fillMaxSize(),
-        properties = properties,
-        uiSettings = uiSettings,
-        cameraPositionState = cameraPosition
-    ) {
-        apartmentList.forEach { apartment ->
-            val apartmentLocation = LatLng(apartment.latitude, apartment.longitude)
-            val isSelectedMarker = apartment == selectedMarker
-
-            val pinUnselected = bitmapDescriptorFromVector(context, R.drawable.pin_unselected)
-            val pinSelected = bitmapDescriptorFromVector(context, R.drawable.pin_selected)
-            Marker(
-                state = MarkerState(position = apartmentLocation),
-                title = apartment.name,
-                snippet = "Marker for ${apartment.name}",
-                icon = if (isSelectedMarker) pinSelected else pinUnselected,
-                onClick = {
-                    onMarkerClick(apartment)
-                    true
-                }
-            )
-        }
-    }
-}
-
 
 //@Composable
 //private fun RequestPermissionUI(
