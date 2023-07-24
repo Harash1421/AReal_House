@@ -23,6 +23,7 @@ import com.miab.arealhouse.home_screen.tab_layout.screens.RentScreen
 import com.miab.arealhouse.home_screen.tab_layout.screens.SaleScreen
 import com.miab.arealhouse.home_screen.tab_layout.screens.filter_screen.FilterActivity
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
+import com.miab.arealhouse.home_screen.tab_layout.screens.views.SortView
 
 @Composable
 fun TabLayout(tabNames: List<String>,

@@ -89,7 +89,7 @@ fun ApartmentsCard(apartment: Apartment, index: Int = 0) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(12.dp)
+            .padding(horizontal = 12.dp, vertical = 7.dp)
             .border(1.dp, Color.Gray, RoundedCornerShape(8.dp))
             .background(Color.White)
             .clip(RoundedCornerShape(topEnd = 8.dp))

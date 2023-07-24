@@ -19,13 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentsCard
+import com.miab.arealhouse.home_screen.tab_layout.screens.views.SortOption
 
-enum class SortOption {
-    PRICE_HIGH_TO_LOW,
-    PRICE_LOW_TO_HIGH,
-    SIZE_HIGH_TO_LOW,
-    SIZE_LOW_TO_HIGH
-}
 
 @Composable
 fun FavoriteScreen(apartmentViewModel: ApartmentViewModel = viewModel()) {
