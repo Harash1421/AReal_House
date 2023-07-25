@@ -1,6 +1,7 @@
 package com.miab.arealhouse.home_screen.tab_layout.screens
 
 import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,6 +23,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -30,25 +32,16 @@ import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewMod
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentsCard
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.SortOption
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.SortView
+import com.miab.arealhouse.list
 import com.miab.arealhouse.maps_screen.MapView
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun RentScreen(context: Context, apartmentViewModel: ApartmentViewModel = viewModel(), showMap: MutableState<Boolean>){
     apartmentViewModel.filterBySale(false)
-    val apartments = apartmentViewModel.apartments.observeAsState(initial = emptyList())
+    val apartments by apartmentViewModel.apartments.observeAsState(initial = emptyList())
     var sortOption by remember { mutableStateOf(SortOption.PRICE_HIGH_TO_LOW) }
-    var sortedApartments by remember { mutableStateOf(apartments.value) }
 
-    // Sort the apartments based on the selected option
-    LaunchedEffect(sortOption) {
-        sortedApartments = when (sortOption) {
-            SortOption.PRICE_HIGH_TO_LOW -> apartments.value.sortedByDescending { it.price }
-            SortOption.PRICE_LOW_TO_HIGH -> apartments.value.sortedBy { it.price }
-            SortOption.SIZE_HIGH_TO_LOW -> apartments.value.sortedByDescending { it.calculateTotalSize() }
-            SortOption.SIZE_LOW_TO_HIGH -> apartments.value.sortedBy { it.calculateTotalSize() }
-        }
-    }
 
     val keyboardController = LocalSoftwareKeyboardController.current
     val nestedScrollConnection = remember {
@@ -65,6 +58,15 @@ fun RentScreen(context: Context, apartmentViewModel: ApartmentViewModel = viewMo
             SortView(onSortClick = { newSortOption ->
                 // Update the sortOption state when a new option is selected
                 sortOption = newSortOption
+
+                val sortedApartments = when (sortOption) {
+                    SortOption.PRICE_HIGH_TO_LOW -> apartments.sortedByDescending { it.price }
+                    SortOption.PRICE_LOW_TO_HIGH -> apartments.sortedBy { it.price }
+                    SortOption.SIZE_HIGH_TO_LOW -> apartments.sortedByDescending { it.calculateTotalSize() }
+                    SortOption.SIZE_LOW_TO_HIGH -> apartments.sortedBy { it.calculateTotalSize() }
+                }
+
+                apartmentViewModel.apartments.value = sortedApartments
             })
 
             Divider()
@@ -76,13 +78,13 @@ fun RentScreen(context: Context, apartmentViewModel: ApartmentViewModel = viewMo
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                itemsIndexed(sortedApartments) { index, apartment ->
+                itemsIndexed(apartments) { index, apartment ->
                     ApartmentsCard(apartment, index)
                 }
             }
         }
     }else{
-        MapView(apartments.value)
+        MapView(apartments)
     }
 }
 

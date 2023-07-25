@@ -45,19 +45,8 @@ import com.miab.arealhouse.maps_screen.MapView
 @Composable
 fun SaleScreen(apartmentViewModel: ApartmentViewModel = viewModel(), showMap: MutableState<Boolean>){
     apartmentViewModel.filterBySale(true)
-    val apartments = apartmentViewModel.apartments.observeAsState(initial = emptyList())
+    val apartments by apartmentViewModel.apartments.observeAsState(initial = emptyList())
     var sortOption by remember { mutableStateOf(SortOption.PRICE_HIGH_TO_LOW) }
-    var sortedApartments by remember { mutableStateOf(apartments.value) }
-
-    // Sort the apartments based on the selected option
-    LaunchedEffect(sortOption) {
-        sortedApartments = when (sortOption) {
-            SortOption.PRICE_HIGH_TO_LOW -> apartments.value.sortedByDescending { it.price }
-            SortOption.PRICE_LOW_TO_HIGH -> apartments.value.sortedBy { it.price }
-            SortOption.SIZE_HIGH_TO_LOW -> apartments.value.sortedByDescending { it.calculateTotalSize() }
-            SortOption.SIZE_LOW_TO_HIGH -> apartments.value.sortedBy { it.calculateTotalSize() }
-        }
-    }
 
     val keyboardController = LocalSoftwareKeyboardController.current
     val nestedScrollConnection = remember {
@@ -74,6 +63,15 @@ fun SaleScreen(apartmentViewModel: ApartmentViewModel = viewModel(), showMap: Mu
             SortView(onSortClick = { newSortOption ->
                 // Update the sortOption state when a new option is selected
                 sortOption = newSortOption
+
+                val sortedApartments = when (sortOption) {
+                    SortOption.PRICE_HIGH_TO_LOW -> apartments.sortedByDescending { it.price }
+                    SortOption.PRICE_LOW_TO_HIGH -> apartments.sortedBy { it.price }
+                    SortOption.SIZE_HIGH_TO_LOW -> apartments.sortedByDescending { it.calculateTotalSize() }
+                    SortOption.SIZE_LOW_TO_HIGH -> apartments.sortedBy { it.calculateTotalSize() }
+                }
+
+                apartmentViewModel.apartments.value = sortedApartments
             })
 
             Divider()
@@ -85,13 +83,13 @@ fun SaleScreen(apartmentViewModel: ApartmentViewModel = viewModel(), showMap: Mu
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                itemsIndexed(sortedApartments) { index, apartment ->
+                itemsIndexed(apartments) { index, apartment ->
                     ApartmentsCard(apartment, index)
                 }
             }
         }
     }else{
-        MapView(apartments.value)
+        MapView(apartments)
     }
 }
 

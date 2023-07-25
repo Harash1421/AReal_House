@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -31,6 +32,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.miab.arealhouse.detail_buy_screen.DetailBuyActivity
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
+import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
 
 @Composable
 fun MapView(apartmentList: List<Apartment>) {
