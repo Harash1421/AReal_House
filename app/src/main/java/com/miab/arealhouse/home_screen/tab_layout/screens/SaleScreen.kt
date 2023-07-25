@@ -89,7 +89,7 @@ fun SaleScreen(apartmentViewModel: ApartmentViewModel = viewModel(), showMap: Mu
             }
         }
     }else{
-        MapView(apartments)
+        MapView(apartmentViewModel)
     }
 }
 

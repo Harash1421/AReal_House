@@ -17,6 +17,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
@@ -24,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
@@ -35,7 +38,9 @@ import com.miab.arealhouse.home_screen.tab_layout.screens.views.Apartment
 import com.miab.arealhouse.home_screen.tab_layout.screens.views.ApartmentViewModel
 
 @Composable
-fun MapView(apartmentList: List<Apartment>) {
+fun MapView(apartmentViewModel: ApartmentViewModel = viewModel()) {
+    val apartments by apartmentViewModel.apartments.observeAsState(initial = emptyList())
+
     val permissions = arrayOf(
         Manifest.permission.ACCESS_COARSE_LOCATION,
         Manifest.permission.ACCESS_FINE_LOCATION
@@ -52,21 +57,21 @@ fun MapView(apartmentList: List<Apartment>) {
     val context = LocalContext.current
 
     val cameraPosition = rememberCameraPositionState {
-        val firstApartmentLocation = LatLng(apartmentList[0].latitude, apartmentList[0].longitude)
+        val firstApartmentLocation = LatLng(apartments[0].latitude, apartments[0].longitude)
         position = CameraPosition.fromLatLngZoom(firstApartmentLocation, 15f)
     }
 
-    val selectedApartment = remember { mutableStateOf(apartmentList.first()) }
-    val selectedMarker = remember { mutableStateOf(apartmentList.first()) }
+    val selectedApartment = remember { mutableStateOf(apartments.first()) }
+    val selectedMarker = remember { mutableStateOf(apartments.first()) }
 
     val pagerState = rememberPagerState(
-        initialPage = apartmentList.indexOf(selectedApartment.value)
+        initialPage = apartments.indexOf(selectedApartment.value)
     )
 
     // Filter apartments based on the visible area of the map
     val currentCameraPosition = cameraPosition.position
     val zoomLevel = currentCameraPosition.zoom
-    val visibleApartments = apartmentList.filter { apartment ->
+    val visibleApartments = apartments.filter { apartment ->
         val apartmentLocation = LatLng(apartment.latitude, apartment.longitude)
         apartmentLocation.latitude in (currentCameraPosition.target.latitude - zoomLevel) .. (currentCameraPosition.target.latitude + zoomLevel) &&
                 apartmentLocation.longitude in (currentCameraPosition.target.longitude - zoomLevel) .. (currentCameraPosition.target.longitude + zoomLevel)
@@ -88,7 +93,7 @@ fun MapView(apartmentList: List<Apartment>) {
                 MapContent(
                     context,
                     cameraPosition = cameraPosition,
-                    apartmentList = apartmentList,
+                    apartmentList = apartments,
                     selectedMarker = selectedMarker.value,
                     onMarkerClick = { apartment ->
                         selectedApartment.value = apartment

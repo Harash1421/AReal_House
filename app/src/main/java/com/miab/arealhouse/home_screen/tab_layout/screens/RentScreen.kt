@@ -84,7 +84,7 @@ fun RentScreen(context: Context, apartmentViewModel: ApartmentViewModel = viewMo
             }
         }
     }else{
-        MapView(apartments)
+        MapView(apartmentViewModel)
     }
 }
 
